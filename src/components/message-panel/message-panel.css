@@ -1,0 +1,38 @@
+.message-container {
+  width: calc(100% - 36px);
+  height: 100%;
+  display: flex;
+  margin-left: 18px;
+  margin-right: 18px;
+  row-gap: 9px;
+  column-gap: 9px;
+  overflow-x: auto;
+  overflow-y: auto;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+.message-container::-webkit-scrollbar {
+  display: none;
+}
+
+.message {
+  width: calc(100% - 18px);
+  word-wrap: break-word;
+  color: var(--text-color);
+  background-color: var(--secondary-color);
+  padding: 9px;
+  border-radius: 9px;
+}
+
+.message.right {
+  text-align: right;
+}
+
+.sent-by {
+  font-size: 11px;
+  color: var(--text-color);
+}
+.sent-by.right {
+  text-align: right;
+}

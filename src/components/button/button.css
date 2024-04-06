@@ -1,0 +1,26 @@
+.nav-button {
+  padding: 9px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 9px;
+  border: none;
+  border-radius: 9px;
+  color: var(--text-color);
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.nav-button.center {
+  justify-content: center;
+}
+
+.nav-button.bold {
+  font-weight: bold;
+}
+
+.nav-button:hover {
+  cursor: pointer;
+  background-color: var(--complement);
+}
