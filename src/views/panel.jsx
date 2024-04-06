@@ -20,13 +20,8 @@ const Panel = () => {
   return (
     <div className="App">
       { loggedIn && <NavBar displayName={user.displayName} /> }
-      { loggedIn &&
-        <div className='wrapper'>
-          <h2 className='h2'> Home Aut Panel </h2>
-          <TogglePanel tittle="ESP8266" />
-          <MessagePanel tittle="Logs" />
-      </div>
-      }
+      { loggedIn && <TogglePanel tittle="ESP8266" /> }
+      { loggedIn &&  <MessagePanel tittle="Logs" /> }
     </div>
   );
 }

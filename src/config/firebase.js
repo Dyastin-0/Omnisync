@@ -3,13 +3,14 @@ import { getAuth } from '@firebase/auth';
 import { getDatabase } from '@firebase/database';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCpkvO5sV6pi1pz_4Zi7MsM49w5vBKU8nk",
-  authDomain: "esp32-wifi-firebase.firebaseapp.com",
-  databaseURL: "https://esp32-wifi-firebase-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "esp32-wifi-firebase",
-  storageBucket: "esp32-wifi-firebase.appspot.com",
-  messagingSenderId: "711782122657",
-  appId: "1:711782122657:web:2a9bd167263c7ddcd29ce0"
+  apiKey: "AIzaSyBOyiu_l_-VoxdJVgZnR-QcMLA7D2pQZmk",
+  authDomain: "homeautmicro.firebaseapp.com",
+  databaseURL: "https://homeautmicro-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "homeautmicro",
+  storageBucket: "homeautmicro.appspot.com",
+  messagingSenderId: "33296336985",
+  appId: "1:33296336985:web:f4f492e9d6c5d23f758948",
+  measurementId: "G-HXBB3S5D2N"
 };
 
 const app = initializeApp(firebaseConfig);

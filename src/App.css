@@ -30,19 +30,3 @@ html, body {
   padding: 9px;
   flex-wrap: wrap;
 }
-
-.wrapper {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-  gap: 9px;
-}
-
-.wrapper .h2 {
-  width: calc(100% - 36px);
-  text-align: center;
-  background-color: var(--base-color);
-  padding: 18px;
-  border-radius: 18px;
-}

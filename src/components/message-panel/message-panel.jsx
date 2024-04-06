@@ -35,7 +35,7 @@ export const MessagePanel = (props) => {
               key={key}
               message={value.message}
               timeSent={value.timeSent}
-              sentBy={`${value.sentBy} on ${value.timeSent}`}
+              sentBy={value.sentBy}
             /> 
           ))
         }

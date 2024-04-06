@@ -31,11 +31,11 @@ export const SignInWindow = () => {
     <div className='auth'>
       <h2>Home Aut</h2>
       <h4> Sign in to access the panel </h4>
-      <input placeholder="Email"
-        onChange={(e) => {setEmail(e.target.value)}}
+      <input placeholder="Email" enterKeyHint='enter'
+        onChange={ (e) => {setEmail(e.target.value)} }
       ></input>
-      <input placeholder="Password" type="password"
-        onChange={(e) => {setPassword(e.target.value)}}
+      <input placeholder="Password" type="password" enterKeyHint='enter'
+        onChange={ (e) => {setPassword(e.target.value)} }
       ></input>
       <Button onclick={onClick} text="Sign in" className="nav-button center" />
     </div>

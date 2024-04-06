@@ -11,17 +11,19 @@ import { db } from '../../config/firebase';
 export const TogglePanelItem = (props) => {
   const [isOn, setIsOn] = useState(false);
 
-  useEffect(() => {
-    const dataRef = ref(db, props.path);
-    onValue(dataRef, (snapshot) => {
-      setIsOn(snapshot.val());
-    });
-  }, []);
+useEffect(() => {
+  const dataRef = ref(db, props.path);
+  onValue(dataRef, async (snapshot) => {
+    const data = await snapshot.val();
+    setIsOn(data);
+  });
+}, []);
+
 
   const handleChange = async (e) => {
     const newState = e.target.checked;
+    setIsOn(newState);
     setData(props.path, newState);
-    
     const state = newState ? "on" : "off";
     await pushInArray("/messages", {
       sentBy: props.sentBy,
@@ -33,7 +35,7 @@ export const TogglePanelItem = (props) => {
   return (
     <div className={props.className} >
       <h4> {props.toggleName} </h4>
-      <Toggle checked={isOn} onchange={handleChange} />
+      {isOn !== null && <Toggle checked={isOn} onchange={handleChange} />}
     </div>
   );
 }
