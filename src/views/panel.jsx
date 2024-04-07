@@ -13,7 +13,7 @@ import { ConfirmDialogModal } from '../components/confirm-dialog/confirm-dialog'
 
 const Panel = () => {
   const navigate = useNavigate();
-  const { loggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
   const { user } = useAuth();
 
   const [isAddToggleModalOpen, setIsAddToggleModalOpen] = useState(false);
@@ -26,18 +26,18 @@ const Panel = () => {
   const openAddToggleModal = () => setIsAddToggleModalOpen(true);
 
   useEffect(() => {
-    !loggedIn && navigate('/sign-in');
-  }, [loggedIn]);
+    !isLoggedIn && navigate('/sign-in');
+  }, [isLoggedIn]);
 
   return (
     <div className="App">
-      {loggedIn && <NavBar 
+      {isLoggedIn && <NavBar 
         openAddModal={openAddToggleModal} 
         displayName={user.displayName}
       /> }
-      { loggedIn && <TogglePanel tittle="ESP8266" /> }
-      { loggedIn && <MessagePanel tittle="Logs" /> }
-      { loggedIn && 
+      { isLoggedIn && <TogglePanel tittle="ESP8266" /> }
+      { isLoggedIn && <MessagePanel tittle="Logs" /> }
+      { isLoggedIn && 
         <AddToggleModal 
           active={ isAddToggleModalOpen } 
           closeModal={ closeAddToggleModal }
@@ -46,7 +46,7 @@ const Panel = () => {
           setConfirmEvent={ setConfirmEvent }
           setConfirmMessage= { setConfirmMessage }
       /> }
-      { loggedIn && 
+      { isLoggedIn && 
         <ConfirmDialogModal
           setToastMessage={ setToastMessage }
           event={ confirmEvent }

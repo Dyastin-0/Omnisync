@@ -12,7 +12,7 @@ export const useAuth = () => {
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -25,10 +25,10 @@ export function AuthProvider({ children }) {
   const initializeUser = async (user) => {
     if (user) {
       setUser({ ...user });
-      setLoggedIn(true);
+      setIsLoggedIn(true);
     } else {
       setUser(null);
-      setLoggedIn(false);
+      setIsLoggedIn(false);
     }
 
     setLoading(false);
@@ -36,7 +36,7 @@ export function AuthProvider({ children }) {
 
   const value = {
     user,
-    loggedIn,
+    isLoggedIn,
     loading
   }
 

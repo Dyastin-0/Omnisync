@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const SignInWindow = (props) => {
   const navigate = useNavigate();
-  const { loggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,8 +17,8 @@ export const SignInWindow = (props) => {
   const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
-    loggedIn && navigate('/panel');
-  }, [loggedIn]);
+    isLoggedIn && navigate('/panel');
+  }, [isLoggedIn]);
 
   const logIn = async () => {
     if (!signingIn) {
