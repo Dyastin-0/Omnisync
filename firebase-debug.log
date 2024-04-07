@@ -1,0 +1,19 @@
+[debug] [2024-04-07T14:23:59.999Z] ----------------------------------------------------------------------
+[debug] [2024-04-07T14:24:00.002Z] Command:       /usr/bin/node /usr/bin/firebase deploy
+[debug] [2024-04-07T14:24:00.002Z] CLI Version:   13.7.1
+[debug] [2024-04-07T14:24:00.003Z] Platform:      linux
+[debug] [2024-04-07T14:24:00.003Z] Node Version:  v20.12.0
+[debug] [2024-04-07T14:24:00.003Z] Time:          Sun Apr 07 2024 22:24:00 GMT+0800 (Philippine Standard Time)
+[debug] [2024-04-07T14:24:00.003Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-07T14:24:00.106Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-07T14:24:00.106Z] > authorizing via signed-in user (paralejasjustine15@gmail.com)
+[debug] [2024-04-07T14:24:00.107Z] [iam] checking project homeautmicro for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-04-07T14:24:00.108Z] > refreshing access token with scopes: []
+[debug] [2024-04-07T14:24:00.110Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-04-07T14:24:00.111Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-04-07T14:24:00.302Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-04-07T14:24:00.303Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-04-07T14:24:00.316Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/homeautmicro:testIamPermissions [none]
+[debug] [2024-04-07T14:24:00.316Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/homeautmicro:testIamPermissions x-goog-quota-user=projects/homeautmicro
+[debug] [2024-04-07T14:24:00.317Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/homeautmicro:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
