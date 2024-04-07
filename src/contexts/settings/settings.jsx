@@ -21,11 +21,7 @@ export const SettingsProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (theme === 'dark') {
-      darkTheme();
-    } else {
-      lightTheme();
-    }
+    theme === 'dark' ? darkTheme() : lightTheme();
   }, [theme]);
 
   const lightTheme = () => {
