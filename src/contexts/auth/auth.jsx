@@ -13,7 +13,7 @@ export const useAuth = () => {
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) =>
@@ -31,7 +31,7 @@ export function AuthProvider({ children }) {
       setIsLoggedIn(false);
     }
 
-    setLoading(false);
+    setIsLoading(false);
   }
 
   const value = {
@@ -42,7 +42,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {!isLoading && children}
     </AuthContext.Provider>
   );
 }
