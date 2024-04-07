@@ -14,22 +14,34 @@
 }
 
 .content-panel .container {
-  width: calc(100% - 36px);
+  width: calc(100% - 45px);
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   margin-left: 18px;
   margin-right: 18px;
-  row-gap: 18px;
-  column-gap: 18px;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  gap: 18px;
+  padding-right: 9px;
+  overflow-y: auto;
+  overflow-x: auto;
   flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+.content-panel .container.gap-9px {
+  gap: 9px;
 }
 
 .content-panel .container::-webkit-scrollbar {
-  display: none;
+  width: 9px;
+}
+
+.content-panel .container::-webkit-scrollbar-track {
+  border-radius: 9px;
+}
+
+.content-panel .container::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-color);
+  border-radius: 9px;
 }
 
 .content-panel .container .sub-container {

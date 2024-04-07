@@ -1,11 +1,13 @@
 import './user-dropdown.css';
-import { Button } from '../button/button';
+
 import { logOut } from '../../config/auth';
 import { useState } from 'react';
 
+import { Button } from '../button/button';
+
 export const UserDropdown = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  
   const toggle = () => {
     setIsOpen(!isOpen);
   }
@@ -22,6 +24,7 @@ export const UserDropdown = (props) => {
       }
       <div className={`dropdown-menu ${isOpen ? 'open' : ''}`}>
         <Button className="nav-button"
+          onclick={props.openAddModal}
           id="add-button"
           text="Add" icon={<i className='fa-solid fa-square-plus'></i>}
         />

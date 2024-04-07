@@ -13,6 +13,7 @@ export async function getData(dataPath) {
   const dataRef = ref(db, dataPath);
   const snapShot = await get(dataRef);
   const data = await snapShot.val();
+  console.log(data);
   return data;
 }
 
@@ -32,4 +33,11 @@ export async function pushInArray(dataPath, data) {
   const messages = await snapShot.val() || [];
   messages.push(data);
   set(dataRef, messages);
+}
+
+export async function arrayIncludes(dataPath, data) {
+  const dataRef = ref(db, dataPath);
+  const snapShot = await get(dataRef);
+  const loads = await snapShot.val() || [];
+  return loads.includes(data);
 }

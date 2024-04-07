@@ -27,7 +27,7 @@ export const MessagePanel = (props) => {
   return (
     <div className='content-panel'>
       <h1> {props.tittle} </h1>
-      <div className='message-container' ref={messageContainerRef}>
+      <div className='container gap-9px' ref={messageContainerRef}>
         { messages &&
           Object.entries(messages).map(([key, value]) => (
             <MessagePanelItem

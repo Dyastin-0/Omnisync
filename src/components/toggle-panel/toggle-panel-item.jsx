@@ -11,13 +11,13 @@ import { db } from '../../config/firebase';
 export const TogglePanelItem = (props) => {
   const [isOn, setIsOn] = useState(false);
 
-useEffect(() => {
-  const dataRef = ref(db, props.path);
-  onValue(dataRef, async (snapshot) => {
-    const data = await snapshot.val();
-    setIsOn(data);
-  });
-}, []);
+  useEffect(() => {
+    const dataRef = ref(db, props.path);
+    onValue(dataRef, async (snapshot) => {
+      const data = await snapshot.val() || 0;
+      setIsOn(data);
+    });
+  }, []);
 
 
   const handleChange = async (e) => {
