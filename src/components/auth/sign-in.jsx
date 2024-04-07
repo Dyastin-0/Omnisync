@@ -23,9 +23,15 @@ export const SignInWindow = (props) => {
   const logIn = async () => {
     if (!signingIn) {
       setSigningIn(true);
+      props.setToastMessage("Signing in...");
       await signIn(email, password)
       .catch(() => setErrorMessage("Incorrect email or password."))
-      .finally(() => setSigningIn(false));
+      .finally(() => {
+        setSigningIn(false);
+        setTimeout(() => {
+          setErrorMessage(null);
+        }, 3000);
+      });
     }
   };
 
@@ -37,11 +43,11 @@ export const SignInWindow = (props) => {
     <div className='auth'>
       <h2>Home Aut</h2>
       <h4> Sign in to access the panel </h4>
-      <input placeholder="Email" enterKeyHint='enter'
+      <input placeholder="Email" enterKeyHint='Enter'
         onChange={ (e) => {setEmail(e.target.value)} }
         onKeyUp={ (e) => e.key == 'Enter' && logIn() }
       ></input>
-      <input placeholder="Password" type="password" enterKeyHint='enter'
+      <input placeholder="Password" type="password" enterKeyHint='Enter'
         onChange={ (e) => {setPassword(e.target.value)} }
         onKeyUp={ (e) => e.key == 'Enter' && logIn() }
       ></input>

@@ -4,12 +4,15 @@
   --complement: rgb(25, 25, 25);
 
   --text-color: rgb(255, 255, 255);
+
+  --shadow: rgba(200, 200, 200, 0.3);
 }
 
 * {
   padding: 0px;
   margin: 0px;
   font-family: 'poppins', 'sans serif';
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 p, h5, h4, h3, h2, h1 {
@@ -23,7 +26,7 @@ html, body {
 
 .App {
   width: calc(100% - 18px);
-  height: 100vh;
+  height: calc(100vh - 36px);
   display: flex;
   justify-content: center;
   row-gap: 9px;

@@ -7,7 +7,6 @@ import { ToastMessage } from '../components/toast-message/toast-message'
 
 const SignIn = () => {
   const [toastMessage, setToastMessage] = useState(null);
-
   return (
     <div className="App">
       <NavBar />
