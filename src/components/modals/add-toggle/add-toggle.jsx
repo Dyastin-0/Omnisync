@@ -1,10 +1,10 @@
 
-import { arrayIncludes } from '../../config/database';
+import { arrayIncludes } from '../../../config/database';
 
 import { useState } from 'react';
 
-import { GenericModal } from "../modals/modal";
-import { useData } from '../../contexts/data/data';
+import { GenericModal } from "../../modals/modal";
+import { useData } from '../../../contexts/data/data';
 
 export const AddToggleModal = (props) => {
   const { addToggle } = useData();
@@ -12,7 +12,7 @@ export const AddToggleModal = (props) => {
   
   const handleAddToggle = async (e) => {
     if (e.key === 'Enter') {
-      const includes = await arrayIncludes('/toggles', toggleName);
+      const includes = await arrayIncludes(`${props.path}/toggles`, toggleName);
       if (includes) {
         props.setToastMessage(`${toggleName} is already used.`);
       } else {

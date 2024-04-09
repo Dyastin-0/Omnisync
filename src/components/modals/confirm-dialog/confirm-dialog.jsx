@@ -1,8 +1,8 @@
 import './confirm-dialog.css';
 
 import { useEffect, useState } from "react";
-import { Button } from "../button/button";
-import { GenericModal } from "../modals/modal";
+import { Button } from "../../button/button";
+import { GenericModal } from "../../modals/modal";
 
 export const ConfirmDialogModal = (props) => {
   const [open, setOpen] = useState(false);

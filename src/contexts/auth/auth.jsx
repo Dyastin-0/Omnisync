@@ -23,8 +23,7 @@ export function AuthProvider({ children }) {
   const initializeUser = async (user) => {
     if (user) {
       setUser(user);
-      const email = user.email;
-      setUserDataPath(`/${email.replace('.', '')}`);
+      setUserDataPath(`/${user.uid}`);
       setIsLoggedIn(true);
     } else {
       setUser(null);

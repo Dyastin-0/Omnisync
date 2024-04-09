@@ -3,13 +3,17 @@
 #include <addons/TokenHelper.h>
 #include <addons/RTDBHelper.h>
 
-const char* ssid = ""; //your wifi ssid
+const char* ssid = "";    //your wifi ssid
 const char* password = "";//your wifi password
 
-const char* api_key = "";//paste the API key here
+const char* api_key = "";     //paste the API key here
 const char* database_url = "";//paste the database URL here
 
-const byte firstRelay = 16;
+const char* email = "";    //paste your email here
+const char* password = ""; //paste your password here
+const char* uid = "";      //paste your unique id here
+
+const byte firstRelay = 16; //choose your digital pins
 const byte secondRelay = 5;
 const byte thirdRelay = 4;
 const byte fourthRelay = 0;
@@ -35,8 +39,8 @@ void setup() {
 
   config.api_key = api_key;
 
-  auth.user.email = ""; //your email
-  auth.user.password = ""; //your password
+  auth.user.email = email;
+  auth.user.password = password;
 
   config.database_url = database_url;
 
@@ -49,12 +53,12 @@ void setup() {
 }
 
 void loop() {
-  bool firstRelayState = getState("/your_email/toggles/0/state");  //put your email without the dot (sample@gmailcom) at the first level of the path
-  bool secondRelayState = getState("/your_email/toggles/1/state"); //you could make a variable, then format it there
-  bool thirdRelayState = getState("/your_email/toggles/2/state");  //the index (0, 1, 2, 3) corresponds to what index is displayed
-  bool fourthRelayState = getState("/your_email/toggles/3/state"); //at the website
+  bool firstRelayState = getState("/" + uid + "/toggles/0/state"); 
+  bool secondRelayState = getState("/" + uid + "/toggles/1/state");
+  bool thirdRelayState = getState("/" + uid + "/toggles/2/state");  //the index (0, 1, 2, 3) corresponds to what index is displayed
+  bool fourthRelayState = getState("/" + uid + "/toggles/3/state"); //at the website
 
-  Serial.printf("[Home Aut] %d%d%d\n", //simply printing the values, 1 is on, 0 is off
+  Serial.printf("[Home Aut] %d%d%d%d\n", //simply printing the values, 1 is on, 0 is off
     firstRelayState,                       
     secondRelayState,
     thirdRelayState,

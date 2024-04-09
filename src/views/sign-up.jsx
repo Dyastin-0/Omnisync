@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 import { NavBar } from "../components/nav-bar/nav-bar";
 import { SignUpWindow } from '../components/auth/sign-up';
-import { ToastMessage } from '../components/toast-message/toast-message';
-import { GuideModal } from '../components/guide-modal/guide-modal';
+import { ToastMessage } from '../components/modals/toast-message/toast-message';
+import { GuideModal } from '../components/modals/guide/guide';
 
 const SignUp = () => {
   const [toastMessage, setToastMessage] = useState(null);

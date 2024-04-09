@@ -29,11 +29,14 @@ h1 {
 
 p {
   font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 a {
   font-size: 14px;
   color: var(--text-color);
+  width: fit-content;
 }
 
 html, body {

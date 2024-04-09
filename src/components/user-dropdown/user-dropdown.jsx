@@ -36,6 +36,11 @@ export const UserDropdown = (props) => {
         {user ?
          <>
           <Button className="nav-button"
+            onclick={props.openUserProfile}
+            id="user-profile-button"
+            text="Profile" icon={<i className="fa-regular fa-user"></i>}
+          />
+          <Button className="nav-button"
             onclick={props.openAddModal}
             id="add-button"
             text="Add" icon={<i className='fa-solid fa-square-plus'></i>}

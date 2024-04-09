@@ -22,7 +22,10 @@ export const NavBar = (props) => {
         <div className='row'>
           <Button onclick={props.openGuideModal} className='nav-button' icon={<i className="fa-regular fa-circle-question fa-lg"></i>}></Button>
           <Toggle ref={themeToggleRef} onchange={toggleTheme} />
-          <UserDropdown openAddModal={props.openAddModal} />
+          <UserDropdown 
+            openAddModal={props.openAddModal}
+            openUserProfile={props.openUserProfile}
+          />
         </div>
     </div>
   );

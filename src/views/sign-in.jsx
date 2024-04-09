@@ -3,8 +3,8 @@ import '../App.css';
 
 import { SignInWindow } from '../components/auth/sign-in';
 import { NavBar } from '../components/nav-bar/nav-bar';
-import { ToastMessage } from '../components/toast-message/toast-message'
-import { GuideModal } from '../components/guide-modal/guide-modal';
+import { ToastMessage } from '../components/modals/toast-message/toast-message'
+import { GuideModal } from '../components/modals/guide/guide';
 
 const SignIn = () => {
   const [toastMessage, setToastMessage] = useState(null);

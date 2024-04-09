@@ -6,6 +6,7 @@
   gap: 9px;
 }
 
-.guide-modal h5, p {
+.guide-modal h6, p {
   text-align: left;
+  text-overflow: ellipsis;
 }

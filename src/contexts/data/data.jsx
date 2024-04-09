@@ -16,9 +16,9 @@ export const useData = () => useContext(DataContext);
 
 export const DataProvider = ( {children} ) => {
   const [isFetching, setIsFetching] = useState(true);
-  const [toggles, setToggles] = useState([]);
+  const [toggles, setToggles] = useState(null);
   const [renderedToggles, setRenderedToggles ] = useState([]);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState(null);
   const [renderedMessages, setRenderedMessages] = useState([]);
   const { user, userDataPath } = useAuth();
 
@@ -32,7 +32,7 @@ export const DataProvider = ( {children} ) => {
   }, [user]);
 
   useEffect(() => {
-    if ((toggles.length > 0) && (messages.length > 0)) setIsFetching(false);
+    if ((toggles !== null) && (messages !== null)) setIsFetching(false);
   }, [toggles, messages]);
 
   const fetchData = async () => {
@@ -80,7 +80,7 @@ export const DataProvider = ( {children} ) => {
   }
 
   useEffect(() => {
-    renderToggles();
+    toggles && renderToggles();
   }, [toggles]);
 
   const renderMessages = () => {
@@ -97,7 +97,7 @@ export const DataProvider = ( {children} ) => {
   }
 
   useEffect(() => {
-    renderMessages();
+    messages && renderMessages();
   }, [messages]);
   
   const value = {
