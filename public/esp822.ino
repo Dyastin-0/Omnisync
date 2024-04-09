@@ -54,7 +54,7 @@ void loop() {
   bool thirdRelayState = getState("/your_email/toggles/2/state");  //the index (0, 1, 2, 3) corresponds to what index is displayed
   bool fourthRelayState = getState("/your_email/toggles/3/state"); //at the website
 
-  Serial.printf("[Home Aut] %d%d%d%d\n", //simply printing the values, 1 is on, 0 is off
+  Serial.printf("[Home Aut] %d%d%d\n", //simply printing the values, 1 is on, 0 is off
     firstRelayState,                       
     secondRelayState,
     thirdRelayState,

@@ -20,7 +20,7 @@ export const TogglePanel = (props) => {
             </React.Fragment>
           ))
         ) : (
-          <Loading text='Loading toggles...' />
+          <Loading text='Fetching toggles...' />
         )}
       </div>
     </div>

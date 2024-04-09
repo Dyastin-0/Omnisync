@@ -5,7 +5,7 @@ import { GenericModal } from "../modals/modal";
 export const GuideModal = (props) => {
   return (
     <GenericModal
-      width={'400px'}
+      width={'382px'}
       headerTittle={"Help"}
       closeModal={props.closeModal}
       active={props.active}
@@ -16,8 +16,8 @@ export const GuideModal = (props) => {
           <h5>Database URL</h5>
           <p>"https://homeautmicro-default-rtdb.asia-southeast1.firebasedatabase.app"</p>
           <h5>How to use</h5>
-          <p>You can use the API key and database URL <br />
-            with library such as ESP32FirebaseClient and <br />
+          <p>You can use the API key and database URL
+            with library such as ESP32FirebaseClient and
             ESP8266FirebaseClient by Mobizt
           </p>
           <h5>Check out the sample Arduino code at:</h5>

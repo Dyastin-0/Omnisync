@@ -71,8 +71,9 @@ export const SignInWindow = (props) => {
         onKeyUp={(e) => e.key == 'Enter' && logIn()}
       ></input>
       <Button onclick={logIn} text="Sign in" icon={<i className="fa-solid fa-right-to-bracket"></i>} className="nav-button center" />
-      <h6>or sign in with</h6>
-      <Button onclick={logInWithGoogle}  text="Google" icon={<i className="fa-brands fa-google"></i>} className="nav-button center" />
+      {/* <h6>or sign in with</h6>
+      <Button onclick={logInWithGoogle}  text="Google" icon={<i className="fa-brands fa-google"></i>} className="nav-button center" /> */}
+      <a href="/sign-up">Don't have an account? Click here.</a>
     </div>
   );
 };

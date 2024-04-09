@@ -9,8 +9,3 @@
 .guide-modal h5, p {
   text-align: left;
 }
-
-.guide-modal a {
-  font-size: 14px;
-  color: var(--text-color);
-}

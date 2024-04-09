@@ -104,8 +104,9 @@ export const SignUpWindow = (props) => {
         onKeyUp={(e) => e.key == 'Enter' && create()}
       ></input>
       <Button onclick={create} text="Sign up" icon={<i className="fa-solid fa-user-plus"></i>} className="nav-button center" />
-      <h6>or sign up with</h6>
-      <Button onclick={logInWithGoogle}  text="Google" icon={<i className="fa-brands fa-google"></i>} className="nav-button center" />
+      {/* <h6>or sign up with</h6> */}
+      {/* <Button onclick={logInWithGoogle}  text="Google" icon={<i className="fa-brands fa-google"></i>} className="nav-button center" /> */}
+      <a href="/sign-in">Already have an account? Click here.</a>
     </div>
   );
 }

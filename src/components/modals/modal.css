@@ -1,11 +1,13 @@
 .modal-overlay {
   position: fixed;
-  width: calc(100% - 18px);
-  height: 100%;
+  display: flex;
+  width: calc(100vw - 18px);
+  height: 100vh;
   background-color: rgb(0, 0, 0, 0.3);
   opacity: 0;
   pointer-events: none;
   z-index: 99;
+  gap: 9px;
   padding: 9px;
   transition: opacity 0.3s;
 }
@@ -16,8 +18,8 @@
 }
 
 .modal {
-  width: 270px;
-  max-width: calc(100% - 18px);
+  width: 400px;
+  max-width: calc(100% - 36px);
   height: fit-content;
   display: flex;
   flex-direction: column;
