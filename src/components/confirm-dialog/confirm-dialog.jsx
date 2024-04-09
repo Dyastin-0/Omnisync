@@ -35,13 +35,13 @@ export const ConfirmDialogModal = (props) => {
       <div className='confirm-container'>
         <p className='p'> {props.message} </p>
         <div className='wrapper'>
-          <Button className='nav-button bold'
-            onclick={ handleOkay }
-            text="Okay"
+          <Button className='nav-button'
+            onclick={handleOkay}
+            text="Yes"
           />
-          <Button className='nav-button bold'
-            onclick={ handleCancel }
-            text="Cancel"
+          <Button className='nav-button red'
+            onclick={ handleCancel}
+            text="No"
           />
         </div>
       </div>

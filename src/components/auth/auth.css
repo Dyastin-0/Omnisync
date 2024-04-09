@@ -2,10 +2,11 @@
   width: 267px;
   height: fit-content;
   padding: 18px;
-  row-gap: 18px;
+  row-gap: 9px;
   border-radius: 9px;
   background-color: var(--base-color);
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
 }

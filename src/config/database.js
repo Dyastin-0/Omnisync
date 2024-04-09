@@ -1,5 +1,5 @@
 import { db } from '../config/firebase';
-import { ref, set, onValue, push, get, query, limitToLast } from 'firebase/database';
+import { ref, set, onValue, push, get, limitToLast, query, equalTo, orderByChild, update } from 'firebase/database';
 
 export async function setData(dataPath, data) {
   const dataRef = ref(db, dataPath);
@@ -38,6 +38,19 @@ export async function pushInArray(dataPath, data) {
 export async function arrayIncludes(dataPath, data) {
   const dataRef = ref(db, dataPath);
   const snapShot = await get(dataRef);
-  const loads = await snapShot.val() || [];
-  return loads.includes(data);
+  const toggles = await snapShot.val() || [];
+  return toggles.some(item => item.name.includes(data));
+}
+
+export async function setQuery(userDataPath, name, key, newState) {
+  const dataRef = ref(db, userDataPath);
+  const queryRef = query(dataRef, orderByChild(name), equalTo(key));
+
+  const res = await get(queryRef);
+  const toggleData = res.val();
+  const toggleKey = Object.keys(toggleData)[0];
+  const toggleRef = ref(db, `/${userDataPath}/${toggleKey}`);
+  update(toggleRef , {
+    state: newState
+  });
 }

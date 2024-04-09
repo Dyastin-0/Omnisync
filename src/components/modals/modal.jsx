@@ -12,17 +12,17 @@ export const GenericModal = (props) => {
 
   return (
     <>
-      <div className={`modal-overlay ${isOpen && `open`}`} onClick={ props.closeModal }></div>
-      <div className={`modal ${isOpen && `open`}`}>
+      <div className={`modal-overlay ${isOpen && `open`}`} onClick={props.closeModal}></div>
+      <div className={`modal ${isOpen && `open`}`} style={{width:props.width}}>
         <div className='modal-header'>
           <h5> {props.headerTittle} </h5>
           <Button className="nav-button"
             onclick={ props.closeModal }
-            icon={ <i className='fa-solid fa-xmark'></i> }
+            icon={<i className='fa-solid fa-xmark'></i>}
           />
         </div>
         <div className='modal-content'>
-          { props.content }
+          {props.content}
         </div>
       </div>
     </>

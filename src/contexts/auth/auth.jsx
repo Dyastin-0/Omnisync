@@ -1,17 +1,15 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, createContext } from 'react';
 
 import { auth } from '../../config/firebase';
+import { onAuthStateChanged, reload } from 'firebase/auth';
 
-import { onAuthStateChanged } from 'firebase/auth';
+const AuthContext = createContext();
 
-const AuthContext = React.createContext();
-
-export const useAuth = () => {
-  return useContext(AuthContext);
-}
+export const useAuth = () => useContext(AuthContext);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [userDataPath, setUserDataPath] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,18 +22,24 @@ export function AuthProvider({ children }) {
 
   const initializeUser = async (user) => {
     if (user) {
-      setUser({ ...user });
+      setUser(user);
+      const email = user.email;
+      setUserDataPath(`/${email.replace('.', '')}`);
       setIsLoggedIn(true);
     } else {
       setUser(null);
       setIsLoggedIn(false);
     }
-
     setIsLoading(false);
   }
 
+  useEffect(() => {
+    user && reload(user);
+  }, [user]);
+
   const value = {
     user,
+    userDataPath,
     isLoggedIn,
     isLoading
   }

@@ -6,8 +6,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthProvider } from './contexts/auth/auth';
 
 import SignIn from './views/sign-in';
+import SignUp from './views/sign-up';
 import Panel from './views/panel';
+
 import { SettingsProvider } from './contexts/settings/settings';
+import { DataProvider } from './contexts/data/data';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +22,10 @@ const router = createBrowserRouter([
     element: <SignIn />
   },
   {
+    path: 'sign-up',
+    element: <SignUp />
+  },
+  {
     path: '/panel',
     element: <Panel />
   }
@@ -26,11 +33,13 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <SettingsProvider>
+  <React.StrictMode>
     <AuthProvider>
-      <React.StrictMode>
-        <RouterProvider router={router} />
-      </React.StrictMode>
-   </AuthProvider>
-  </SettingsProvider>
+      <SettingsProvider>
+        <DataProvider>
+            <RouterProvider router={router} />
+        </DataProvider> 
+      </SettingsProvider>
+    </AuthProvider>
+  </React.StrictMode>
 );

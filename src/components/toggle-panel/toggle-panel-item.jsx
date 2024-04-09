@@ -1,41 +1,28 @@
-import { useState, useEffect } from 'react';
-
 import Toggle from '../toggle/toggle';
+import { useData } from '../../contexts/data/data';
 import { currentDateTime } from '../../utils/time';
 
-import { pushInArray,
-  setData } from '../../config/database';
-import { onValue, ref } from 'firebase/database';
-import { db } from '../../config/firebase';
-
 export const TogglePanelItem = (props) => {
-  const [isOn, setIsOn] = useState(false);
+  const { setToggleState } = useData();
 
-  useEffect(() => {
-    const dataRef = ref(db, props.path);
-    onValue(dataRef, async (snapshot) => {
-      const data = await snapshot.val() || 0;
-      setIsOn(data);
-    });
-  }, []);
-
-
-  const handleChange = async (e) => {
+  const handleChange = (e) => {
     const newState = e.target.checked;
-    setIsOn(newState);
-    setData(props.path, newState);
     const state = newState ? "on" : "off";
-    await pushInArray("/messages", {
+    const message = {
       sentBy: props.sentBy,
-      message: `Turned ${state} the ${props.toggleName.toLowerCase()}.`,
+      message: `turned ${state} the ${props.toggleName}.`,
       timeSent: currentDateTime()
-    });
-  }
+    }
+    setToggleState(props.toggleName, newState, message);
+  };
 
   return (
     <div className={props.className} >
-      <h4> {props.toggleName} </h4>
-      {isOn !== null && <Toggle checked={isOn} onchange={handleChange} />}
+      <div className='row'>
+        <h5>{`${props.index}.`}</h5>
+        <p> {props.toggleName} </p>
+      </div>
+      <Toggle checked={props.checked} onchange={handleChange} />
     </div>
   );
 }

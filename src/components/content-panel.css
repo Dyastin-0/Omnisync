@@ -9,7 +9,7 @@
   border: none;
   padding-bottom: 18px;
   padding-top: 18px;
-  border-radius: 9px;
+  border-radius: 13px;
   background-color: var(--base-color);
 }
 
@@ -25,7 +25,7 @@
   overflow-x: auto;
   flex-direction: column;
   scroll-behavior: smooth;
-}
+  }
 
 .content-panel .container.gap-9px {
   gap: 9px;

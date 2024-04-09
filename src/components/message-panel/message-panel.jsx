@@ -1,44 +1,33 @@
+import React, { useEffect, useRef } from 'react';
+
 import './message-panel.css';
-import { onValue, ref, query, limitToLast } from 'firebase/database';
-import { db } from '../../config/firebase';
-import { useEffect, useRef, useState } from 'react';
-import { MessagePanelItem } from './message-panel-item';
-import { useAuth } from '../../contexts/auth/auth';
+
+import { useData } from '../../contexts/data/data';
+import { Loading } from '../loading/loading';
 
 export const MessagePanel = (props) => {
-  const [messages, setMessages] = useState(null);
+  const { renderedMessages, isFetching } = useData();
   const messageContainerRef = useRef(null);
-  const { user } = useAuth();
-
-  useEffect(() => {
-    const dataRef = ref(db, '/messages');
-    const limitRef = query(dataRef, limitToLast(10));
-    onValue(limitRef, async (snapShot) => {
-      setMessages(snapShot.val());
-    });
-  }, []);
 
   useEffect(() => {
     if (messageContainerRef.current) {
       messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, [renderedMessages]);
 
   return (
     <div className='content-panel'>
       <h1> {props.tittle} </h1>
       <div className='container gap-9px' ref={messageContainerRef}>
-        { messages &&
-          Object.entries(messages).map(([key, value]) => (
-            <MessagePanelItem
-              isMessageOwner={user.displayName === value.sentBy} 
-              key={key}
-              message={value.message}
-              timeSent={value.timeSent}
-              sentBy={value.sentBy}
-            /> 
+        {!isFetching ? (
+          renderedMessages.map((message, index) => (
+            <React.Fragment key={index}>
+              {message}
+            </React.Fragment>
           ))
-        }
+        ) : (
+          <Loading text='Fetching messages...' />
+        )}
       </div>
     </div>
   );
