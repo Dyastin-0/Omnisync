@@ -1,7 +1,7 @@
 .tooltip {
   width: fit-content;
   height: fit-content;
-  border-radius: 18px;
+  border-radius: 9px;
   display: flex;
   flex-direction: column;
   justify-content: left;

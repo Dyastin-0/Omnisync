@@ -12,6 +12,7 @@ import { useAuth } from '../auth/auth';
 import { TogglePanelItem } from '../../components/toggle-panel/toggle-panel-item';
 import { MessagePanelItem } from '../../components/message-panel/message-panel-item';
 import { constructData } from '../../utils/chart-helper';
+import { randomColor } from '../../utils/color';
 
 const DataContext = createContext();
 
@@ -121,17 +122,21 @@ export const DataProvider = ( {children} ) => {
     }
 
   }, [messages]);
-  
-  const renderAreas = () => {
-    const rendered = Object.entries(toggles).map(([key, value], index) => (
-      <Area 
+
+
+  const renderAreas = () => {    
+    const rendered = Object.entries(toggles).map(([key, value], index) => {
+      const color = randomColor();
+      return (
+        <Area 
         key={index}
         type='monotone' 
         dataKey={value.name}
-        stroke='var(--chart-color)'
-        fill='var(--chart-color)'
+        stroke={color}
+        fill={color}
       />
-    ));
+      );
+    });
     setRenderedArea(rendered);
   }
 

@@ -7,21 +7,21 @@ export const  UserProfile = (props) => {
   
   return (
     <GenericModal
-      headerTitle={"Profile"}
+      headerTitle={user.displayName}
       closeModal={props.closeModal}
       active={props.active}
       content={
         <div className='modal-content-container'>
           <div className='group'>
-            <h6>Display name</h6>
+            <h5>Display name</h5>
             <p>{user.displayName}</p>
           </div>
           <div className="group">
-            <h6>Email</h6>
+            <h5>Email</h5>
             <p>{user.email}</p>
           </div>
           <div className="group">
-            <h6>Unique ID</h6>
+            <h5>Unique ID</h5>
             <p>{user.uid}</p>
           </div>
         </div>

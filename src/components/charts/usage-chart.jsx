@@ -13,9 +13,11 @@ import { AreaChart,
 import { useData } from '../../contexts/data/data';
 import { Loading } from '../loading/loading';
 import { CustomTooltip } from './custom-tooltip';
+import { randomColor } from '../../utils/color';
 
 export const UsageChart = (props) => {
-const { chartData, renderedArea, isFetching } = useData();
+  const { chartData, renderedArea, isFetching } = useData();
+  const color = randomColor();
 
   return (
     <div className='content-panel width-max'>
@@ -33,8 +35,8 @@ const { chartData, renderedArea, isFetching } = useData();
             <Area 
               type='monotone' 
               dataKey='total'
-              stroke='var(--chart-color)'
-              fill='var(--chart-color)'
+              stroke={color}
+              fill={color}
             />
             {!isFetching && renderedArea.length > 0 &&
               renderedArea.map((area, index) => (
