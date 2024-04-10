@@ -4,11 +4,12 @@ import { onValue, ref } from 'firebase/database';
 
 import { db } from '../../config/firebase';
 import { pushInArray, setQuery } from '../../config/database';
-import { currentDateTime } from '../../utils/time';
+import { formatTime } from '../../utils/time';
 import { useAuth } from '../auth/auth';
 
 import { TogglePanelItem } from '../../components/toggle-panel/toggle-panel-item';
 import { MessagePanelItem } from '../../components/message-panel/message-panel-item';
+import { constructData } from '../../utils/chart-helper';
 
 const DataContext = createContext();
 
@@ -20,7 +21,9 @@ export const DataProvider = ( {children} ) => {
   const [renderedToggles, setRenderedToggles ] = useState([]);
   const [messages, setMessages] = useState(null);
   const [renderedMessages, setRenderedMessages] = useState([]);
+  const [chartData, setChartData] = useState([]);
   const { user, userDataPath } = useAuth();
+
 
   useEffect(() => {
     if (user) {
@@ -75,7 +78,7 @@ export const DataProvider = ( {children} ) => {
     await pushInArray(`/${userDataPath}/messages`, {
       sentBy: user.displayName,
       message: `Added a toggle named ${toggleName.toLowerCase()}.`,
-      timeSent: currentDateTime()
+      timeSent: new Date().getTime()
     });
   }
 
@@ -89,7 +92,7 @@ export const DataProvider = ( {children} ) => {
         isMessageOwner={user.displayName === value.sentBy} 
         key={key}
         message={value.message}
-        timeSent={value.timeSent}
+        timeSent={formatTime(value.timeSent)}
         sentBy={value.sentBy}
       /> 
     ));
@@ -97,7 +100,12 @@ export const DataProvider = ( {children} ) => {
   }
 
   useEffect(() => {
-    messages && renderMessages();
+    if (messages) {
+      renderMessages();
+      const data = constructData(messages);
+      setChartData(data);
+    }
+
   }, [messages]);
   
   const value = {
@@ -105,7 +113,8 @@ export const DataProvider = ( {children} ) => {
     setToggleState,
     addToggle,
     renderedMessages,
-    isFetching
+    isFetching,
+    chartData
   }
 
   return (

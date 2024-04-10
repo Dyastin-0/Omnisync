@@ -31,7 +31,7 @@ export const AddToggleModal = (props) => {
 
   return (
     <GenericModal
-      headerTittle='Add toggle'
+      headerTitle='Add toggle'
       closeModal={props.closeModal}
       active={props.active}
       content={<input placeholder='Toggle name' enterKeyHint='enter'

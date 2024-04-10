@@ -1,3 +1,10 @@
+.message-container {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
 .message {
   width: calc(100% - 18px);
   word-wrap: break-word;

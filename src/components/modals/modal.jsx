@@ -15,7 +15,7 @@ export const GenericModal = (props) => {
       <div className={`modal-overlay ${isOpen && `open`}`} onClick={props.closeModal}></div>
       <div className={`modal ${isOpen && `open`}`} style={{width:props.width}}>
         <div className='modal-header'>
-          <h5> {props.headerTittle} </h5>
+          <h5> {props.headerTitle} </h5>
           <Button className="nav-button"
             onclick={ props.closeModal }
             icon={<i className='fa-solid fa-xmark'></i>}

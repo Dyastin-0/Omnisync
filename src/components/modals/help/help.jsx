@@ -1,16 +1,14 @@
-import './guide-modal.css';
-
 import { GenericModal } from "../modal";
 
-export const GuideModal = (props) => {
+export const HelpModal = (props) => {
   return (
     <GenericModal
       width={'364px'}
-      headerTittle={"Help"}
+      headerTitle={"Help"}
       closeModal={props.closeModal}
       active={props.active}
       content={
-        <div className='guide-modal'>
+        <div className='modal-content-container'>
           <div className="group">
             <h6>API key</h6>
             <p>"AIzaSyBOyiu_l_-VoxdJVgZnR-QcMLA7D2pQZmk"</p>
@@ -19,12 +17,11 @@ export const GuideModal = (props) => {
             <h6>Database URL</h6>
             <p>"https://homeautmicro-default-rtdb.asia-southeast1.firebasedatabase.app"</p>
           </div>
-          <div className="group">
+          <div className='group'>
             <h6>How to use</h6>
-            <p>You can use the API key and database URL
-              with library such as ESP32FirebaseClient and
-              ESP8266FirebaseClient by Mobizt
-            </p>
+            <p>You'll need a microcontroller that supports Wi-Fi such as ESP32, ESP8266.</p>
+            <p>Connect your McU by using stable Firebase library such as ESP32/ESP8266FirebaseClient
+              by Mobizt.</p>
           </div>
           <div className="group">
             <h6>Check out the sample Arduino code at:</h6>

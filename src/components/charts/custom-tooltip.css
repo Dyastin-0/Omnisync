@@ -1,0 +1,11 @@
+.tooltip {
+  width: fit-content;
+  height: fit-content;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding: 9px;
+  gap: 9px;
+  background-color: var(--complement);
+}

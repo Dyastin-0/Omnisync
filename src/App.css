@@ -18,11 +18,12 @@
 p, h6, h5, h4, h3, h2, h1 {
   text-align: center;
   color: var(--text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-h1 {
+h2 {
   width: calc(100% - 44px);
-  background-color: var(--complement);
   border-radius: 9px;
   padding: 4px;
 }
@@ -37,6 +38,10 @@ a {
   font-size: 14px;
   color: var(--text-color);
   width: fit-content;
+}
+
+i {
+  color: var(--text-color);
 }
 
 html, body {

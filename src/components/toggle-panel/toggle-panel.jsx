@@ -11,16 +11,16 @@ export const TogglePanel = (props) => {
   
   return (
     <div className='content-panel'>
-      <h1> {props.tittle} </h1>
+      <h2> {props.title} </h2>
       <div className='container'>
-        {!isFetching ? (
+        {!isFetching && renderedToggles.length > 0 ? (
           renderedToggles.map((toggle, index) => (
             <React.Fragment key={index}>
               {toggle}
             </React.Fragment>
           ))
         ) : (
-          <Loading text='Fetching toggles...' />
+          <Loading text='No toggles to display. Add your first toggle by clicking the dropdown menu and selecting add.' />
         )}
       </div>
     </div>

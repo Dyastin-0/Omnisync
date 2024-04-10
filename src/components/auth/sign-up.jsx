@@ -106,7 +106,10 @@ export const SignUpWindow = (props) => {
       <Button onclick={create} text="Sign up" icon={<i className="fa-solid fa-user-plus"></i>} className="nav-button center" />
       {/* <h6>or sign up with</h6> */}
       {/* <Button onclick={logInWithGoogle}  text="Google" icon={<i className="fa-brands fa-google"></i>} className="nav-button center" /> */}
-      <a href="/sign-in">Already have an account? Click here.</a>
+      <div className="row">
+        <p>Already have an account?</p>
+        <a href="/sign-in">Sign in</a>
+      </div>
     </div>
   );
 }

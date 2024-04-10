@@ -17,16 +17,16 @@ export const MessagePanel = (props) => {
 
   return (
     <div className='content-panel'>
-      <h1> {props.tittle} </h1>
-      <div className='container gap-9px' ref={messageContainerRef}>
-        {!isFetching ? (
+      <h2> {props.title} </h2>
+      <div className='container' ref={messageContainerRef}>
+        {!isFetching && renderedMessages.length > 0 ? (
           renderedMessages.map((message, index) => (
             <React.Fragment key={index}>
               {message}
             </React.Fragment>
           ))
         ) : (
-          <Loading text='Fetching messages...' />
+          <Loading text='No logs to display.' />
         )}
       </div>
     </div>

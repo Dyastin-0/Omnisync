@@ -38,7 +38,7 @@ export const UserDropdown = (props) => {
           <Button className="nav-button"
             onclick={props.openUserProfile}
             id="user-profile-button"
-            text="Profile" icon={<i className="fa-regular fa-user"></i>}
+            text="Profile" icon={<i className="fa-solid fa-user"></i>}
           />
           <Button className="nav-button"
             onclick={props.openAddModal}

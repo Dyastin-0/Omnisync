@@ -1,6 +1,5 @@
 import Toggle from '../toggle/toggle';
 import { useData } from '../../contexts/data/data';
-import { currentDateTime } from '../../utils/time';
 
 export const TogglePanelItem = (props) => {
   const { setToggleState } = useData();
@@ -9,9 +8,11 @@ export const TogglePanelItem = (props) => {
     const newState = e.target.checked;
     const state = newState ? "on" : "off";
     const message = {
+      action: state,
+      name: props.toggleName,
       sentBy: props.sentBy,
       message: `turned ${state} the ${props.toggleName}.`,
-      timeSent: currentDateTime()
+      timeSent: new Date().getTime()
     }
     setToggleState(props.toggleName, newState, message);
   };

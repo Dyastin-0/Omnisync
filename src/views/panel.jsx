@@ -10,15 +10,14 @@ import { MessagePanel } from '../components/message-panel/message-panel';
 import { ToastMessage } from '../components/modals/toast-message/toast-message';
 import { AddToggleModal } from '../components/modals/add-toggle/add-toggle';
 import { ConfirmDialogModal } from '../components/modals/confirm-dialog/confirm-dialog';
-import { GuideModal } from '../components/modals/guide/guide';
 import { UserProfile } from '../components/modals/profile/profile';
+import { UsageChart } from '../components/charts/usage-chart';
 
 const Panel = () => {
   const navigate = useNavigate();
   const { isLoggedIn, userDataPath } = useAuth();
 
   const [isAddToggleModalOpen, setIsAddToggleModalOpen] = useState(false);
-  const [isGuideModalOpen, setIsGuideModalOpen] = useState(false);
   const [isUserProfileOpen, setIsUserProfileOpen] = useState(false);
 
   const [confirmEvent, setConfirmEvent] = useState(null);
@@ -27,9 +26,6 @@ const Panel = () => {
 
   const closeAddToggleModal = () => setIsAddToggleModalOpen(false);
   const openAddToggleModal = () => setIsAddToggleModalOpen(true);
-
-  const closeGuideModal = () => setIsGuideModalOpen(false);
-  const openGuideModal = () => setIsGuideModalOpen(true);
 
   const closeUserProfile = () => setIsUserProfileOpen(false);
   const openUserProfile = () => setIsUserProfileOpen(true);
@@ -42,11 +38,11 @@ const Panel = () => {
     <div className="App">
       <NavBar 
         openAddModal={openAddToggleModal}
-        openGuideModal={openGuideModal}
         openUserProfile={openUserProfile}
       /> 
-       <TogglePanel tittle="ESP8266" /> 
-       <MessagePanel tittle="Logs" />
+      <UsageChart title="Usage in the last 7 days" />
+      <TogglePanel title="ESP8266" /> 
+      <MessagePanel title="Logs" />
       <AddToggleModal 
         active={isAddToggleModalOpen} 
         closeModal={ closeAddToggleModal}
@@ -61,14 +57,10 @@ const Panel = () => {
         message={confirmMessage}
       /> 
       <ToastMessage message={toastMessage} setToastMessage={setToastMessage} />
-      <GuideModal
-        active={isGuideModalOpen}
-        closeModal={closeGuideModal}
-      />
-      <UserProfile 
+      {isLoggedIn && <UserProfile 
         active={isUserProfileOpen}
         closeModal={closeUserProfile}
-      />
+      />}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { db } from '../config/firebase';
-import { ref, set, onValue, push, get, limitToLast, query, equalTo, orderByChild, update } from 'firebase/database';
+import { ref, set, onValue, get, query, equalTo, orderByChild, update } from 'firebase/database';
 
 export async function setData(dataPath, data) {
   const dataRef = ref(db, dataPath);

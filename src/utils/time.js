@@ -1,14 +1,17 @@
-export function currentDateTime() {
-  const date = new Date();
+export function formatTime(timeInMillis) {
+  const time = new Date(timeInMillis);
   const options = {
     weekday: 'long',
     month: 'long',
     day: 'numeric',
     hour: 'numeric',
     minute: 'numeric',
+    second: 'numeric',
+    millisecond: 'numeric',
     hour12: true
   };
-  const dateTime = new Intl.DateTimeFormat('en-US', options).format(date);
 
-  return dateTime;
+  const formattedTime = new Intl.DateTimeFormat('en-US', options).format(time);
+
+  return formattedTime;
 }

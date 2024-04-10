@@ -29,7 +29,7 @@ export const ConfirmDialogModal = (props) => {
   return (
     <GenericModal
     active={open}
-    headerTittle = 'Confirm'
+    headerTitle = 'Confirm'
     closeModal={ props.closeModal }
     content={
       <div className='confirm-container'>
