@@ -64,11 +64,11 @@ export const SignInWindow = (props) => {
       <h5> Sign in to access your panel </h5>
       <input placeholder="Email" enterKeyHint='Enter'
         onChange={(e) => {setEmail(e.target.value)}}
-        onKeyUp={(e) => e.key == 'Enter' && logIn()}
+        onKeyUp={(e) => e.key === 'Enter' && logIn()}
       ></input>
       <input placeholder="Password" type="password" enterKeyHint='Enter'
         onChange={(e) => {setPassword(e.target.value)}}
-        onKeyUp={(e) => e.key == 'Enter' && logIn()}
+        onKeyUp={(e) => e.key === 'Enter' && logIn()}
       ></input>
       <Button onclick={logIn} text="Sign in" icon={<i className="fa-solid fa-right-to-bracket"></i>} className="nav-button center" />
       {/* <h6>or sign in with</h6>

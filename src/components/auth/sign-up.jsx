@@ -3,13 +3,12 @@ import './auth.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { signUp, updateUser, reloadUser, signInWithGoogle} from '../../config/auth';
+import { signUp, updateUser, signInWithGoogle} from '../../config/auth';
 
 import { Button } from '../button/button';
 import { useAuth } from '../../contexts/auth/auth';
 
 export const SignUpWindow = (props) => {
-  const { reloadUser } = useAuth();
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
 
@@ -89,19 +88,19 @@ export const SignUpWindow = (props) => {
       <h5>Create an account and start <br /> setting up your own <br /> panel</h5>
       <input placeholder="Email" enterKeyHint='Enter'
         onChange={(e) => {setEmail(e.target.value)}}
-        onKeyUp={(e) => e.key == 'Enter' && create()}
+        onKeyUp={(e) => e.key === 'Enter' && create()}
       ></input>
       <input placeholder="Password" type="password" enterKeyHint='Enter'
         onChange={(e) => {setPassword(e.target.value)}}
-        onKeyUp={(e) => e.key == 'Enter' && create()}
+        onKeyUp={(e) => e.key === 'Enter' && create()}
       ></input>
       <input placeholder="Password" type="password" enterKeyHint='Enter'
         onChange={(e) => {setConfirmedPassword(e.target.value)}}
-        onKeyUp={(e) => e.key == 'Enter' && create()}
+        onKeyUp={(e) => e.key === 'Enter' && create()}
       ></input>
       <input placeholder="Display name" enterKeyHint='Enter'
         onChange={(e) => {setDisplayName(e.target.value)}}
-        onKeyUp={(e) => e.key == 'Enter' && create()}
+        onKeyUp={(e) => e.key === 'Enter' && create()}
       ></input>
       <Button onclick={create} text="Sign up" icon={<i className="fa-solid fa-user-plus"></i>} className="nav-button center" />
       {/* <h6>or sign up with</h6> */}
