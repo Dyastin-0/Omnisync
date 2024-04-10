@@ -11,7 +11,7 @@ export const InfoModal = (props) => {
       content={
         <div className='modal-content-container'>
           <div className="group">
-            <h6>What is Home Aut Micro?</h6>
+            <h5>What is Home Aut Micro?</h5>
             <p>It is a home automation tool that you can use on
                 several microcontrollers that supports Wi-Fi and
                 has a stable Firebase Library.
@@ -22,21 +22,21 @@ export const InfoModal = (props) => {
             </p>
           </div>
           <div className='group'>
-            <h6>Developed by</h6>
+            <h5>Developed by</h5>
             <p>Justine Paralejas</p>
           </div>
-          <h6>Socials</h6>
+          <h5>Socials</h5>
           <div className="row">
               <a href='https://github.com/Dyastin-0' target='_blank'><i className="fa-brands fa-github fa-lg"></i></a>
               <a href='https://www.facebook.com/dyastinparalejas' target='_blank'><i className="fa-brands fa-facebook fa-lg"></i></a>
           </div>
           <div className='group'>
-            <h6>Project Stack</h6>
+            <h5>Project Stack</h5>
             <p>ReactJS, Firebase Authentication & Real-time Database</p>
           </div>
           <div className='group'>
-            <h6>Credits</h6>
-            <p>Mobizt</p>
+            <h5>Credits</h5>
+            <p>Mobizt - ESP8266/32FirebaseClient author.</p>
           </div>
         </div>
       }

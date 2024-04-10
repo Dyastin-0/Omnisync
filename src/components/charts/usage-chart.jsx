@@ -1,3 +1,4 @@
+import React from 'react';
 import '../content-panel.css';
 
 import { AreaChart,
@@ -14,7 +15,7 @@ import { Loading } from '../loading/loading';
 import { CustomTooltip } from './custom-tooltip';
 
 export const UsageChart = (props) => {
-const { chartData } = useData();
+const { chartData, renderedArea, isFetching } = useData();
 
   return (
     <div className='content-panel width-max'>
@@ -25,14 +26,23 @@ const { chartData } = useData();
           <AreaChart width='100%' height='100%' data={chartData}>
             <YAxis />
             <XAxis dataKey='day' />
-            <CartesianGrid />
+            <CartesianGrid 
+              color='black'
+            />
             <Tooltip content={<CustomTooltip />} />
             <Area 
               type='monotone' 
               dataKey='total'
-              stroke='var(--secondary-color)'
-              fill='var(--secondary-color)'
+              stroke='var(--chart-color)'
+              fill='var(--chart-color)'
             />
+            {!isFetching && renderedArea.length > 0 &&
+              renderedArea.map((area, index) => (
+                <React.Fragment key={index}>
+                  {area}
+                </React.Fragment>
+              ))  
+            }
           </AreaChart>
         </ResponsiveContainer>
         ) : (

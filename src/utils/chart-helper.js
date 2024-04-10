@@ -15,10 +15,15 @@ export const constructData = (messages) => {
       const dayKey = latestOn[name].day;
       let existingDay = dayTotal.find(entry => entry.day === dayKey);
       if (!existingDay) {
-        dayTotal.push({ day: dayKey, total: (diff / 3600000) });
-      } else {
-        existingDay.total += (diff / 3600000);
+        existingDay = { day: dayKey, total: 0 };
+        dayTotal.push(existingDay);
       }
+      existingDay.total += diff / 3600000;
+
+      if (!existingDay[name]) {
+        existingDay[name] = 0;
+      }
+      existingDay[name] += diff / 3600000;
 
       delete latestOn[name];
     }

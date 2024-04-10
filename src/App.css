@@ -6,6 +6,8 @@
   --text-color: rgb(255, 255, 255);
 
   --shadow: rgba(0, 0, 0, 0.1);
+
+  --chart-color: rgb(33, 93, 177);
 }
 
 * {

@@ -21,9 +21,9 @@ export const MessagePanel = (props) => {
       <div className='container' ref={messageContainerRef}>
         {!isFetching && renderedMessages.length > 0 ? (
           renderedMessages.map((message, index) => (
-            <React.Fragment key={index}>
+            <div key={index}>
               {message}
-            </React.Fragment>
+            </div>
           ))
         ) : (
           <Loading text='No logs to display.' />

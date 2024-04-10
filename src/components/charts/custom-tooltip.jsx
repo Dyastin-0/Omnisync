@@ -5,10 +5,12 @@ export const CustomTooltip = ({active, payload, label}) => {
     return (
       <div className='tooltip'>
         <h5>{label}</h5>
-        <div className='row'>
-          <h5>Total hours</h5>
-          <p>{payload[0].value}</p>
-        </div>
+        {payload.map((load, key) => (
+          <div className='row' key={key}>
+            <h5>{load.name}</h5>
+            <p>{`${load.value.toFixed(3)} ${load.value.toFixed(3) > 1 ? `hours` : 'hour'}`}</p>
+          </div>
+        ))}
       </div>
     );
   }
