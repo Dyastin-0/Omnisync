@@ -29,7 +29,6 @@ export const SettingsProvider = ({ children }) => {
     document.documentElement.style.setProperty('--secondary-color', 'rgb(200, 200, 200)');
     document.documentElement.style.setProperty('--text-color', 'rgb(60, 60, 60)');
     document.documentElement.style.setProperty('--complement', 'rgb(210, 210, 210)');
-    document.documentElement.style.setProperty('--shadow', 'rgba(0, 0, 0, 0.3)');
   };
 
 
@@ -38,7 +37,6 @@ export const SettingsProvider = ({ children }) => {
     document.documentElement.style.setProperty('--secondary-color', 'rgb(45, 45, 45)');
     document.documentElement.style.setProperty('--text-color', 'rgb(255, 255, 255)');
     document.documentElement.style.setProperty('--complement', 'rgb(25, 25, 25)');
-    document.documentElement.style.setProperty('--shadow', 'rgba(200, 2000, 2000, 0.3)');
   };
 
   const value = {
