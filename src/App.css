@@ -1,13 +1,11 @@
 :root {
-  --base-color: rgb(35, 35, 35);
-  --secondary-color: rgb(45, 45, 45);
-  --complement: rgb(25, 25, 25);
+  --base-color: rgb(220, 220, 220);
+  --secondary-color: rbg(200, 200, 200);
+  --complement: rgb(210, 210, 210);
 
-  --text-color: rgb(255, 255, 255);
+  --text-color: rgb(60, 60, 60);
 
   --shadow: rgba(0, 0, 0, 0.1);
-
-  --chart-color: rgb(33, 93, 177);
 }
 
 * {
@@ -25,7 +23,7 @@ p, h6, h5, h4, h3, h2, h1 {
 }
 
 h2 {
-  width: calc(100% - 44px);
+  width: calc(100% - 8px);
   border-radius: 9px;
   padding: 4px;
 }
@@ -52,7 +50,7 @@ html, body {
 
 .App {
   width: calc(100% - 18px);
-  height: calc(100vh - 36px);
+  height: calc(100vh - 18px);
   display: flex;
   justify-content: center;
   row-gap: 9px;
@@ -70,4 +68,12 @@ input {
   outline: none;
   color: var(--text-color);
   background-color: var(--secondary-color);
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 9px;
+  justify-content: left;
+  align-items: center;
 }

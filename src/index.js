@@ -11,6 +11,7 @@ import Panel from './views/panel';
 
 import { SettingsProvider } from './contexts/settings/settings';
 import { DataProvider } from './contexts/data/data';
+import { NavBar } from './components/nav-bar/nav-bar';
 
 const router = createBrowserRouter([
   {

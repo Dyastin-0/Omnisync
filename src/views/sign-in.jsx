@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import '../App.css';
 
 import { SignInWindow } from '../components/auth/sign-in';
@@ -7,6 +7,10 @@ import { ToastMessage } from '../components/modals/toast-message/toast-message'
 
 const SignIn = () => {
   const [toastMessage, setToastMessage] = useState(null);
+
+  useLayoutEffect(() => {
+    document.title = 'Sign in';
+  });
 
   return (
     <div className="App">

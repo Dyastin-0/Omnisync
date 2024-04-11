@@ -2,8 +2,6 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import { onValue, ref, query, orderByChild, startAfter, endAt } from 'firebase/database';
 
-import { Area } from 'recharts';
-
 import { db } from '../../config/firebase';
 import { pushInArray, setQuery } from '../../config/database';
 import { formatTime } from '../../utils/time';
@@ -11,8 +9,6 @@ import { useAuth } from '../auth/auth';
 
 import { TogglePanelItem } from '../../components/toggle-panel/toggle-panel-item';
 import { MessagePanelItem } from '../../components/message-panel/message-panel-item';
-import { constructData } from '../../utils/chart-helper';
-import { randomColor } from '../../utils/color';
 
 const DataContext = createContext();
 
@@ -24,8 +20,6 @@ export const DataProvider = ( {children} ) => {
   const [renderedToggles, setRenderedToggles ] = useState([]);
   const [messages, setMessages] = useState(null);
   const [renderedMessages, setRenderedMessages] = useState([]);
-  const [renderedArea, setRenderedArea] = useState([]);
-  const [chartData, setChartData] = useState([]);
   const { user, userDataPath } = useAuth();
 
 
@@ -95,10 +89,7 @@ export const DataProvider = ( {children} ) => {
   }
 
   useEffect(() => {
-    if (toggles) {
-      renderToggles();
-      renderAreas();
-    }
+    toggles && renderToggles();
   }, [toggles]);
 
   const renderMessages = () => {
@@ -115,39 +106,17 @@ export const DataProvider = ( {children} ) => {
   }
 
   useEffect(() => {
-    if (messages) {
-      renderMessages();
-      const data = constructData(messages);
-      setChartData(data);
-    }
-
+    messages && renderMessages();
   }, [messages]);
 
-
-  const renderAreas = () => {    
-    const rendered = Object.entries(toggles).map(([key, value], index) => {
-      const color = randomColor();
-      return (
-        <Area 
-        key={index}
-        type='monotone' 
-        dataKey={value.name}
-        stroke={color}
-        fill={color}
-      />
-      );
-    });
-    setRenderedArea(rendered);
-  }
-
   const value = {
+    toggles,
+    messages,
     renderedToggles,
     setToggleState,
     addToggle,
     renderedMessages,
-    isFetching,
-    chartData,
-    renderedArea
+    isFetching
   }
 
   return (

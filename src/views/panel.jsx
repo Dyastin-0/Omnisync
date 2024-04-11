@@ -2,7 +2,7 @@ import '../App.css';
 
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/auth/auth';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 import { NavBar } from '../components/nav-bar/nav-bar';
 import { TogglePanel } from '../components/toggle-panel/toggle-panel';
@@ -12,10 +12,11 @@ import { AddToggleModal } from '../components/modals/add-toggle/add-toggle';
 import { ConfirmDialogModal } from '../components/modals/confirm-dialog/confirm-dialog';
 import { UserProfile } from '../components/modals/profile/profile';
 import { UsageChart } from '../components/charts/usage-chart';
+import { Pad } from '../components/Pad/Pad';
 
 const Panel = () => {
   const navigate = useNavigate();
-  const { isLoggedIn, userDataPath } = useAuth();
+  const { isLoggedIn, userDataPath, user } = useAuth();
 
   const [isAddToggleModalOpen, setIsAddToggleModalOpen] = useState(false);
   const [isUserProfileOpen, setIsUserProfileOpen] = useState(false);
@@ -34,15 +35,25 @@ const Panel = () => {
     !isLoggedIn && navigate('/sign-in');
   }, [isLoggedIn]);
 
+  useLayoutEffect(() => {
+    document.title = 'Panel';
+  });
+
   return (
     <div className="App">
       <NavBar 
         openAddModal={openAddToggleModal}
         openUserProfile={openUserProfile}
       /> 
+      <Pad options={{panel: 'flex-max small', container: 'center'}} content={
+        <>
+          {user && <h1>{`${user.displayName}${user.displayName.charAt(user.displayName.length - 1) === 's' ? '\'' : '\'s'} Panel`}</h1>}
+        </>
+      } />
       <UsageChart title="Usage in the last 7 days" />
-      <TogglePanel title="ESP8266" /> 
+      <TogglePanel buttonEvent={openAddToggleModal} title="ESP8266" /> 
       <MessagePanel title="Logs" />
+      <Pad options={{panel: 'flex-max small'}} />
       <AddToggleModal 
         active={isAddToggleModalOpen} 
         closeModal={ closeAddToggleModal}

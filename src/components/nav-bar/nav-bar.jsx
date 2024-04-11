@@ -52,11 +52,11 @@ export const NavBar = (props) => {
     <div className='nav-bar'> 
       <h4>Home Aut Micro</h4>
         <div className='row'>
-          <Button className='nav-button'
+          <Button className='nav-button round'
             onclick={openInfoModal}
             icon={<i className={`fa-solid fa-circle-info fa-xl ${!isInfoClicked && `fa-shake`}`}></i>}
           />
-          <Button className='nav-button' 
+          <Button className='nav-button round' 
             onclick={openHelpModal}
             icon={<i className={`fa-solid fa-circle-question fa-xl ${!isHelpClicked && `fa-shake`}`}></i>} 
           />

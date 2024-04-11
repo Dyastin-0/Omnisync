@@ -5,6 +5,7 @@ import React from 'react';
 import { useData } from '../../contexts/data/data';
 
 import { Loading } from '../loading/loading';
+import { Button } from '../button/button';
 
 export const TogglePanel = (props) => {
   const { renderedToggles, isFetching } = useData();
@@ -20,7 +21,17 @@ export const TogglePanel = (props) => {
             </React.Fragment>
           ))
         ) : (
-          <Loading text='No toggles to display. Add your first toggle by clicking the dropdown menu and selecting add.' />
+          <Loading text='No toggles to display.'
+            content={
+              <div className='row'>
+                <p>Click this <i className="fa-solid fa-arrow-right"></i></p>
+                <Button className='nav-button'
+                  onclick={props.buttonEvent}
+                  icon={<i className="fa-solid fa-square-plus"></i>}
+                />
+              </div>
+            }
+          />
         )}
       </div>
     </div>

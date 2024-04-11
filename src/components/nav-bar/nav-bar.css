@@ -12,9 +12,3 @@
   z-index: 11;
   border-radius: 13px;
 }
-
-.row {
-  display: flex;
-  flex-direction: row;
-  gap: 9px;
-}
