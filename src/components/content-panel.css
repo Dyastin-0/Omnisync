@@ -13,6 +13,11 @@
   background-color: var(--base-color);
 }
 
+.container.width {
+  width: 400px;
+  flex-basis: none;
+}
+
 .content-panel.flex-max {
   flex-basis: 100%;
 }

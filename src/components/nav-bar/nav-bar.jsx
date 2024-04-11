@@ -6,15 +6,21 @@ import Toggle from '../toggle/toggle';
 import { UserDropdown } from '../user-dropdown/user-dropdown';
 import { Button } from '../button/button';
 import { HelpModal } from '../modals/help/help';
+import { UserProfile } from '../modals/profile/profile';
+import { ToastMessage } from '../modals/toast-message/toast-message';
+import { ConfirmDialogModal } from '../modals/confirm-dialog/confirm-dialog'
 
 import { useSettings } from '../../contexts/settings/settings';
 import { InfoModal } from '../modals/info/info';
+import { useAuth } from '../../contexts/auth/auth';
 
 export const NavBar = (props) => {
+  const { isLoggedIn } = useAuth();
   const [isHelpClicked, setIsHelpClicked] = useState(false);
   const [isInfoClicked, setIsInfoClicked] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+  const [isUserProfileOpen, setIsUserProfileOpen] = useState(false);
 
   const { theme, toggleTheme } = useSettings();
   const themeToggleRef = useRef(null);
@@ -48,22 +54,28 @@ export const NavBar = (props) => {
     setIsInfoClicked(localStorage.getItem('isInfoClicked'));
   }, []);
 
+  const closeUserProfile = () => setIsUserProfileOpen(false);
+  const openUserProfile = () => setIsUserProfileOpen(true);
+
+
+
   return (
     <div className='nav-bar'> 
       <h4>Home Aut Micro</h4>
         <div className='row'>
-          <Button className='nav-button round'
+          <Button className='nav-button'
+            text='Info'
             onclick={openInfoModal}
             icon={<i className={`fa-solid fa-circle-info fa-xl ${!isInfoClicked && `fa-shake`}`}></i>}
           />
-          <Button className='nav-button round' 
+          <Button className='nav-button'
+            text='Help'
             onclick={openHelpModal}
             icon={<i className={`fa-solid fa-circle-question fa-xl ${!isHelpClicked && `fa-shake`}`}></i>} 
           />
           <Toggle ref={themeToggleRef} onchange={toggleTheme} />
           <UserDropdown 
-            openAddModal={props.openAddModal}
-            openUserProfile={props.openUserProfile}
+            openUserProfile={openUserProfile}
           />
         </div>
         <HelpModal
@@ -74,6 +86,21 @@ export const NavBar = (props) => {
           active={isInfoModalOpen}
           closeModal={closeInfoModal}
         />
+        {isLoggedIn && <UserProfile 
+          active={isUserProfileOpen}
+          closeModal={closeUserProfile}
+        />}
+        <ConfirmDialogModal
+          active={props.isComfirmModalOpen}
+          closeModal={() => false}
+          setToastMessage={props.setToastMessage}
+          event={props.confirmEvent}
+          message={props.confirmMessage}
+        /> 
+      <ToastMessage
+        message={props.toastMessage}
+        setToastMessage={props.setToastMessage}
+      />
     </div>
   );
 };

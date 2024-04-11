@@ -40,18 +40,11 @@ export const UserDropdown = (props) => {
             id="user-profile-button"
             text="Profile" icon={<i className="fa-solid fa-user"></i>}
           />
-          <Button className="nav-button"
-            onclick={props.openAddModal}
-            id="add-button"
-            text="Add" icon={<i className='fa-solid fa-square-plus'></i>}
-          />
-          <Button className="nav-button"
-            id="delete-button" text="Delete"
-            icon={<i className='fa-solid fa-square-minus'></i>}
-          />
-          <Button className="nav-button"
-            id="edit-button" text="Edit"
-            icon={<i className='fa-solid fa-pen-to-square'></i>}
+          <Button className='nav-button'
+            onclick={() => redirect('/panel/manage')}
+            id="manage-button"
+            text='Manage'
+            icon={<i className="fa-solid fa-user-tie"></i>}
           />
           <Button className="nav-button"
             id="settings-button" text="Settings"

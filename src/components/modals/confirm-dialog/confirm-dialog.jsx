@@ -30,7 +30,7 @@ export const ConfirmDialogModal = (props) => {
     <GenericModal
     active={open}
     headerTitle = 'Confirm'
-    closeModal={ props.closeModal }
+    closeModal={ handleCancel }
     content={
       <div className='confirm-container'>
         <p className='p'> {props.message} </p>
@@ -39,7 +39,7 @@ export const ConfirmDialogModal = (props) => {
             onclick={handleOkay}
             text="Yes"
           />
-          <Button className='nav-button red'
+          <Button className='nav-button'
             onclick={ handleCancel}
             text="No"
           />

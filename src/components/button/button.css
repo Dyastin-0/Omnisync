@@ -25,17 +25,6 @@
   font-weight: bold;
 }
 
-.nav-button.red {
-  background-color: rgb(163, 37, 37);
-  color: rgb(255, 255, 255);
-  transition: opacity 0.3s ease;
-}
-
-.nav-button.red:hover {
-  opacity: 0.7;
-  background-color: rgb(163, 37, 37);
-}
-
 .nav-button:hover {
   cursor: pointer;
   background-color: var(--complement);

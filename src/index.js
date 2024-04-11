@@ -11,7 +11,7 @@ import Panel from './views/panel';
 
 import { SettingsProvider } from './contexts/settings/settings';
 import { DataProvider } from './contexts/data/data';
-import { NavBar } from './components/nav-bar/nav-bar';
+import Manage from './views/manage';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: '/panel',
     element: <Panel />
+  },
+  {
+    path: '/panel/manage',
+    element: <Manage />
   }
 ]);
 
