@@ -57,8 +57,6 @@ export const NavBar = (props) => {
   const closeUserProfile = () => setIsUserProfileOpen(false);
   const openUserProfile = () => setIsUserProfileOpen(true);
 
-
-
   return (
     <div className='nav-bar'> 
       <h4>Home Aut Micro</h4>

@@ -60,7 +60,7 @@ export const SignUpWindow = (props) => {
       setSigningUp(true);
       const result = await signUp(email, password)
         .catch(() => {
-          setErrorMessage('Sign up failed. Check your email if it is in a correct format.');
+          setErrorMessage('Sign up failed. Your email might be used or in a incorrect format.');
         })
         .finally(() => {
           setSigningUp(false);
@@ -68,7 +68,7 @@ export const SignUpWindow = (props) => {
             setErrorMessage(null);
           }, 3000);
         });
-        updateUser(result.user, {
+        result && updateUser(result.user, {
           displayName: displayName
         });
     }

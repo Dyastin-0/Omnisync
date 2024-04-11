@@ -3,7 +3,6 @@ import '../App.css';
 
 import { SignInWindow } from '../components/auth/sign-in';
 import { NavBar } from '../components/nav-bar/nav-bar';
-import { ToastMessage } from '../components/modals/toast-message/toast-message'
 
 const SignIn = () => {
   const [toastMessage, setToastMessage] = useState(null);
@@ -14,9 +13,11 @@ const SignIn = () => {
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar
+        toastMessage={toastMessage}
+        setToastMessage={setToastMessage}
+      />
       <SignInWindow setToastMessage={setToastMessage} />
-      <ToastMessage message={toastMessage} setToastMessage={setToastMessage} />
     </div>
   );
 }

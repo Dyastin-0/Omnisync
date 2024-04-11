@@ -1,6 +1,8 @@
 import '../App.css';
 
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/auth/auth';
 
 import { NavBar } from '../components/nav-bar/nav-bar';
 
@@ -13,6 +15,12 @@ const Manage = () => {
   const [confirmEvent, setConfirmEvent] = useState(null);
   const [confirmMessage, setConfirmMessage] = useState(null);
   const [toastMessage, setToastMessage] = useState(null);
+  const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
+
+  useEffect(() => {
+    !isLoggedIn && navigate('/sign-in');
+  }, [isLoggedIn]);
 
   return (
     <div className='App'>
