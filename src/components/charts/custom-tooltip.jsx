@@ -11,7 +11,7 @@ export const CustomTooltip = ({active, payload, label}) => {
           const remainingMinutes = Math.floor((load.value - wholeHours) * 60);
           const remainingSeconds = Math.floor(((load.value - wholeHours) * 60 - remainingMinutes) * 60);
           return (
-            <div className='row' key={key}>
+            <div className='row left' key={key}>
               <p>{load.name}</p>
               <h6>{`${wholeHours} h ${remainingMinutes} m ${remainingSeconds} s`}</h6>
             </div>

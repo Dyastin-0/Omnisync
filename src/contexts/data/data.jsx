@@ -1,11 +1,14 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-import { onValue, ref, query, orderByChild, startAfter, endAt } from 'firebase/database';
+import { onValue, ref, query, orderByChild, startAfter } from 'firebase/database';
+
+import { Area } from 'recharts';
 
 import { db } from '../../config/firebase';
 import { pushInArray, setQuery } from '../../config/database';
 import { formatTime } from '../../utils/time';
 import { useAuth } from '../auth/auth';
+import { constructData } from '../../utils/chart-helper';
 
 import { TogglePanelItem } from '../../components/toggle-panel/toggle-panel-item';
 import { MessagePanelItem } from '../../components/message-panel/message-panel-item';
@@ -22,14 +25,11 @@ export const DataProvider = ( {children} ) => {
   const [renderedMessages, setRenderedMessages] = useState([]);
   const { user, userDataPath } = useAuth();
 
+  const [renderedArea, setRenderedArea] = useState([]);
+  const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    if (user) {
-      fetchData();
-    } else {
-      setToggles([]);
-      setMessages([]);
-    }
+    user && fetchData();
   }, [user]);
 
   useEffect(() => {
@@ -109,6 +109,32 @@ export const DataProvider = ( {children} ) => {
     messages && renderMessages();
   }, [messages]);
 
+  useEffect(() => {
+    if (messages) {
+    const data = constructData(messages);
+    setChartData(data);
+    }
+  }, [messages]);
+
+  useEffect(() => {
+    messages && renderAreas();
+  }, [messages]);
+
+  const renderAreas = () => {    
+    const rendered = Object.entries(toggles).map(([key, value], index) => {
+      return (
+      <Area 
+        key={index}
+        type='monotone' 
+        dataKey={value.name}
+        stroke='var(--text-color)'
+        fill='var(--text-color)'
+      />
+      );
+    });
+    setRenderedArea(rendered);
+  }
+
   const value = {
     toggles,
     messages,
@@ -116,7 +142,9 @@ export const DataProvider = ( {children} ) => {
     setToggleState,
     addToggle,
     renderedMessages,
-    isFetching
+    isFetching,
+    renderedArea,
+    chartData
   }
 
   return (

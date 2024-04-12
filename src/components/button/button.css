@@ -27,5 +27,11 @@
 
 .nav-button:hover {
   cursor: pointer;
-  background-color: var(--complement);
+  background-color: var(--secondary-color);
+}
+
+.nav-button.round {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  border-radius: 999px;
 }

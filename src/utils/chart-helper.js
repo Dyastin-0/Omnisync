@@ -31,3 +31,21 @@ export const constructData = (messages) => {
 
   return dayTotal;
 };
+
+export const deconstructData = (data) => {
+  const highestUsagePerDay = []; 
+
+  data.forEach(entry => {
+    let highestUsageDevice = null;
+    let highestUsage = 0;
+    Object.keys(entry).forEach(key => {
+      if (key !== "day" && key !== "total" && entry[key] > highestUsage) {
+        highestUsage = entry[key];
+        highestUsageDevice = key;
+      }
+    });
+    highestUsagePerDay.push({ day: entry.day, total: entry.total, highestDevice: highestUsageDevice, highestUsage: entry[highestUsageDevice] });
+  });
+
+  return highestUsagePerDay;
+} 

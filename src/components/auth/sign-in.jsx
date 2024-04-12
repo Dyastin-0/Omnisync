@@ -61,7 +61,7 @@ export const SignInWindow = (props) => {
   return (
     <div className='auth'>
       <h2>Home Aut Micro</h2>
-      <h5> Sign in to access your panel </h5>
+      <h5> Sign in to access your dashboard </h5>
       <input placeholder="Email" enterKeyHint='Enter'
         onChange={(e) => {setEmail(e.target.value)}}
         onKeyUp={(e) => e.key === 'Enter' && logIn()}

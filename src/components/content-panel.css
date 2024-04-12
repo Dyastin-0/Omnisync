@@ -1,5 +1,5 @@
 .content-panel {
-  height: 350px;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,7 +9,7 @@
   padding-bottom: 18px;
   padding-top: 18px;
   border-radius: 13px;
-  flex-basis: calc(50% - 5px);
+  flex-basis: calc(33.33333% - 6px);
   background-color: var(--base-color);
 }
 
@@ -45,6 +45,11 @@
   align-items: center;
 }
 
+.content-panel .container.bottom {
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .content-panel .container::-webkit-scrollbar {
   width: 9px;
 }
@@ -69,6 +74,15 @@
 
 .content-panel .container .sub-container::-webkit-scrollbar {
   display: none;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary-color);
+  padding: 9px;
+  gap: 9px;
+  border-radius: 9px;
 }
 
 @media (max-width:500px) {

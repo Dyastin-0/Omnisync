@@ -32,15 +32,12 @@ export function AuthProvider({ children }) {
     setIsLoading(false);
   }
 
-  useEffect(() => {
-    user && reload(user);
-  }, [user]);
-
   const value = {
     user,
     userDataPath,
     isLoggedIn,
-    isLoading
+    isLoading,
+    setUser
   }
 
   return (

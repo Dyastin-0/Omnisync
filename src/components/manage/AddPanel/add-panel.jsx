@@ -33,14 +33,16 @@ export const AddPanel = (props) => {
   return (
     <div className='content-panel '>
       <h2>{props.title}</h2>
-      <div className='container center'>
-        <input placeholder="Toggle name"
-          onChange={(e) => setToggleName(e.target.value)}
-          onKeyUp={(e) => handleAddToggle(e)}
-        />
-        <Button className='nav-button'
-          text='Add'
-        />
+      <div className='container bottom'>
+        <div className='row'>
+          <input className='width-half-parent' placeholder="Toggle name"
+            onChange={(e) => setToggleName(e.target.value)}
+            onKeyUp={(e) => handleAddToggle(e)}
+          />
+          <Button className='nav-button'
+            text='Add'
+          />
+        </div>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ import { useAuth } from '../../contexts/auth/auth';
 
 export const SignUpWindow = (props) => {
   const navigate = useNavigate();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, setUser } = useAuth();
 
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -68,9 +68,9 @@ export const SignUpWindow = (props) => {
             setErrorMessage(null);
           }, 3000);
         });
-        result && updateUser(result.user, {
+        await updateUser(result.user, {
           displayName: displayName
-        });
+      });
     }
   }
 
@@ -85,7 +85,7 @@ export const SignUpWindow = (props) => {
   return (
     <div className='auth'>
       <h2>Home Aut Micro</h2>
-      <h5>Create an account and start <br /> setting up your own <br /> panel</h5>
+      <h5>Create an account and start <br /> setting up your own <br /> dashboard</h5>
       <input placeholder="Email" enterKeyHint='Enter'
         onChange={(e) => {setEmail(e.target.value)}}
         onKeyUp={(e) => e.key === 'Enter' && create()}

@@ -17,7 +17,7 @@ export const MessagePanel = (props) => {
 
   return (
     <div className='content-panel'>
-      <h2> {props.title} </h2>
+      <h3> {props.title} </h3>
       <div className='container' ref={messageContainerRef}>
         {!isFetching && renderedMessages.length > 0 ? (
           renderedMessages.map((message, index) => (

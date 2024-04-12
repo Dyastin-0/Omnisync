@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import '../content-panel.css';
 
 import { AreaChart,
@@ -14,46 +14,25 @@ import { useData } from '../../contexts/data/data';
 import { Loading } from '../loading/loading';
 import { CustomTooltip } from './custom-tooltip';
 
-import { constructData } from '../../utils/chart-helper';
-
 export const UsageChart = (props) => {
-  const { toggles, messages } = useData();
-  const [renderedArea, setRenderedArea] = useState([]);
-  const [chartData, setChartData] = useState([]);
-  
-  useEffect(() => {
-    if (messages) {
-    const data = constructData(messages);
-    setChartData(data);
-    }
-  }, [messages]);
+  const { chartData, renderedArea } = useData();
 
-  useEffect(() => {
-    messages && renderAreas();
-  }, [messages]);
-
-  const renderAreas = () => {    
-    const rendered = Object.entries(toggles).map(([key, value], index) => {
-      return (
-      <Area 
-        key={index}
-        type='monotone' 
-        dataKey={value.name}
-        stroke='var(--text-color)'
-        fill='var(--text-color)'
-      />
-      );
-    });
-    setRenderedArea(rendered);
-  }
   return (
     <div className='content-panel flex-max'>
-      <h2>{props.title}</h2>
+      <h3>{props.title}</h3>
       <div className='container'>
         {chartData.length > 0 ? (
           <ResponsiveContainer width='100%' height='98%'>
           <AreaChart width='100%' height='100%' data={chartData} margin={{right: 30}}>
-            <YAxis />
+            <YAxis tickFormatter={(value) => {
+              if (value >= 1) {
+                return (`${value} h`);
+              } else if (value < 0.0060) {
+                return (`${(value * 3600).toFixed(2)} s`);
+              } else {
+                return (`${(value * 60).toFixed(2)} m`);
+              }
+            }} />
             <XAxis dataKey='day' />
             <CartesianGrid />
             <Tooltip content={<CustomTooltip />} />

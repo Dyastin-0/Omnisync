@@ -11,7 +11,7 @@ export const TogglePanel = (props) => {
   
   return (
     <div className='content-panel'>
-      <h2> {props.title} </h2>
+      <h3> {props.title} </h3>
       <div className='container'>
         {!isFetching && renderedToggles.length > 0 ? (
           renderedToggles.map((toggle, index) => (
@@ -20,7 +20,7 @@ export const TogglePanel = (props) => {
             </React.Fragment>
           ))
         ) : (
-          <Loading text='No toggles to display.' />
+          <Loading text='No devices to display.' />
         )}
       </div>
     </div>
