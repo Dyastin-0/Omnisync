@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../content-panel.css';
 
 import { AreaChart,
@@ -13,9 +13,18 @@ import { AreaChart,
 import { useData } from '../../contexts/data/data';
 import { Loading } from '../loading/loading';
 import { CustomTooltip } from './custom-tooltip';
+import Toggle from '../toggle/toggle';
+import { useSettings } from '../../contexts/settings/settings';
 
 export const UsageChart = (props) => {
   const { chartData, renderedArea } = useData();
+  const { toggleIncludeDevice, areDevicesIncluded } = useSettings();
+
+  const includeDevicesRef = useRef(null);
+
+  useEffect(() => {
+    includeDevicesRef.current.checked = areDevicesIncluded;
+  }, [areDevicesIncluded]);
 
   return (
     <div className='content-panel flex-max'>
@@ -42,7 +51,7 @@ export const UsageChart = (props) => {
               stroke='var(--text-color)'
               fill='var(--text-color)'
             />
-            {renderedArea.length > 0 &&
+            {areDevicesIncluded && renderedArea.length > 0 &&
               renderedArea.map((area, index) => (
                 <React.Fragment key={index}>
                   {area}
@@ -54,6 +63,10 @@ export const UsageChart = (props) => {
         ) : (
           <Loading text='No data to display.' />
         )}
+      </div>
+      <div className='row'>
+        <h6>Include devices</h6>
+       <Toggle size='small' ref={includeDevicesRef} onchange={toggleIncludeDevice}/>
       </div>
     </div>
   );

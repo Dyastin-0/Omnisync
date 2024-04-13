@@ -69,7 +69,10 @@ export const NavBar = (props) => {
             onclick={openHelpModal}
             icon={<i className={`fa-solid fa-circle-question fa-xl ${!isHelpClicked && `fa-bounce`}`}></i>} 
           />
-          <Toggle ref={themeToggleRef} onchange={toggleTheme} />
+          <Toggle 
+            ref={themeToggleRef} 
+            onchange={toggleTheme} 
+          />
           <UserDropdown 
             openUserProfile={openUserProfile}
           />

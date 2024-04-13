@@ -6,6 +6,21 @@ export const useSettings = () => useContext(SettingsContext);
 
 export const SettingsProvider = ({ children }) => {
   const [theme, setTheme] = useState('light');
+  const [areDevicesIncluded, setAreDevicesIncluded] = useState(false);
+
+  const toggleIncludeDevice = () => {
+    const current = !areDevicesIncluded;
+    setAreDevicesIncluded(current);
+    localStorage.setItem('areDevicesIncluded', current);
+  };
+
+  useEffect(() => {
+    const included = localStorage.getItem('areDevicesIncluded');
+    if (included !== null) {
+      setAreDevicesIncluded(included === 'true');
+    }
+  }, []);
+
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -42,6 +57,8 @@ export const SettingsProvider = ({ children }) => {
   const value = {
     theme,
     toggleTheme,
+    areDevicesIncluded,
+    toggleIncludeDevice
   };
 
   return (

@@ -7,7 +7,7 @@ import { AuthProvider } from './contexts/auth/auth';
 
 import SignIn from './views/sign-in';
 import SignUp from './views/sign-up';
-import Panel from './views/panel';
+import Dashboard from './views/dashboard';
 
 import { SettingsProvider } from './contexts/settings/settings';
 import { DataProvider } from './contexts/data/data';
@@ -27,8 +27,8 @@ const router = createBrowserRouter([
     element: <SignUp />
   },
   {
-    path: '/panel',
-    element: <Panel />
+    path: '/dashboard',
+    element: <Dashboard />
   },
   {
     path: '/panel/manage',

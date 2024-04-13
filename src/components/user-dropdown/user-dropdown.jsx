@@ -19,7 +19,7 @@ export const UserDropdown = (props) => {
 
   useEffect(() => {
     path && navigate(path);
-  }, [path]);
+  }, [path, navigate]);
 
   const redirect = (path) => {
     setPath(path);
@@ -27,14 +27,17 @@ export const UserDropdown = (props) => {
 
   return (
     <div className='dropdown'>
-      {<Button className="nav-button"
+      <Button className="nav-button"
         onclick={toggle}
         text={user && user.displayName}
         icon={<i className={`fa fa-chevron-down chevron ${isOpen ? 'open' : ''}`} />}
-      />}
+      />
       <div className={`dropdown-menu ${isOpen ? 'open' : ''}`}>
         {user ?
          <>
+          <Button
+            onclick={(e) => redirect('dashboard')}
+          />
           <Button className="nav-button"
             onclick={props.openUserProfile}
             id="user-profile-button"

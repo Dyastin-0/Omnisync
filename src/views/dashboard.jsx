@@ -11,7 +11,7 @@ import { UsageChart } from '../components/charts/usage-chart';
 import { Pad } from '../components/Pad/Pad';
 import { Insight } from '../components/insight/insight';
 
-const Panel = () => {
+const Dashboard = () => {
   const navigate = useNavigate();
   const { isLoggedIn, user } = useAuth();
   const [toastMessage, setToastMessage] = useState(null);
@@ -21,7 +21,7 @@ const Panel = () => {
   }, [isLoggedIn, navigate]);
 
   useLayoutEffect(() => {
-    document.title = 'Panel';
+    document.title = 'Dashboard';
   });
 
   return (
@@ -44,4 +44,4 @@ const Panel = () => {
   );
 }
 
-export default Panel;
+export default Dashboard;
