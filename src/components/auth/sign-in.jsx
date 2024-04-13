@@ -19,7 +19,7 @@ export const SignInWindow = (props) => {
   const setToast = props.setToastMessage;
 
   useEffect(() => {
-    isLoggedIn && navigate('/panel');
+    isLoggedIn && navigate('/dashboard');
   }, [isLoggedIn, navigate]);
 
   useEffect(() => {
