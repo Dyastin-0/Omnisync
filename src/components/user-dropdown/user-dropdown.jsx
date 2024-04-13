@@ -35,19 +35,19 @@ export const UserDropdown = (props) => {
       <div className={`dropdown-menu ${isOpen ? 'open' : ''}`}>
         {user ?
          <>
-          <Button
+          <Button className='nav-button'
             text='Dashboard'
             icon={<i className="fa-solid fa-table-columns"></i>}
-            onclick={(e) => redirect('dashboard')}
+            onclick={(e) => redirect('/dashboard')}
           />
-          <Button className="nav-button"
+          <Button className='nav-button'
             onclick={props.openUserProfile}
             id="user-profile-button"
             text="Profile" icon={<i className="fa-solid fa-user"></i>}
           />
           <Button className='nav-button'
             onclick={() => redirect('/panel/manage')}
-            id="manage-button"
+            id='manage-button'
             text='Manage'
             icon={<i className="fa-solid fa-user-tie"></i>}
           />
