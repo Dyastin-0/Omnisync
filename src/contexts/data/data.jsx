@@ -71,7 +71,8 @@ export const DataProvider = ( {children} ) => {
 
   useEffect(() => {
     const renderMessages = () => {
-      const rendered = Object.entries(messages).map(([key, value]) => (
+      const rendered = Object.entries
+      (messages.length > 20 ? messages.slice(0, 10) : messages).map(([key, value]) => (
         <MessagePanelItem
           isMessageOwner={user.displayName === value.sentBy} 
           key={key}

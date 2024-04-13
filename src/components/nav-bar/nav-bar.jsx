@@ -59,7 +59,7 @@ export const NavBar = (props) => {
 
   return (
     <div className='nav-bar'> 
-      <h4>Home Aut Micro</h4>
+      <i className="fa-solid fa-toggle-on fa-2x"></i>
         <div className='row'>
           <Button className='nav-button round'
             onclick={openInfoModal}
