@@ -36,6 +36,8 @@ export const UserDropdown = (props) => {
         {user ?
          <>
           <Button
+            text='Dashboard'
+            icon={<i className="fa-solid fa-table-columns"></i>}
             onclick={(e) => redirect('dashboard')}
           />
           <Button className="nav-button"
