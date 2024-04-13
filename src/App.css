@@ -85,3 +85,7 @@ input.width-half-parent {
 .row.left {
   justify-content: left;
 }
+
+.row.no-gap {
+  gap: 0;
+}

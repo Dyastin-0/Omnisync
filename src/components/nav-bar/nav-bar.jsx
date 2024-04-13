@@ -61,14 +61,16 @@ export const NavBar = (props) => {
     <div className='nav-bar'> 
       <i className="fa-solid fa-toggle-on fa-2x"></i>
         <div className='row'>
-          <Button className='nav-button round'
-            onclick={openInfoModal}
-            icon={<i className={`fa-solid fa-circle-info fa-xl ${!isInfoClicked && `fa-bounce`}`}></i>}
-          />
-          <Button className='nav-button round'
-            onclick={openHelpModal}
-            icon={<i className={`fa-solid fa-circle-question fa-xl ${!isHelpClicked && `fa-bounce`}`}></i>} 
-          />
+          <div className='row no-gap'>
+            <Button className='nav-button round'
+              onclick={openInfoModal}
+              icon={<i className={`fa-solid fa-circle-info fa-xl ${!isInfoClicked && `fa-bounce`}`}></i>}
+            />
+            <Button className='nav-button round'
+              onclick={openHelpModal}
+              icon={<i className={`fa-solid fa-circle-question fa-xl ${!isHelpClicked && `fa-bounce`}`}></i>} 
+            />
+          </div>
           <Toggle 
             ref={themeToggleRef} 
             onchange={toggleTheme} 
