@@ -25,7 +25,7 @@ export const NavBar = (props) => {
   const { theme, toggleTheme } = useSettings();
   const themeToggleRef = useRef(null);
   useEffect(() => {
-    themeToggleRef.current.checked = theme == 'light' ? true : false;
+    themeToggleRef.current.checked = theme === 'light' ? true : false;
   }, [theme]);
 
   const handleHelpClick = () => {

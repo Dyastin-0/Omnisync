@@ -28,49 +28,6 @@ export const DataProvider = ( {children} ) => {
   const [renderedArea, setRenderedArea] = useState([]);
   const [chartData, setChartData] = useState([]);
 
-  useEffect(() => {
-    user && fetchData();
-  }, [user]);
-
-  useEffect(() => {
-    if ((toggles !== null) && (messages !== null)) setIsFetching(false);
-  }, [toggles, messages]);
-
-  const fetchData = async () => {
-    const togglesRef = ref(db, `/${userDataPath}/toggles`);
-    onValue(togglesRef, (snapshot) => {
-      setToggles(snapshot.val() || []);
-    });
-
-    const currentUnixTimestamp = Math.floor(Date.now() / 1000);
-    const sevenDaysAgoUnixTimestamp = currentUnixTimestamp - (7 * 24 * 60 * 60);
-    const messagesRef = ref(db, `/${userDataPath}/messages`);
-    const queryRef = query(
-      messagesRef,
-      orderByChild('timeSent'),
-      startAfter(sevenDaysAgoUnixTimestamp)
-    );
-  
-    onValue(queryRef, (snapshot) => {
-      setMessages(snapshot.val() || []);
-    });
-  };
-
-  const renderToggles = () => {
-    const rendered = Object.entries(toggles).map(([key, value], index) => (
-      <TogglePanelItem
-        className="sub-container"
-        sentBy={`${user.displayName}`}
-        key={key}
-        index={key}
-        toggleName={value.name}
-        checked={value.state}
-        path={`/${userDataPath}/toggles/${index}/state`}
-      />
-    ));
-    setRenderedToggles(rendered);
-  };
-
   const setToggleState = (name, state, message) => {
     setQuery(`/${userDataPath}/toggles`, 'name', name, state);
     pushInArray(`/${userDataPath}/messages`, message);
@@ -89,25 +46,68 @@ export const DataProvider = ( {children} ) => {
   }
 
   useEffect(() => {
-    toggles && renderToggles();
-  }, [toggles]);
+    const fetchData = async () => {
+      const togglesRef = ref(db, `/${userDataPath}/toggles`);
+      onValue(togglesRef, (snapshot) => {
+        setToggles(snapshot.val() || []);
+      });
+  
+      const currentUnixTimestamp = Math.floor(Date.now() / 1000);
+      const sevenDaysAgoUnixTimestamp = currentUnixTimestamp - (7 * 24 * 60 * 60);
+      const messagesRef = ref(db, `/${userDataPath}/messages`);
+      const queryRef = query(
+        messagesRef,
+        orderByChild('timeSent'),
+        startAfter(sevenDaysAgoUnixTimestamp)
+      );
+    
+      onValue(queryRef, (snapshot) => {
+        setMessages(snapshot.val() || []);
+      });
+    };
 
-  const renderMessages = () => {
-    const rendered = Object.entries(messages).map(([key, value]) => (
-      <MessagePanelItem
-        isMessageOwner={user.displayName === value.sentBy} 
-        key={key}
-        message={value.message}
-        timeSent={formatTime(value.timeSent)}
-        sentBy={value.sentBy}
-      /> 
-    ));
-    setRenderedMessages(rendered);
-  }
+    user && fetchData();
+  }, [user, userDataPath]);
 
   useEffect(() => {
+    const renderMessages = () => {
+      const rendered = Object.entries(messages).map(([key, value]) => (
+        <MessagePanelItem
+          isMessageOwner={user.displayName === value.sentBy} 
+          key={key}
+          message={value.message}
+          timeSent={formatTime(value.timeSent)}
+          sentBy={value.sentBy}
+        /> 
+      ));
+      setRenderedMessages(rendered);
+    }
+
     messages && renderMessages();
-  }, [messages]);
+  }, [messages, user]);
+
+  useEffect(() => {
+    if ((toggles !== null) && (messages !== null)) setIsFetching(false);
+  }, [toggles, messages]);
+
+  useEffect(() => {
+    const renderToggles = () => {
+      const rendered = Object.entries(toggles).map(([key, value], index) => (
+        <TogglePanelItem
+          className="sub-container"
+          sentBy={`${user.displayName}`}
+          key={key}
+          index={key}
+          toggleName={value.name}
+          checked={value.state}
+          path={`/${userDataPath}/toggles/${index}/state`}
+        />
+      ));
+      setRenderedToggles(rendered);
+    };
+
+    toggles && renderToggles();
+  }, [toggles, user, userDataPath]);
 
   useEffect(() => {
     if (messages) {
@@ -117,23 +117,24 @@ export const DataProvider = ( {children} ) => {
   }, [messages]);
 
   useEffect(() => {
-    messages && renderAreas();
-  }, [messages]);
+    const renderAreas = () => {    
+      const rendered = Object.entries(toggles).map(([key, value], index) => {
+        return (
+        <Area 
+          key={index}
+          type='monotone' 
+          dataKey={value.name}
+          stroke='var(--text-color)'
+          fill='var(--text-color)'
+        />
+        );
+      });
+      setRenderedArea(rendered);
+    }
 
-  const renderAreas = () => {    
-    const rendered = Object.entries(toggles).map(([key, value], index) => {
-      return (
-      <Area 
-        key={index}
-        type='monotone' 
-        dataKey={value.name}
-        stroke='var(--text-color)'
-        fill='var(--text-color)'
-      />
-      );
-    });
-    setRenderedArea(rendered);
-  }
+    messages && renderAreas();
+  }, [messages, toggles]);
+
 
   const value = {
     toggles,

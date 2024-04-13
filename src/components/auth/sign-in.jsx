@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { Button } from '../button/button';
 
-import { signIn, signInWithGoogle } from '../../config/auth';
+import { signIn, /*signInWithGoogle*/ } from '../../config/auth';
 import { useAuth } from '../../contexts/auth/auth';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,17 +16,19 @@ export const SignInWindow = (props) => {
   const [signingIn, setSigningIn] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
+  const setToast = props.setToastMessage;
+
   useEffect(() => {
     isLoggedIn && navigate('/panel');
-  }, [isLoggedIn]);
+  }, [isLoggedIn, navigate]);
 
   useEffect(() => {
-    props.setToastMessage('Signing in...');
-  }, [signingIn]);
+    setToast('Signing in...');
+  }, [signingIn, setToast]);
 
   useEffect(() => {
-    props.setToastMessage(errorMessage);
-  }, [errorMessage]);
+    setToast(errorMessage);
+  }, [errorMessage, setToast]);
 
   const logIn = async () => {
     if (!email || !password) {
@@ -50,13 +52,13 @@ export const SignInWindow = (props) => {
     }
   };
 
-  const logInWithGoogle = async () => {
-    if (!signingIn) {
-      setSigningIn(true);
-      await signInWithGoogle();
-      props.setToastMessage("Signing in...");
-    }
-  }
+  // const logInWithGoogle = async () => {
+  //   if (!signingIn) {
+  //     setSigningIn(true);
+  //     await signInWithGoogle();
+  //     props.setToastMessage("Signing in...");
+  //   }
+  // }
 
   return (
     <div className='auth'>

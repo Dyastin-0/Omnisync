@@ -3,14 +3,14 @@ import './auth.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { signUp, updateUser, signInWithGoogle} from '../../config/auth';
+import { signUp, updateUser, /*signInWithGoogle*/} from '../../config/auth';
 
 import { Button } from '../button/button';
 import { useAuth } from '../../contexts/auth/auth';
 
 export const SignUpWindow = (props) => {
   const navigate = useNavigate();
-  const { isLoggedIn, setUser } = useAuth();
+  const { isLoggedIn } = useAuth();
 
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -19,17 +19,19 @@ export const SignUpWindow = (props) => {
   const [signingUp, setSigningUp] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
+  const setToast = props.setToastMessage;
+
   useEffect(() => {
     isLoggedIn && navigate('/panel');
-  }, [isLoggedIn]);
+  }, [isLoggedIn, navigate]);
 
   useEffect(() => {
-    props.setToastMessage('Creating your account...');
-  }, [signingUp]);
+    setToast('Creating your account...');
+  }, [signingUp, setToast]);
 
   useEffect(() => {
-    props.setToastMessage(errorMessage);
-  }, [errorMessage]);
+    setToast(errorMessage);
+  }, [errorMessage, setToast]);
 
   const create = async () => {
     if (!email || !password || !email || !confirmedPassword) {
@@ -74,13 +76,13 @@ export const SignUpWindow = (props) => {
     }
   }
 
-  const logInWithGoogle = async () => {
-    if (!signingUp) {
-      setSigningUp(true);
-      await signInWithGoogle();
-      props.setToastMessage("Signing in...");
-    }
-  }
+  // const logInWithGoogle = async () => {
+  //   if (!signingUp) {
+  //     setSigningUp(true);
+  //     await signInWithGoogle();
+  //     props.setToastMessage("Signing in...");
+  //   }
+  // }
 
   return (
     <div className='auth'>

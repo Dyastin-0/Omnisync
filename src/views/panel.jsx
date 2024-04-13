@@ -18,7 +18,7 @@ const Panel = () => {
 
   useEffect(() => {
     !isLoggedIn && navigate('/sign-in');
-  }, [isLoggedIn]);
+  }, [isLoggedIn, navigate]);
 
   useLayoutEffect(() => {
     document.title = 'Panel';
@@ -32,7 +32,7 @@ const Panel = () => {
       />
       <Pad options={{panel: 'flex-max small', container: 'center'}} content={
         <>
-          {user && user.displayName && <h2>{`${user.displayName}${user.displayName && `${user.displayName.charAt(user.displayName.length - 1) == 's' ? `\'` : `\'s`}`} Dashboard`}</h2>}
+          {user && user.displayName && <h2>{`${user.displayName}${user.displayName && `${user.displayName.charAt(user.displayName.length - 1) === 's' ? `'` : `'s`}`} Dashboard`}</h2>}
         </>
       } />
       <UsageChart title="Usage in the last 7 days" />
