@@ -13,6 +13,7 @@ import { ConfirmDialogModal } from '../modals/confirm-dialog/confirm-dialog'
 import { useSettings } from '../../contexts/settings/settings';
 import { InfoModal } from '../modals/info/info';
 import { useAuth } from '../../contexts/auth/auth';
+import { SettingsModal } from '../modals/settings/settings-modal';
 
 export const NavBar = (props) => {
   const { isLoggedIn } = useAuth();
@@ -21,12 +22,7 @@ export const NavBar = (props) => {
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [isUserProfileOpen, setIsUserProfileOpen] = useState(false);
-
-  const { theme, toggleTheme } = useSettings();
-  const themeToggleRef = useRef(null);
-  useEffect(() => {
-    themeToggleRef.current.checked = theme === 'light' ? true : false;
-  }, [theme]);
+  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
 
   const handleHelpClick = () => {
     localStorage.setItem('isHelpClicked', true);
@@ -57,6 +53,9 @@ export const NavBar = (props) => {
   const closeUserProfile = () => setIsUserProfileOpen(false);
   const openUserProfile = () => setIsUserProfileOpen(true);
 
+  const closeSettings = () => setIsSettingsModalOpen(false);
+  const openSettings = () => setIsSettingsModalOpen(true);
+
   return (
     <div className='nav-bar'> 
       <i className="fa-solid fa-toggle-on fa-2x"></i>
@@ -71,11 +70,9 @@ export const NavBar = (props) => {
               icon={<i className={`fa-solid fa-circle-question fa-xl ${!isHelpClicked && `fa-bounce`}`}></i>} 
             />
           </div>
-          <Toggle 
-            ref={themeToggleRef} 
-            onchange={toggleTheme} 
-          />
+
           <UserDropdown 
+            openSettings={openSettings}
             openUserProfile={openUserProfile}
           />
         </div>
@@ -101,6 +98,10 @@ export const NavBar = (props) => {
       <ToastMessage
         message={props.toastMessage}
         setToastMessage={props.setToastMessage}
+      />
+      <SettingsModal
+        active={isSettingsModalOpen}
+        closeModal={closeSettings}
       />
     </div>
   );

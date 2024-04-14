@@ -13,13 +13,11 @@ import { AreaChart,
 import { useData } from '../../contexts/data/data';
 import { Loading } from '../loading/loading';
 import { CustomTooltip } from './custom-tooltip';
-import Toggle from '../toggle/toggle';
 import { useSettings } from '../../contexts/settings/settings';
 
 export const UsageChart = (props) => {
   const { toggles, messages, chartData } = useData();
-  const { toggleIncludeDevice, areDevicesIncluded } = useSettings();
-  const includeDevicesRef = useRef(null);
+  const { areDevicesIncluded } = useSettings();
   const [renderedAreas, setRenderedAreas] = useState([]);
 
   useEffect(() => {
@@ -40,10 +38,6 @@ export const UsageChart = (props) => {
 
     messages && renderAreas();
   }, [messages, toggles]);
-
-  useEffect(() => {
-    includeDevicesRef.current.checked = areDevicesIncluded;
-  }, [areDevicesIncluded]);
 
   return (
     <div className='content-panel flex-max'>
@@ -82,10 +76,6 @@ export const UsageChart = (props) => {
         ) : (
           <Loading text='No data to display.' />
         )}
-      </div>
-      <div className='row'>
-        <h6>Include devices</h6>
-       <Toggle size='small' ref={includeDevicesRef} onchange={toggleIncludeDevice}/>
       </div>
     </div>
   );

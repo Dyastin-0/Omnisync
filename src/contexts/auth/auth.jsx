@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext, createContext } from 'react';
 
 import { auth } from '../../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { SplashScreen } from '../../components/splash-screen/splash-screen';
 
 const AuthContext = createContext();
 
@@ -42,7 +43,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider value={value}>
-      {!isLoading && children}
+      {!isLoading ? children : <SplashScreen />}
     </AuthContext.Provider>
   );
 }

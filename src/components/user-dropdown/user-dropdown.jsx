@@ -52,6 +52,7 @@ export const UserDropdown = (props) => {
             icon={<i className="fa-solid fa-user-tie"></i>}
           />
           <Button className="nav-button"
+            onclick={props.openSettings}
             id="settings-button" text="Settings"
             icon={<i className='fa-solid fa-gear'></i>}
           />

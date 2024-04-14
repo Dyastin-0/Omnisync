@@ -18,10 +18,11 @@ export const MessagePanel = (props) => {
   const [renderedMessages, setRenderedMessages] = useState([]);
   useEffect(() => {
     const renderMessages = () => {
-      const rendered = Object.entries
-      (messages.length > 20 ? messages.slice(messages.length - 21, messages.length - 1) : messages).map(([key, value]) => (
+      if (user) {
+        const rendered = Object.entries
+        (messages.length > 20 ? messages.slice(messages.length - 21, messages.length - 1) : messages).map(([key, value]) => (
         <MessagePanelItem
-          isMessageOwner={user.displayName === value.sentBy} 
+          isMessageOwner={ user && user.displayName === value.sentBy} 
           key={key}
           message={value.message}
           timeSent={formatTime(value.timeSent)}
@@ -29,6 +30,7 @@ export const MessagePanel = (props) => {
         /> 
       ));
       setRenderedMessages(rendered);
+      }
     }
 
     messages && renderMessages();

@@ -16,18 +16,20 @@ export const TogglePanel = (props) => {
 
   useEffect(() => {
     const renderToggles = () => {
-      const rendered = Object.entries(toggles).map(([key, value], index) => (
-        <TogglePanelItem
-          className="sub-container"
-          sentBy={`${user.displayName}`}
-          key={key}
-          index={key}
-          toggleName={value.name}
-          checked={value.state}
-          path={`/${userDataPath}/toggles/${index}/state`}
-        />
-      ));
-      setRenderedToggles(rendered);
+      if (user) {
+        const rendered = Object.entries(toggles).map(([key, value], index) => (
+          <TogglePanelItem
+            className="sub-container"
+            sentBy={`${user.displayName}`}
+            key={key}
+            index={key}
+            toggleName={value.name}
+            checked={value.state}
+            path={`/${userDataPath}/toggles/${index}/state`}
+          />
+        ));
+        setRenderedToggles(rendered);
+      }
     };
 
     toggles && renderToggles();
