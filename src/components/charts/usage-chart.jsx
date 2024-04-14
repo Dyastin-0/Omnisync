@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../content-panel.css';
 
 import { AreaChart,
@@ -17,10 +17,29 @@ import Toggle from '../toggle/toggle';
 import { useSettings } from '../../contexts/settings/settings';
 
 export const UsageChart = (props) => {
-  const { chartData, renderedArea } = useData();
+  const { toggles, messages, chartData } = useData();
   const { toggleIncludeDevice, areDevicesIncluded } = useSettings();
-
   const includeDevicesRef = useRef(null);
+  const [renderedAreas, setRenderedAreas] = useState([]);
+
+  useEffect(() => {
+    const renderAreas = () => {    
+      const rendered = Object.entries(toggles).map(([key, value], index) => {
+        return (
+        <Area 
+          key={index}
+          type='monotone' 
+          dataKey={value.name}
+          stroke='var(--text-color)'
+          fill='var(--text-color)'
+        />
+        );
+      });
+      setRenderedAreas(rendered);
+    }
+
+    messages && renderAreas();
+  }, [messages, toggles]);
 
   useEffect(() => {
     includeDevicesRef.current.checked = areDevicesIncluded;
@@ -51,8 +70,8 @@ export const UsageChart = (props) => {
               stroke='var(--text-color)'
               fill='var(--text-color)'
             />
-            {areDevicesIncluded && renderedArea.length > 0 &&
-              renderedArea.map((area, index) => (
+            {areDevicesIncluded && renderedAreas.length > 0 &&
+              renderedAreas.map((area, index) => (
                 <React.Fragment key={index}>
                   {area}
                 </React.Fragment>
