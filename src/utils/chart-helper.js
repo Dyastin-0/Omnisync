@@ -2,7 +2,7 @@ export const constructData = (messages) => {
   const latestOn = {};
   const dayTotal = [];
 
-  messages.forEach(message => {
+  Object.values(messages).forEach(message => {
     const { name, action, timeSent } = message;
     const date = new Date(timeSent);
     const day = date.toLocaleDateString('en-US', { weekday: 'long' });

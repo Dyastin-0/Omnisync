@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-import { onValue, ref, query, orderByChild, startAfter } from 'firebase/database';
+import { onValue, ref, query, orderByChild, startAfter, startAt, endAt } from 'firebase/database';
 
 
 import { db } from '../../config/firebase';
@@ -43,13 +43,14 @@ export const DataProvider = ( {children} ) => {
         setToggles(snapshot.val() || []);
       });
   
-      const currentUnixTimestamp = Math.floor(Date.now() / 1000);
-      const sevenDaysAgoUnixTimestamp = currentUnixTimestamp - (7 * 24 * 60 * 60);
+      const currentTimestamp = Date.now();
+      const sevenDaysAgoTimestamp = currentTimestamp - (7 * 24 * 60 * 60 * 1000);
       const messagesRef = ref(db, `/${userDataPath}/messages`);
       const queryRef = query(
         messagesRef,
         orderByChild('timeSent'),
-        startAfter(sevenDaysAgoUnixTimestamp)
+        startAt(sevenDaysAgoTimestamp),
+        endAt(currentTimestamp)
       );
     
       onValue(queryRef, (snapshot) => {
