@@ -11,7 +11,7 @@ export const SettingsModal = (props) => {
   const includeDevicesRef = useRef(null);
 
   useEffect(() => {
-    themeToggleRef.current.checked = theme === 'light' ? true : false;
+    themeToggleRef.current.checked = theme === 'dark' ? true : false;
   }, [theme]);
 
   useEffect(() => {
@@ -20,6 +20,7 @@ export const SettingsModal = (props) => {
 
   return (
     <GenericModal
+      width={'224px'}
       headerTitle='Settings'
       active={props.active}
       closeModal={props.closeModal}
@@ -32,7 +33,7 @@ export const SettingsModal = (props) => {
               ref={themeToggleRef} 
               onchange={toggleTheme} 
             />
-            <h6>{`Theme: ${theme}`}</h6>
+            <h5>Dark mode</h5>
           </div>
           <h5>Chart</h5>
           <div className='row left'>
@@ -41,7 +42,7 @@ export const SettingsModal = (props) => {
               ref={includeDevicesRef}
               onchange={toggleIncludeDevice}
               />
-            <h6>Include devices on the chart</h6>
+            <h5>Include each device's usage</h5>
           </div>
         </div>
       }

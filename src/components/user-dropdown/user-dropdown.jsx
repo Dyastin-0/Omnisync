@@ -1,7 +1,7 @@
 import './user-dropdown.css';
 
 import { logOut } from '../../config/auth';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../button/button';
@@ -11,7 +11,18 @@ export const UserDropdown = (props) => {
   const { user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [path, setPath] = useState(null);
+  const [settingsSpin, setSettingsSpin] = useState('');
   const navigate = useNavigate();
+
+  const settingsRef = useRef(null);
+
+  useEffect(() => {
+    const node = settingsRef.current;
+    node.addEventListener('mouseenter', () => setSettingsSpin('fa-spin'));
+    node.addEventListener('mouseleave', () => setSettingsSpin(''));
+    node.addEventListener('touchstart', () => setSettingsSpin('fa-spin'));
+    node.addEventListener('touchend', () => setSettingsSpin(''));
+  }, []);
 
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -28,6 +39,7 @@ export const UserDropdown = (props) => {
   return (
     <div className='dropdown'>
       <Button className="nav-button"
+        ref={settingsRef}
         onclick={toggle}
         text={user && user.displayName}
         icon={<i className={`fa fa-chevron-down chevron ${isOpen ? 'open' : ''}`} />}
@@ -49,12 +61,13 @@ export const UserDropdown = (props) => {
             onclick={() => redirect('/panel/manage')}
             id='manage-button'
             text='Manage'
-            icon={<i className="fa-solid fa-user-tie"></i>}
+            icon={<i className="fa-solid fa-pen-to-square"></i>}
           />
           <Button className="nav-button"
             onclick={props.openSettings}
+            ref={settingsRef}
             id="settings-button" text="Settings"
-            icon={<i className='fa-solid fa-gear'></i>}
+            icon={<i className={`fa-solid fa-gear ${settingsSpin}`}></i>}
           />
           <Button className="nav-button"
             onclick={logOut}

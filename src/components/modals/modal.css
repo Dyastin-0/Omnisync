@@ -21,7 +21,7 @@
 }
 
 .modal {
-  min-width: 100px;
+  /* min-width: 100px; */
   max-width: calc(100% - 54px);
   height: fit-content;
   display: flex;

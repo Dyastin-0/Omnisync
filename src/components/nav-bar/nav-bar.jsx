@@ -1,8 +1,7 @@
 import './nav-bar.css';
 
-import { React, useEffect, useRef, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 
-import Toggle from '../toggle/toggle';
 import { UserDropdown } from '../user-dropdown/user-dropdown';
 import { Button } from '../button/button';
 import { HelpModal } from '../modals/help/help';
@@ -10,7 +9,6 @@ import { UserProfile } from '../modals/profile/profile';
 import { ToastMessage } from '../modals/toast-message/toast-message';
 import { ConfirmDialogModal } from '../modals/confirm-dialog/confirm-dialog'
 
-import { useSettings } from '../../contexts/settings/settings';
 import { InfoModal } from '../modals/info/info';
 import { useAuth } from '../../contexts/auth/auth';
 import { SettingsModal } from '../modals/settings/settings-modal';
