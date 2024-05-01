@@ -11,11 +11,11 @@ export const HelpModal = (props) => {
         <div className='modal-content-container'>
           <div className="group">
             <h5>API key</h5>
-            <p>"AIzaSyBOyiu_l_-VoxdJVgZnR-QcMLA7D2pQZmk"</p>
+            <p>"AIzaSyBuP81YRh3hUpo1Hv4fWYwnXlODsSOIr98"</p>
           </div>
           <div className="group">
             <h5>Database URL</h5>
-            <p>"https://homeautmicro-default-rtdb.asia-southeast1.firebasedatabase.app"</p>
+            <p>"https://omnisynchronize-default-rtdb.asia-southeast1.firebasedatabase.app"</p>
           </div>
           <div className='group'>
             <h5>How to use</h5>

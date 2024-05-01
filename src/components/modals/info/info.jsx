@@ -11,14 +11,14 @@ export const InfoModal = (props) => {
       content={
         <div className='modal-content-container'>
           <div className="group">
-            <h5>What is Home Aut Micro?</h5>
-            <p>It is a home automation tool that you can use on
-                several microcontrollers that supports Wi-Fi and
-                has a stable Firebase Library.
+            <h5>What is omnisync?</h5>
+            <p>It is an automation tool that you can use on your personal projects;
+              all you need is a microprocessor that supports Wi-Fi to start, you can check the
+              sample Arduino code in the Help (?) modal.
             </p>
             <p>
-              Home Aut Micro is open-source, you can fork the project 
-              on my Github, change the Firebase config for further customization.
+              Omnisync is open-source, you can clone the project 
+              on my Github, simply change the Firebase config with your own for further customization.
             </p>
           </div>
           <div className='group'>
@@ -33,10 +33,6 @@ export const InfoModal = (props) => {
           <div className='group'>
             <h5>Project Stack</h5>
             <p>ReactJS, Firebase Authentication & Real-time Database</p>
-          </div>
-          <div className='group'>
-            <h5>Credits</h5>
-            <p>Mobizt - ESP8266/32FirebaseClient author.</p>
           </div>
         </div>
       }
