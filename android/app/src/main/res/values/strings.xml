@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Omnisync</string>
+    <string name="title_activity_main">Omnisync</string>
+    <string name="package_name">io.ionic.Omnisync</string>
+    <string name="custom_url_scheme">io.ionic.Omnisync</string>
+</resources>

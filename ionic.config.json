@@ -1,0 +1,7 @@
+{
+    "name": "Omnisync",
+    "integrations": {
+      "capacitor": {}
+    },
+    "type": "react"
+  }

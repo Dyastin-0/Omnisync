@@ -2,7 +2,6 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import { onValue, ref, query, orderByChild, startAt } from 'firebase/database';
 
-
 import { db } from '../../config/firebase';
 import { pushInArray, setQuery } from '../../config/database';
 import { useAuth } from '../auth/auth';
