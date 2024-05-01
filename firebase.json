@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "omnisync",
     "rewrites": [{
       "source": "**",
       "destination": "/index.html"

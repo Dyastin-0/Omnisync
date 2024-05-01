@@ -1,10 +1,10 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyBOyiu_l_-VoxdJVgZnR-QcMLA7D2pQZmk",
-  authDomain: "homeautmicro.firebaseapp.com",
-  databaseURL: "https://homeautmicro-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "homeautmicro",
-  storageBucket: "homeautmicro.appspot.com",
-  messagingSenderId: "33296336985",
-  appId: "1:33296336985:web:f4f492e9d6c5d23f758948",
-  measurementId: "G-HXBB3S5D2N"
+  apiKey: "AIzaSyBuP81YRh3hUpo1Hv4fWYwnXlODsSOIr98",
+  authDomain: "omnisynchronize.firebaseapp.com",
+  databaseURL: "https://omnisynchronize-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "omnisynchronize",
+  storageBucket: "omnisynchronize.appspot.com",
+  messagingSenderId: "737432602848",
+  appId: "1:737432602848:web:a9431dd1ec9709d373e885",
+  measurementId: "G-PGTSLH9M0S"
 };
