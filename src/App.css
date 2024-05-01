@@ -6,6 +6,8 @@
   --text-color: rgb(60, 60, 60);
 
   --shadow: rgba(0, 0, 0, 0.1);
+
+  --accent: rgba(31, 117, 254, 0.6);
 }
 
 * {

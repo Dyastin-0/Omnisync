@@ -18,7 +18,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--complement);
+  background-color: var(--secondary-color);
   -webkit-transition: .4s;
   transition: .4s;
   color: var(--text-color);
@@ -34,13 +34,13 @@
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: var(--accent);
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 input:checked + .slider {
-  background-color: var(--secondary-color);
+  background-color: var(--complement);
 }
 
 input:checked + .slider:before {
@@ -81,7 +81,7 @@ input:checked + .slider:before {
 }
 
 .toggle.small input:checked + .slider {
-  background-color: var(--secondary-color);
+  background-color: var(--complement);
 }
 
 .toggle.small input:checked + .slider:before {

@@ -18,10 +18,12 @@ export const UserDropdown = (props) => {
 
   useEffect(() => {
     const node = settingsRef.current;
-    node.addEventListener('mouseenter', () => setSettingsSpin('fa-spin'));
-    node.addEventListener('mouseleave', () => setSettingsSpin(''));
-    node.addEventListener('touchstart', () => setSettingsSpin('fa-spin'));
-    node.addEventListener('touchend', () => setSettingsSpin(''));
+    if (node) {
+      node.addEventListener('mouseenter', () => setSettingsSpin('fa-spin'));
+      node.addEventListener('mouseleave', () => setSettingsSpin(''));
+      node.addEventListener('touchstart', () => setSettingsSpin('fa-spin'));
+      node.addEventListener('touchend', () => setSettingsSpin(''));
+    }
   }, []);
 
   const toggle = () => {
@@ -39,7 +41,6 @@ export const UserDropdown = (props) => {
   return (
     <div className='dropdown'>
       <Button className="nav-button"
-        ref={settingsRef}
         onclick={toggle}
         text={user && user.displayName}
         icon={<i className={`fa fa-chevron-down chevron ${isOpen ? 'open' : ''}`} />}

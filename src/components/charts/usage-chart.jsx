@@ -28,8 +28,8 @@ export const UsageChart = (props) => {
           key={index}
           type='monotone' 
           dataKey={value.name}
-          stroke='var(--text-color)'
-          fill='var(--text-color)'
+          stroke='var(--accent)'
+          fill='var(--accent)'
         />
         );
       });
@@ -61,8 +61,8 @@ export const UsageChart = (props) => {
             <Area 
               type='monotone' 
               dataKey='total'
-              stroke='var(--text-color)'
-              fill='var(--text-color)'
+              stroke='var(--accent)'
+              fill='var(--accent)'
             />
             {areDevicesIncluded && renderedAreas.length > 0 &&
               renderedAreas.map((area, index) => (
