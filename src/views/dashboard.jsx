@@ -21,7 +21,7 @@ const Dashboard = () => {
   }, [isLoggedIn, navigate]);
 
   useLayoutEffect(() => {
-    document.title = 'Dashboard';
+    document.title = `Omnisync/${user.displayName}`;
   });
 
   return (
