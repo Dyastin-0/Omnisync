@@ -3,14 +3,14 @@
 #include <addons/TokenHelper.h>
 #include <addons/RTDBHelper.h>
 
-const char* ssid = "2.4G-J3Kt";    //your wifi ssid
-const char* keypass = "bb7QiBcD!";//your wifi password
+const char* ssid = "";    //your wifi ssid
+const char* keypass = "";//your wifi password
 
 const char* api_key = "AIzaSyBuP81YRh3hUpo1Hv4fWYwnXlODsSOIr98"; //this should not be changed
 const char* database_url = "omnisynchronize-default-rtdb.asia-southeast1.firebasedatabase.app"; //this should not be changed
-const char* email = "paralejas@gmail.com"; //paste your email here
-const char* password = "afd221"; //paste your password here
-const String uid = "mV3HtW0NMafCv3L8VWswgOUk9xh1"; //you can get your UID on your account profile
+const char* email = ""; //paste your email here
+const char* password = ""; //paste your password here
+const String uid = ""; //you can get your UID on your account profile
 
 const byte LED_BUILTIN = 2; //wifi connection indicator
 
