@@ -36,7 +36,7 @@ void streamCallback(MultiPathStreamData stream) {
       FirebaseJsonData jsonData;
       json.get(jsonData, "state");
 
-      Serial.printf("[Omnisync] [%d] %d\n", i, jsonData.boolValue); // this prints: [Omnisync] [deviceIndex] deviceState
+      Serial.printf("[Omnisync] [Stream] [%d] %d\n", i, jsonData.boolValue); // this prints: [Omnisync] [deviceIndex] deviceState
       
       toggleRelay(stream.dataPath.c_str(), jsonData.boolValue);
     }
@@ -107,11 +107,7 @@ void setup() {
 void loop() {}
 
 void connectToWifi() {
-  Serial.begin(115200);
-
-  Serial.println();
-  Serial.println();
-  Serial.print("[Omnisync] [WiFi] Connecting to ");
+  Serial.print("\n\n[Omnisync] [WiFi] Connecting to ");
   Serial.println(ssid);
 
   WiFi.mode(WIFI_STA);
@@ -122,10 +118,8 @@ void connectToWifi() {
     delay(500);
     Serial.print(".");
   }
-
   digitalWrite(LED_BUILTIN, 1);
-  Serial.println("");
-  Serial.println("[Omnisync] [WiFi] Connected.");
+  Serial.printf("\n\n[Omnisync] [WiFi] Connected.");
   Serial.print("[Omnisync] [WiFi] [IP] ");
   Serial.println(WiFi.localIP());
 }

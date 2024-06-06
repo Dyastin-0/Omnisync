@@ -9,7 +9,7 @@ export const SplashScreen = () => {
       <div></div>
       <div className='item'>
         <i className="fa-solid fa-toggle-on fa-4x"></i>
-        <h3>Hout Aut Micro</h3>
+        <h3>Omnisync</h3>
         <i className="fa-solid fa-slash fa-spin"></i>
       </div>
       <div className='item'>

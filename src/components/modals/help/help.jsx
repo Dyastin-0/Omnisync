@@ -26,7 +26,7 @@ export const HelpModal = (props) => {
           <div className="group">
             <h5>Check out the sample Arduino code at:</h5>
             <a href="https://github.com/Dyastin-0/home-aut/blob/master/public/sample/sample.ino"
-              target='blank'>ESP8266 Firebase Client</a>  
+              target='blank'>ESP32 Firebase Client</a>  
           </div>  
         </div>
       }

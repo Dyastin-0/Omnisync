@@ -7,9 +7,7 @@ import { useAuth } from '../contexts/auth/auth';
 import { NavBar } from '../components/nav-bar/nav-bar';
 
 import { Pad } from '../components/Pad/Pad'
-import { AddPanel } from '../components/manage/AddPanel/add-panel';
-import { DeletePanel } from '../components/manage/DeletePanel/delete-panel';
-import { EditPanel } from '../components/manage/EditPanel/edit-panel'
+import { AddPanel } from '../components/manage/add-panel';
 
 const Manage = () => {
   const [confirmEvent, setConfirmEvent] = useState(null);
@@ -36,15 +34,10 @@ const Manage = () => {
           <h1>Manage your toggles</h1>
         } 
       />
-      <AddPanel title='Add'
+      <AddPanel
         setToastMessage={setToastMessage}
         setConfirmEvent={setConfirmEvent}
         setConfirmMessage={setConfirmMessage}
-      />
-      <DeletePanel title='Delete' />
-      <EditPanel title='Edit' />
-      <Pad
-        options={{panel: 'fex-max small', container: 'center'}}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 export const firebaseConfig = {
   apiKey: "AIzaSyBuP81YRh3hUpo1Hv4fWYwnXlODsSOIr98",
-  authDomain: "omnisynchronize.firebaseapp.com",
+  authDomain: "omnisync.web.app",
   databaseURL: "https://omnisynchronize-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "omnisynchronize",
   storageBucket: "omnisynchronize.appspot.com",

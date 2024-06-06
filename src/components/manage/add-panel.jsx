@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-import { arrayIncludes } from "../../../config/database";
+import { arrayIncludes } from "../../config/database";
 
-import { Button } from "../../button/button";
+import { Button } from "../button/button";
 
-import { useData } from "../../../contexts/data/data";
-import { useAuth } from "../../../contexts/auth/auth";
+import { useData } from "../../contexts/data/data";
+import { useAuth } from "../../contexts/auth/auth";
 
 export const AddPanel = (props) => {
   const { userDataPath } = useAuth();

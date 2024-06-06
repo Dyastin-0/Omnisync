@@ -3,7 +3,7 @@ import './auth.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { signUp, updateUser, /*signInWithGoogle*/} from '../../config/auth';
+import { signUp, updateUser, signInWithGoogle } from '../../config/auth';
 
 import { Button } from '../button/button';
 import { useAuth } from '../../contexts/auth/auth';
@@ -76,17 +76,17 @@ export const SignUpWindow = (props) => {
     }
   }
 
-  // const logInWithGoogle = async () => {
-  //   if (!signingUp) {
-  //     setSigningUp(true);
-  //     await signInWithGoogle();
-  //     props.setToastMessage("Signing in...");
-  //   }
-  // }
+  const logInWithGoogle = async () => {
+    if (!signingUp) {
+      setSigningUp(true);
+      await signInWithGoogle();
+      props.setToastMessage("Signing in...");
+    }
+  }
 
   return (
     <div className='auth'>
-      <h2>Home Aut Micro</h2>
+      <h2>Omnisync</h2>
       <h5>Create an account and start <br /> setting up your own <br /> dashboard</h5>
       <input placeholder="Email" enterKeyHint='Enter'
         onChange={(e) => {setEmail(e.target.value)}}
@@ -105,8 +105,8 @@ export const SignUpWindow = (props) => {
         onKeyUp={(e) => e.key === 'Enter' && create()}
       ></input>
       <Button onclick={create} text="Sign up" icon={<i className="fa-solid fa-user-plus"></i>} className="nav-button center" />
-      {/* <h6>or sign up with</h6> */}
-      {/* <Button onclick={logInWithGoogle}  text="Google" icon={<i className="fa-brands fa-google"></i>} className="nav-button center" /> */}
+      { <h6>or continue with</h6> }
+      { <Button onclick={logInWithGoogle}  text="Google" icon={<i className="fa-brands fa-google"></i>} className="nav-button center" /> }
       <div className="row">
         <p>Already have an account?</p>
         <a href="/sign-in">Sign in</a>

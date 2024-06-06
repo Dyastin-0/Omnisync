@@ -37,7 +37,6 @@
   padding: 18px;
   border-radius: 5px;
   z-index: 888;
-  transition: top 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
 }
 
 .modal.open {
@@ -52,7 +51,7 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 9px;
-  background-color: var(--base-color);
+  background-color: transparent;
 }
 
 .modal-content {
