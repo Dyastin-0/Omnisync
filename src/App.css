@@ -17,7 +17,7 @@
   transition: background-color 0.3s ease, color 0.3s ease, height 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
 }
 
-p, h6, h5, h4, h3, h2, h1 {
+p, h6, h5, h4, h2, h1 {
   text-align: center;
   color: var(--text-color);
   overflow: hidden;
@@ -25,9 +25,11 @@ p, h6, h5, h4, h3, h2, h1 {
 }
 
 h2, h3 {
+  color: var(--text-color);
   width: calc(100% - 8px);
   border-radius: 9px;
   padding: 3px;
+  text-overflow: none;
 }
 
 p {
