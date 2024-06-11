@@ -14,7 +14,7 @@ import { SettingsModal } from '../modals/settings/settings-modal';
 import { AccountLinking } from '../modals/account-linking/account-linking';
 import { AddDeviceModal } from '../modals/add-device/add-device';
 
-export const NavBar = () => {
+export const NavBar = (props) => {
   const { isLoggedIn, isLinked, userDataPath } = useAuth();
   const [isHelpClicked, setIsHelpClicked] = useState(false);
   const [isInfoClicked, setIsInfoClicked] = useState(false);
@@ -25,7 +25,6 @@ export const NavBar = () => {
   const [isAccountLinkingOpen, setIsAccountLinkingOpen] = useState(false);
   const [accountLinkReminder, setAccountLinkReminder] = useState(0);
 
-  const [toastMessage, setToastMessage] = useState(null);
   const [confirmEvent, setConfirmEvent] = useState(null);
   const [confirmMessage, setConfirmMessage] = useState(null);
   const [isAddDeviceOpen, setIsAddDeviceOpen] = useState(false);
@@ -114,13 +113,13 @@ export const NavBar = () => {
         />}
         <ConfirmDialogModal
           closeModal={() => false}
-          setToastMessage={setToastMessage}
+          setToastMessage={props.setToastMessage}
           event={confirmEvent}
           message={confirmMessage}
         /> 
         <ToastMessage
-          message={toastMessage}
-          setToastMessage={setToastMessage}
+          message={props.toastMessage}
+          setToastMessage={props.setToastMessage}
         />
         {isLoggedIn && <SettingsModal
           active={isSettingsModalOpen}
@@ -129,13 +128,13 @@ export const NavBar = () => {
         {!(new Date().getTime() < accountLinkReminder) && isLoggedIn && !isLinked 
             && <AccountLinking
           closeModal={closeAccountLinking}
-          setToastMessage={setToastMessage}
+          setToastMessage={props.setToastMessage}
           active={isAccountLinkingOpen}
         />}
         {isLoggedIn && <AddDeviceModal
           setConfirmEvent={setConfirmEvent}
           setConfirmMessage={setConfirmMessage}
-          setToastMessage={setToastMessage}
+          setToastMessage={props.setToastMessage}
           active={isAddDeviceOpen}
           closeModal={closeAddDeviceModal}
           path={userDataPath}

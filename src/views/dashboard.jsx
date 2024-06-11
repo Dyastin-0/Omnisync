@@ -13,6 +13,8 @@ import { Pad } from '../components/Pad/Pad';
 import { Insight } from '../components/insight/insight';
 
 const Dashboard = () => {
+  const [toastMessage, setToastMessage] = useState(null);
+
   const navigate = useNavigate();
   const { isLoggedIn, user } = useAuth();
   useEffect(() => {
@@ -25,7 +27,10 @@ const Dashboard = () => {
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar
+        toastMessage={toastMessage}
+        setToastMessage={setToastMessage}
+      />
       <Pad options={{panel: 'flex-max small', container: 'center'}} content={
         <>
           {user && user.displayName && <h2>{`${user.displayName}${user.displayName && `${user.displayName.charAt(user.displayName.length - 1) === 's' ? `'` : `'s`}`} Dashboard`}</h2>}
