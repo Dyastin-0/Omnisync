@@ -3,14 +3,13 @@ import { arrayIncludes } from '../../../config/database';
 
 import { useState } from 'react';
 
-import { GenericModal } from "../../modals/modal";
+import { GenericModal } from "../modal";
 import { useData } from '../../../contexts/data/data';
 
-export const AddToggleModal = (props) => {
+export const AddDeviceModal = (props) => {
   const { addToggle } = useData();
   const [toggleName, setToggleName] = useState(null);
-  
-  const handleAddToggle = async (e) => {
+  const handleAddDevice = async (e) => {
     if (e.key === 'Enter') {
       const includes = await arrayIncludes(`${props.path}/toggles`, toggleName);
       if (includes) {
@@ -19,7 +18,7 @@ export const AddToggleModal = (props) => {
         const event = () => {
           return async () => {
             await addToggle(toggleName);
-            props.setToastMessage(`Toggle ${toggleName.toLocaleLowerCase()} added.`);
+            props.setToastMessage(`Device ${toggleName.toLocaleLowerCase()} added.`);
             e.target.value = null;
           };  
         };
@@ -31,12 +30,12 @@ export const AddToggleModal = (props) => {
 
   return (
     <GenericModal
-      headerTitle='Add toggle'
+      headerTitle='Add device'
       closeModal={props.closeModal}
       active={props.active}
-      content={<input placeholder='Toggle name' enterKeyHint='enter'
+      content={<input placeholder='Device name' enterKeyHint='enter'
         onChange={(e) => {setToggleName(e.target.value)}}
-        onKeyUp={(e) => handleAddToggle(e)}
+        onKeyUp={(e) => handleAddDevice(e)}
       ></input>}
     />
   );

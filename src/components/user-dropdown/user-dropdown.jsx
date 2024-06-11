@@ -49,20 +49,9 @@ export const UserDropdown = (props) => {
         {user ?
          <>
           <Button className='nav-button'
-            text='Dashboard'
-            icon={<i className="fa-solid fa-table-columns"></i>}
-            onclick={(e) => redirect('/dashboard')}
-          />
-          <Button className='nav-button'
             onclick={props.openUserProfile}
             id="user-profile-button"
             text="Profile" icon={<i className="fa-solid fa-user"></i>}
-          />
-          <Button className='nav-button'
-            onclick={() => redirect('/panel/manage')}
-            id='manage-button'
-            text='Manage'
-            icon={<i className="fa-solid fa-pen-to-square"></i>}
           />
           <Button className="nav-button"
             onclick={props.openSettings}

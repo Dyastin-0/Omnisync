@@ -8,14 +8,14 @@ import { HelpModal } from '../modals/help/help';
 import { UserProfile } from '../modals/profile/profile';
 import { ToastMessage } from '../modals/toast-message/toast-message';
 import { ConfirmDialogModal } from '../modals/confirm-dialog/confirm-dialog'
-
 import { InfoModal } from '../modals/info/info';
 import { useAuth } from '../../contexts/auth/auth';
 import { SettingsModal } from '../modals/settings/settings-modal';
 import { AccountLinking } from '../modals/account-linking/account-linking';
+import { AddDeviceModal } from '../modals/add-device/add-device';
 
-export const NavBar = (props) => {
-  const { isLoggedIn, isLinked } = useAuth();
+export const NavBar = () => {
+  const { isLoggedIn, isLinked, userDataPath } = useAuth();
   const [isHelpClicked, setIsHelpClicked] = useState(false);
   const [isInfoClicked, setIsInfoClicked] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
@@ -25,16 +25,20 @@ export const NavBar = (props) => {
   const [isAccountLinkingOpen, setIsAccountLinkingOpen] = useState(false);
   const [accountLinkReminder, setAccountLinkReminder] = useState(0);
 
-  const closeAccountLinking = () => {
-    setIsAccountLinkingOpen(false);
-  };
+  const [toastMessage, setToastMessage] = useState(null);
+  const [confirmEvent, setConfirmEvent] = useState(null);
+  const [confirmMessage, setConfirmMessage] = useState(null);
+  const [isAddDeviceOpen, setIsAddDeviceOpen] = useState(false);
 
-  const setLinkReminder = () => {
+  const closeAddDeviceModal = () => setIsAddDeviceOpen(false);
+  const openAddDeviceModal = () => setIsAddDeviceOpen(true);
+  
+  const closeAccountLinking = () => {
     const currentDate = new Date().getTime();
     const reminder = currentDate + (2 * 60 * 60 * 1000);
     localStorage.setItem('accountLinkReminder', String(reminder));
     setIsAccountLinkingOpen(false);
-  }
+  };
 
   useEffect(() => {
     const reminder = localStorage.getItem('accountLinkReminder');
@@ -109,15 +113,14 @@ export const NavBar = (props) => {
           closeModal={closeUserProfile}
         />}
         <ConfirmDialogModal
-          active={props.isComfirmModalOpen}
           closeModal={() => false}
-          setToastMessage={props.setToastMessage}
-          event={props.confirmEvent}
-          message={props.confirmMessage}
+          setToastMessage={setToastMessage}
+          event={confirmEvent}
+          message={confirmMessage}
         /> 
         <ToastMessage
-          message={props.toastMessage}
-          setToastMessage={props.setToastMessage}
+          message={toastMessage}
+          setToastMessage={setToastMessage}
         />
         {isLoggedIn && <SettingsModal
           active={isSettingsModalOpen}
@@ -126,9 +129,21 @@ export const NavBar = (props) => {
         {!(new Date().getTime() < accountLinkReminder) && isLoggedIn && !isLinked 
             && <AccountLinking
           closeModal={closeAccountLinking}
-          setToastMessage={props.setToastMessage}
+          setToastMessage={setToastMessage}
           active={isAccountLinkingOpen}
         />}
+        {isLoggedIn && <AddDeviceModal
+          setConfirmEvent={setConfirmEvent}
+          setConfirmMessage={setConfirmMessage}
+          setToastMessage={setToastMessage}
+          active={isAddDeviceOpen}
+          closeModal={closeAddDeviceModal}
+          path={userDataPath}
+        />}
+        <Button className="nav-button jump fixed"
+          icon={<i className="fa-solid fa-plus"></i>}
+          onclick={openAddDeviceModal}
+        />
     </div>
   );
 };

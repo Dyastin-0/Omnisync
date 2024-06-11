@@ -36,6 +36,14 @@
   z-index: 100;
 }
 
+.modal.above {
+  z-index: 102;
+}
+
+.modal-overlay.above {
+  z-index: 101;
+}
+
 .modal.open {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);

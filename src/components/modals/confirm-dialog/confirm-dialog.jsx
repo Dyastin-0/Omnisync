@@ -28,6 +28,8 @@ export const ConfirmDialogModal = (props) => {
 
   return (
     <GenericModal
+    width="364px"
+    className=" above"
     active={open}
     headerTitle = 'Confirm'
     closeModal={ handleCancel }
