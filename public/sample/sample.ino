@@ -1,125 +1,110 @@
 #include <WiFi.h>
-#include <FirebaseESP32.h> //install FirebaseESP32 library by mobizt
-#include <addons/TokenHelper.h>
-#include <addons/RTDBHelper.h>
+#include <FirebaseClient.h>
+#include <WiFiClientSecure.h>
+#include <ArduinoJson.h>
 
-const char* ssid = "";    //your wifi ssid
-const char* keypass = "";//your wifi password
+#define wifiSsid "2.4G-J3Kt"
+#define wifiPassword "bb7QiBcD!"
 
-const char* api_key = "AIzaSyBuP81YRh3hUpo1Hv4fWYwnXlODsSOIr98"; //this should not be changed
-const char* database_url = "omnisynchronize-default-rtdb.asia-southeast1.firebasedatabase.app"; //this should not be changed
-const char* email = ""; //paste your email here
-const char* password = ""; //paste your password here
-const String uid = ""; //you can get your UID on your account profile
+#define apiKey "AIzaSyBuP81YRh3hUpo1Hv4fWYwnXlODsSOIr98"
+#define databaseUrl "omnisynchronize-default-rtdb.asia-southeast1.firebasedatabase.app"
 
-const byte LED_BUILTIN = 2; //wifi connection indicator
+#define userEmail "paralejas@gmail.com"
+#define userPassword "afd221"
+const char* userPath = "/mV3HtW0NMafCv3L8VWswgOUk9xh1/toggles";
 
-const byte firstRelay = 14; //choose your digital pins
-const byte secondRelay = 12;
+void asyncCB(AsyncResult &aResult);
 
-FirebaseData fbdo;
-FirebaseData stream;
+DefaultNetwork network;
 
-FirebaseAuth auth;
-FirebaseConfig config;
+UserAuth user_auth(apiKey, userEmail, userPassword);
 
-String parentPath = "/" + uid + "/toggles"; //this should not be changed
-String childPath[2] = {"/0", "/1"}; //change depending on the number of your devices
+FirebaseApp app;
 
-void streamCallback(MultiPathStreamData stream) {
-  //data changes listener
-  size_t numChild = sizeof(childPath) / sizeof(childPath[0]);
-  for (size_t i = 0; i < numChild; i++) {
-    if (stream.get(childPath[i])) {
-      FirebaseJson json;
-      json.setJsonData(stream.value);
-      FirebaseJsonData jsonData;
-      json.get(jsonData, "state");
+WiFiClientSecure ssl_client1, ssl_client2;
 
-      Serial.printf("[Omnisync] [Stream] [%d] %d\n", i, jsonData.boolValue); // this prints: [Omnisync] [deviceIndex] deviceState
-      
-      toggleRelay(stream.dataPath.c_str(), jsonData.boolValue);
-    }
-  }
-}
+using AsyncClient = AsyncClientClass;
 
-void toggleRelay(String path, bool state) {
-  if (path == "/0") {
-  digitalWrite(firstRelay, state);
-  }
-  if (path == "/1") {
-    digitalWrite(secondRelay, state);
-  }
-}
+AsyncClient aClient(ssl_client1, getNetwork(network)), aClient2(ssl_client2, getNetwork(network));
 
-bool getState(String path) {
-  return Firebase.getBool(fbdo, path) ? fbdo.to<bool>() : 0;
-}
+RealtimeDatabase Database;
 
-void streamTimeoutCallback(bool timeout) {
-  if (timeout)
-    Serial.println("[Omnisync] [Stream] timed out, resuming...\n");
+const uint8_t ledBuiltin = 2;
 
-  if (!stream.httpConnected())
-    Serial.printf("[Omnisync] [Stream] Error code: %d, reason: %s\n\n", stream.httpCode(), stream.errorReason().c_str());
-}
+const uint8_t relays[2] = {14, 12};
+bool state;
 
 void setup() {
   Serial.begin(115200);
 
-  pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(firstRelay, OUTPUT);
-  pinMode(secondRelay, OUTPUT);
-  pinMode(LED_BUILTIN, OUTPUT);
-
-  digitalWrite(LED_BUILTIN, 0);
-  connectToWifi();
-
-  config.api_key = api_key;
-  config.database_url = database_url;
-  config.token_status_callback = tokenStatusCallback;
-
-  auth.user.email = email;
-  auth.user.password = password;
-
-  Firebase.reconnectNetwork(true);
-  fbdo.setBSSLBufferSize(4096, 1024);
-  stream.setBSSLBufferSize(4096, 1024);
-
-  Firebase.begin(&config, &auth);
-  Firebase.setDoubleDigits(5);
-
-  size_t numChild = sizeof(childPath) / sizeof(childPath[0]);
-  for (size_t i = 0; i < numChild; i++) {
-    String path = parentPath + childPath[i] + "/state";
-    bool state = getState(path);
-    toggleRelay(childPath[i], state);
+  pinMode(ledBuiltin, OUTPUT);
+  for (size_t i = 0; i < sizeof(relays); i++) {
+    pinMode(relays[i], OUTPUT);
   }
 
-  stream.keepAlive(5, 5, 1);
+  digitalWrite(ledBuiltin, 0);
 
-  if (!Firebase.beginMultiPathStream(stream, parentPath))
-    Serial.printf("[Omnisync] [Stream] begin error, %s\n\n", stream.errorReason().c_str());
+  WiFi.begin(wifiSsid, wifiPassword);
 
-  Firebase.setMultiPathStreamCallback(stream, streamCallback, streamTimeoutCallback);
-}
-
-void loop() {}
-
-void connectToWifi() {
-  Serial.print("\n\n[Omnisync] [WiFi] Connecting to ");
-  Serial.println(ssid);
-
-  WiFi.mode(WIFI_STA);
-  WiFi.begin(ssid, keypass);
-  
-  Serial.print("[Omnisync] [WiFi]");
+  Serial.print("[Omnisync] [Wi-Fi] Connecting");
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
     Serial.print(".");
+    delay(300);
   }
-  digitalWrite(LED_BUILTIN, 1);
-  Serial.printf("\n\n[Omnisync] [WiFi] Connected.");
-  Serial.print("[Omnisync] [WiFi] [IP] ");
+  digitalWrite(ledBuiltin, 1);
+  Serial.println();
+  Serial.print("[Omnisync] [Wi-Fi] [IP]: ");
   Serial.println(WiFi.localIP());
+
+  Firebase.printf("[Omnisync] [Firebase] [v] %s\n", FIREBASE_CLIENT_VERSION);
+
+  Serial.println("[Omnisync] [Firebase] Initializing app...");
+
+  ssl_client1.setInsecure();
+  ssl_client2.setInsecure();
+
+  initializeApp(aClient2, app, getAuth(user_auth), asyncCB, "authTask");
+  app.getApp<RealtimeDatabase>(Database);
+
+  Database.url(databaseUrl);
+  Database.setSSEFilters("get,put,patch,keep-alive,cancel,auth_revoked");
+  Database.get(aClient, userPath, asyncCB, true, "State Listener");
+
+  Serial.println("[Omnisync] [Firebase] Initialized.");
 }
+
+void loop() {
+  app.loop();
+  Database.loop();
+}
+
+void asyncCB(AsyncResult &aResult) {
+  if (aResult.available()) {
+    RealtimeDatabaseResult &RTDB = aResult.to<RealtimeDatabaseResult>();
+    if (RTDB.isStream()) {
+      Serial.println("[Omnisync] [State Listener] ----------------------------");
+      Firebase.printf("[Omnisync] [State Listener] [task] %s\n", aResult.uid().c_str());
+      Firebase.printf("[Omnisync] [State Listener] [event] %s\n", RTDB.event().c_str());
+      Firebase.printf("[Omnisync] [State Listener] [path] %s\n", RTDB.dataPath().c_str());
+      Firebase.printf("[Omnisync] [State Listener] [data] %s\n", RTDB.to<const char *>());
+      toggleRelay(RTDB.to<const char *>(), String(RTDB.dataPath().c_str()));
+    }
+  }
+  Firebase.printf("[Omnisync] [Heap]: %d\n", ESP.getFreeHeap());
+}
+
+void toggleRelay(const char* serializedDoc, String dataPath) {
+  DynamicJsonDocument deserializeDoc(1024);
+  deserializeJson(deserializeDoc, serializedDoc);
+  if (deserializeDoc.is<JsonArray>()) {
+    JsonArray array = deserializeDoc.as<JsonArray>();
+    for (size_t i = 0; i < array.size(); i ++) {
+      JsonObject object = array[i];
+      state = object["state"];
+      digitalWrite(relays[i], state);
+    }
+  } else {
+    state = deserializeDoc["state"];
+    digitalWrite(relays[dataPath.charAt(1) - '0'], state);
+  }
+} 
