@@ -14,7 +14,7 @@
   padding: 0px;
   margin: 0px;
   font-family: 'poppins', 'sans serif';
-  transition: background-color 0.3s ease, color 0.3s ease, height 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+  transition: top 0.3s ease, background-color 0.3s ease, color 0.3s ease, height 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
 }
 
 p, h6, h5, h4, h2, h1 {

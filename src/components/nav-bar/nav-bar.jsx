@@ -12,15 +12,38 @@ import { ConfirmDialogModal } from '../modals/confirm-dialog/confirm-dialog'
 import { InfoModal } from '../modals/info/info';
 import { useAuth } from '../../contexts/auth/auth';
 import { SettingsModal } from '../modals/settings/settings-modal';
+import { AccountLinking } from '../modals/account-linking/account-linking';
 
 export const NavBar = (props) => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isLinked } = useAuth();
   const [isHelpClicked, setIsHelpClicked] = useState(false);
   const [isInfoClicked, setIsInfoClicked] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [isUserProfileOpen, setIsUserProfileOpen] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
+  const [isAccountLinkingOpen, setIsAccountLinkingOpen] = useState(false);
+  const [accountLinkReminder, setAccountLinkReminder] = useState(0);
+
+  const closeAccountLinking = () => {
+    setIsAccountLinkingOpen(false);
+  };
+
+  const setLinkReminder = () => {
+    const currentDate = new Date().getTime();
+    const reminder = currentDate + (2 * 60 * 60 * 1000);
+    localStorage.setItem('accountLinkReminder', String(reminder));
+    setIsAccountLinkingOpen(false);
+  }
+
+  useEffect(() => {
+    const reminder = localStorage.getItem('accountLinkReminder');
+    reminder && setAccountLinkReminder(parseInt(reminder));
+  }, []);
+
+  useEffect(() => {
+    setIsAccountLinkingOpen(!isLinked);
+  }, [isLinked, setIsAccountLinkingOpen]);
 
   const handleHelpClick = () => {
     localStorage.setItem('isHelpClicked', true);
@@ -68,7 +91,6 @@ export const NavBar = (props) => {
               icon={<i className={`fa-solid fa-circle-question fa-xl ${!isHelpClicked && `fa-bounce`}`}></i>} 
             />
           </div>
-
           <UserDropdown 
             openSettings={openSettings}
             openUserProfile={openUserProfile}
@@ -93,14 +115,20 @@ export const NavBar = (props) => {
           event={props.confirmEvent}
           message={props.confirmMessage}
         /> 
-      <ToastMessage
-        message={props.toastMessage}
-        setToastMessage={props.setToastMessage}
-      />
-      <SettingsModal
-        active={isSettingsModalOpen}
-        closeModal={closeSettings}
-      />
+        <ToastMessage
+          message={props.toastMessage}
+          setToastMessage={props.setToastMessage}
+        />
+        {isLoggedIn && <SettingsModal
+          active={isSettingsModalOpen}
+          closeModal={closeSettings}
+        />}
+        {!(new Date().getTime() < accountLinkReminder) && isLoggedIn && !isLinked 
+            && <AccountLinking
+          closeModal={closeAccountLinking}
+          setToastMessage={props.setToastMessage}
+          active={isAccountLinkingOpen}
+        />}
     </div>
   );
 };

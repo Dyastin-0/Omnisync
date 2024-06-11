@@ -63,18 +63,18 @@ export const SignInWindow = (props) => {
   return (
     <div className='auth'>
       <h2>Omnisync</h2>
-      <h5> Sign in to access your dashboard </h5>
-      <input placeholder="Email" enterKeyHint='Enter'
+      <h4> Sign in to access your dashboard </h4>
+      <input placeholder="Email" enterKeyHint='Enter' required
         onChange={(e) => {setEmail(e.target.value)}}
         onKeyUp={(e) => e.key === 'Enter' && logIn()}
       ></input>
-      <input placeholder="Password" type="password" enterKeyHint='Enter'
+      <input placeholder="Password" type="password" enterKeyHint='Enter' required
         onChange={(e) => {setPassword(e.target.value)}}
         onKeyUp={(e) => e.key === 'Enter' && logIn()}
       ></input>
       <Button onclick={logIn} text="Sign in" icon={<i className="fa-solid fa-right-to-bracket"></i>} className="nav-button center" />
       { <h6>or continue with</h6> }
-      <Button onclick={logInWithGoogle}  text="Google" icon={<i className="fa-brands fa-google"></i>} className="nav-button center" /> }
+      <Button onclick={logInWithGoogle}  text="Google" icon={<i className="fa-brands fa-google"></i>} className="nav-button center" />
       <div className="row">
         <p>Don't have an account?</p>
         <a href="/sign-up">Sign up</a>

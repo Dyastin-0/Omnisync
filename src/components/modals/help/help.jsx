@@ -9,25 +9,17 @@ export const HelpModal = (props) => {
       active={props.active}
       content={
         <div className='modal-content-container'>
-          <div className="group">
-            <h5>API key</h5>
-            <p>"AIzaSyBuP81YRh3hUpo1Hv4fWYwnXlODsSOIr98"</p>
-          </div>
-          <div className="group">
-            <h5>Database URL</h5>
-            <p>"https://omnisynchronize-default-rtdb.asia-southeast1.firebasedatabase.app"</p>
-          </div>
-          <div className='group'>
-            <h5>How to use</h5>
-            <p>You'll need a microcontroller that supports Wi-Fi such as ESP32 & ESP8266.</p>
-            <p>Connect your McU by using stable Firebase library such as ESP32/ESP8266FirebaseClient
-              by Mobizt.</p>
-          </div>
-          <div className="group">
-            <h5>Check out the sample Arduino code at:</h5>
-            <a href="https://github.com/Dyastin-0/home-aut/blob/master/public/sample/sample.ino"
-              target='blank'>ESP32 Firebase Client</a>  
-          </div>  
+          <h3>API key</h3>
+          <p>AIzaSyBuP81YRh3hUpo1Hv4fWYwnXlODsSOIr98</p>
+          <h3>Database URL</h3>
+          <p>https://omnisynchronize-default-rtdb.asia-southeast1.firebasedatabase.app</p>
+          <h3>How to use</h3>
+          <p>You'll need a microcontroller that supports Wi-Fi such as ESP32 & ESP8266.</p>
+          <p>Connect your McU by using stable Firebase library such as FirebaseClient
+            by Mobizt.</p>
+          <h3>Check out the sample Arduino code at</h3>
+          <a href="https://github.com/Dyastin-0/home-aut/blob/master/public/sample/sample.ino"
+            target='blank'>ESP32 Firebase Client</a>  
         </div>
       }
     />

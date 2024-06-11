@@ -87,16 +87,17 @@ export const SignUpWindow = (props) => {
   return (
     <div className='auth'>
       <h2>Omnisync</h2>
-      <h5>Create an account and start <br /> setting up your own <br /> dashboard</h5>
-      <input placeholder="Email" enterKeyHint='Enter'
+      <h4>Create an account and start <br /> setting up your own <br /> dashboard</h4>
+      <p>Make sure to use an active email</p>
+      <input placeholder="Email" enterKeyHint='Enter' required
         onChange={(e) => {setEmail(e.target.value)}}
         onKeyUp={(e) => e.key === 'Enter' && create()}
       ></input>
-      <input placeholder="Password" type="password" enterKeyHint='Enter'
+      <input placeholder="Password" type="password" enterKeyHint='Enter' required
         onChange={(e) => {setPassword(e.target.value)}}
         onKeyUp={(e) => e.key === 'Enter' && create()}
       ></input>
-      <input placeholder="Password" type="password" enterKeyHint='Enter'
+      <input placeholder="Password" type="password" enterKeyHint='Enter' required
         onChange={(e) => {setConfirmedPassword(e.target.value)}}
         onKeyUp={(e) => e.key === 'Enter' && create()}
       ></input>

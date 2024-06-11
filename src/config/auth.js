@@ -6,7 +6,14 @@ import { signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
   signOut,
+  EmailAuthProvider,
+  linkWithCredential,
   reload } from "firebase/auth";
+
+export const linkAccount = async (user, email, password) => {
+  const credential = EmailAuthProvider.credential(email, password);
+  return await linkWithCredential(user, credential);
+}
 
 export const signIn = (email, password) => {
   return signInWithEmailAndPassword(auth, email, password);

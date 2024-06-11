@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
   const [userDataPath, setUserDataPath] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [isLinked, setIsLinked] = useState(false);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) =>
       initializeUser(user)
@@ -23,6 +23,7 @@ export function AuthProvider({ children }) {
 
   const initializeUser = async (user) => {
     if (user) {
+      setIsLinked(user.providerData.some(provider => provider.providerId === 'password'));
       setUser(user);
       setUserDataPath(`/${user.uid}`);
       setIsLoggedIn(true);
@@ -38,6 +39,8 @@ export function AuthProvider({ children }) {
     userDataPath,
     isLoggedIn,
     isLoading,
+    isLinked,
+    setIsLinked,
     setUser
   }
 

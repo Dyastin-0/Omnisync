@@ -12,6 +12,10 @@
   transition: background-color 0.3s ease;
 }
 
+.nav-button.fit {
+  width: fit-content;
+}
+
 .nav-button.round {
   border-radius: 999px;
 }
