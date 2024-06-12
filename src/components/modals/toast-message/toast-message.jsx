@@ -13,7 +13,7 @@ export const ToastMessage = (props) => {
       }, 3000);
     };
     props.message !== null && openToastMessage();
-  }, [props.message]);
+  }, [props]);
 
   return (
     <div className={`toast-message ${open && `open`}`}>
