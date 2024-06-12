@@ -126,10 +126,10 @@ export const NavBar = (props) => {
           closeModal={closeSettings}
         />}
         {!(new Date().getTime() < accountLinkReminder) && isLoggedIn && !isLinked 
-            && <AccountLinking
-          closeModal={closeAccountLinking}
-          setToastMessage={props.setToastMessage}
-          active={isAccountLinkingOpen}
+          && <AccountLinking
+            closeModal={closeAccountLinking}
+            setToastMessage={props.setToastMessage}
+            active={isAccountLinkingOpen}
         />}
         {isLoggedIn && <AddDeviceModal
           setConfirmEvent={setConfirmEvent}
@@ -139,10 +139,10 @@ export const NavBar = (props) => {
           closeModal={closeAddDeviceModal}
           path={userDataPath}
         />}
-        <Button className="nav-button jump fixed"
+        {isLoggedIn && <Button className="nav-button jump fixed"
           icon={<i className="fa-solid fa-plus"></i>}
           onclick={openAddDeviceModal}
-        />
+        />}
     </div>
   );
 };

@@ -17,6 +17,7 @@
 }
 
 .nav-button.jump {
+  background-color: var(--accent);
   border: none;
   border-radius: 50%;
   cursor: pointer;
