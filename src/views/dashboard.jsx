@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/auth/auth';
 import { useEffect, useLayoutEffect, useState } from 'react';
 
-import { Button } from '../components/button/button';
 import { NavBar } from '../components/nav-bar/nav-bar';
 import { TogglePanel } from '../components/toggle-panel/toggle-panel';
 import { MessagePanel } from '../components/message-panel/message-panel';

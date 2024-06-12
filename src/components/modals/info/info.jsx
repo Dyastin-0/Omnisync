@@ -25,8 +25,8 @@ export const InfoModal = (props) => {
           </div>
           <h3>Socials</h3>
           <div className="row left">
-              <a href='https://github.com/Dyastin-0' target='_blank'><i className="fa-brands fa-github fa-lg"></i></a>
-              <a href='https://www.facebook.com/dyastinparalejas' target='_blank'><i className="fa-brands fa-facebook fa-lg"></i></a>
+              <a href='https://github.com/Dyastin-0' rel="nonreferrer" target='_blank'><i className="fa-brands fa-github fa-lg"></i></a>
+              <a href='https://www.facebook.com/dyastinparalejas' rel="nonreferrer" target='_blank'><i className="fa-brands fa-facebook fa-lg"></i></a>
           </div>
             <h3>Project Stack</h3>
             <p>ReactJS, Firebase Authentication & Real-time Database</p>

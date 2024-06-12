@@ -49,7 +49,7 @@ export const AccountLinking = (props) => {
     if (!linking) {
       setLinking(true);
       setToast("Linking your account...");
-      const result = await linkAccount(user, user.email, password)
+      await linkAccount(user, user.email, password)
       .catch(() => {
         setErrorMessage('Failed linking. Try again.');
       })

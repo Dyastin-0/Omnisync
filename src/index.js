@@ -11,7 +11,6 @@ import Dashboard from './views/dashboard';
 
 import { SettingsProvider } from './contexts/settings/settings';
 import { DataProvider } from './contexts/data/data';
-import Manage from './views/manage';
 
 const router = createBrowserRouter([
   {
@@ -29,10 +28,6 @@ const router = createBrowserRouter([
   {
     path: '/dashboard',
     element: <Dashboard />
-  },
-  {
-    path: '/panel/manage',
-    element: <Manage />
   }
 ]);
 

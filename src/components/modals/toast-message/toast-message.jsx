@@ -5,16 +5,15 @@ export const ToastMessage = (props) => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    const openToastMessage = () => {
+      setOpen(true);
+      setTimeout(() => {
+        setOpen(false);
+        props.setToastMessage(null);
+      }, 3000);
+    };
     props.message !== null && openToastMessage();
   }, [props.message]);
-
-  const openToastMessage = () => {
-    setOpen(true);
-    setTimeout(() => {
-      setOpen(false);
-      props.setToastMessage(null);
-    }, 3000);
-  };
 
   return (
     <div className={`toast-message ${open && `open`}`}>
