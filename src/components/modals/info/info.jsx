@@ -12,7 +12,7 @@ export const InfoModal = (props) => {
         <div className='modal-content-container'>
           <h3>What is omnisync?</h3>
           <p>It is an automation tool that you can use on your personal projects;
-            all you need is a microprocessor that supports Wi-Fi to start, you can check the
+            all you need is a microcontroller that supports Wi-Fi to start, you can check the
             sample Arduino code in the Help (?) modal.
           </p>
           <p>

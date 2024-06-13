@@ -1,3 +1,5 @@
+import '../../auth/auth.css';
+
 import { useState, useEffect } from "react";
 
 import { GenericModal } from "../modal";
@@ -5,12 +7,15 @@ import { linkAccount } from "../../../config/auth";
 import { useAuth } from "../../../contexts/auth/auth";
 import { Button } from "../../button/button";
 
+import { evaluatePasswordStrength } from "../../../utils/passwordMeter";
+
 export const AccountLinking = (props) => {
   const { user, setIsLinked } = useAuth();
   const [password, setPassword] = useState(null);
   const [confirmedPassword, setConfirmedPassword] = useState(null);
   const [linking, setLinking] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [passwordStrength, setPasswordStrength] = useState({strength: 0, color: 'red', text: 'Very weak'});
 
   const setToast = props.setToastMessage;
   const closeModal = () => {
@@ -20,6 +25,10 @@ export const AccountLinking = (props) => {
   useEffect(() => {
     setToast(errorMessage);
   }, [errorMessage, setToast]);
+
+  useEffect(() => {
+    password && setPasswordStrength(evaluatePasswordStrength(password));
+  }, [password]);
 
   const link = async () => {
     if (!password || !confirmedPassword) {
@@ -85,6 +94,10 @@ export const AccountLinking = (props) => {
             onChange={(e) => {setPassword(e.target.value)}}
             onKeyUp={(e) => e.key === 'Enter' && link()}
           ></input>
+          { password && <div className="password-strength-container">
+            <progress className={`${'password-strength ' + passwordStrength.color}`} value={passwordStrength.strength} max="100"></progress>
+            <h6 className='right'>{passwordStrength.text}</h6>
+          </div>}
           <input placeholder="Confirm password" type="password" enterKeyHint='Enter' required
             onChange={(e) => {setConfirmedPassword(e.target.value)}}
             onKeyUp={(e) => e.key === 'Enter' && link()}
