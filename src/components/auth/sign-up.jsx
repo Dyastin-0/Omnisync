@@ -121,7 +121,7 @@ export const SignUpWindow = (props) => {
       { <Button onclick={logInWithGoogle}  text="Google" icon={<i className="fa-brands fa-google"></i>} className="nav-button center" /> }
       <div className="row">
         <p>Already have an account?</p>
-        <a href="/sign-in">Sign in</a>
+        <Button onclick={() => navigate('/sign-in')} text='Sign in' className='nav-button fit' />
       </div>
     </div>
   );
