@@ -77,7 +77,7 @@ export const SignInWindow = (props) => {
       <Button onclick={logInWithGoogle}  text="Google" icon={<i className="fa-brands fa-google"></i>} className="nav-button center" />
       <div className="row">
         <p>Don't have an account?</p>
-        <Button onclick={() => navigate('/sign-up')} text='Sign up' className='nav-button fit' />
+        <Button onclick={() => navigate('/sign-up')} text='Sign up' className='nav-button link' />
       </div>
     </div>
   );

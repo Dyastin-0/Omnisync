@@ -16,6 +16,17 @@
   width: fit-content;
 }
 
+.nav-button.link {
+  width: fit-content;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.nav-button.link:hover {
+  color: var(--accent);
+  background-color: transparent;
+}
+
 .nav-button.jump {
   background-color: var(--accent);
   border: none;
