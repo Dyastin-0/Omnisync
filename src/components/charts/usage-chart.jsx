@@ -55,7 +55,7 @@ export const UsageChart = (props) => {
                 return (`${(value * 60).toFixed(2)} m`);
               }
             }} />
-            <XAxis dataKey='day' />
+            <XAxis dataKey='date' />
             <CartesianGrid />
             <Tooltip content={<CustomTooltip />} />
             <Area 

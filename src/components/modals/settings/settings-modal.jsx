@@ -6,9 +6,12 @@ import { GenericModal } from '../modal';
 import  Toggle  from '../../toggle/toggle'
 
 export const SettingsModal = (props) => {
-  const { theme, toggleTheme, toggleIncludeDevice, areDevicesIncluded} = useSettings();
+  const { theme, toggleTheme,
+    toggleIncludeDevice, areDevicesIncluded,
+    toggleIncludeInactiveDays, areInactiveDaysIncluded} = useSettings();
   const themeToggleRef = useRef(null);
   const includeDevicesRef = useRef(null);
+  const includeInactiveDaysRef = useRef(null);
 
   useEffect(() => {
     themeToggleRef.current.checked = theme === 'dark' ? true : false;
@@ -17,6 +20,10 @@ export const SettingsModal = (props) => {
   useEffect(() => {
     includeDevicesRef.current.checked = areDevicesIncluded;
   }, [areDevicesIncluded]);
+
+  useEffect(() => {
+    includeInactiveDaysRef.current.checked = areInactiveDaysIncluded;
+  }, [areInactiveDaysIncluded]);
 
   return (
     <GenericModal
@@ -42,7 +49,15 @@ export const SettingsModal = (props) => {
               ref={includeDevicesRef}
               onchange={toggleIncludeDevice}
               />
-            <h5>Include each device's usage</h5>
+            <h5>Include devices</h5>
+          </div>
+          <div className='row left'>
+            <Toggle
+              size='small'
+              ref={includeInactiveDaysRef}
+              onchange={toggleIncludeInactiveDays}
+              />
+            <h5>Include inactive days</h5>
           </div>
         </div>
       }

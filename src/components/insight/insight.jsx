@@ -27,13 +27,10 @@ export const Insight = (props) => {
             const highestHours = Math.floor(value.highestUsage);
             const highestMinutes = Math.floor((value.highestUsage - highestHours) * 60);
             const highestSeconds = Math.floor(((value.highestUsage - highestHours) * 60 - highestMinutes) * 60);
-            const currentDate = new Date();
-            const options = { weekday: 'long' };
-            const currentDay = currentDate.toLocaleDateString('en-US', options);
             return (
             <React.Fragment key={key} >
               <div className='box'>
-              <h5>{value.day === currentDay ? 'Today' : value.day }</h5>
+              <h5>{ value.date }</h5>
                 <p>{`Your ${value.highestDevice} were on for ${highestHours} h ${highestMinutes} m ${highestSeconds} s
                   that is about ${((value.highestUsage / value.total) * 100).toFixed(0)}% of the total usage.
                 `}</p>

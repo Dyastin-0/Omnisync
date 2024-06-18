@@ -35,8 +35,8 @@ const Dashboard = () => {
           {user && user.displayName && <h2>{`${user.displayName}${user.displayName && `${user.displayName.charAt(user.displayName.length - 1) === 's' ? `'` : `'s`}`} Dashboard`}</h2>}
         </>
       } />
-      <UsageChart title="Usage in the last 7 days" />
-      <Insight title="Insights" />
+      <UsageChart title="Device Usage" />
+      <Insight title="Trends" />
       <TogglePanel title="Devices" /> 
       <MessagePanel title="Logs" />
       <Pad options={{panel: 'flex-max small'}} />

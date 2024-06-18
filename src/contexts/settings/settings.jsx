@@ -7,17 +7,28 @@ export const useSettings = () => useContext(SettingsContext);
 export const SettingsProvider = ({ children }) => {
   const [theme, setTheme] = useState('light');
   const [areDevicesIncluded, setAreDevicesIncluded] = useState(false);
-
+  const [areInactiveDaysIncluded, setAreInactiveDaysIncluded] = useState(false);
+  
   const toggleIncludeDevice = () => {
     const current = !areDevicesIncluded;
     setAreDevicesIncluded(current);
     localStorage.setItem('areDevicesIncluded', current);
   };
 
+  const toggleIncludeInactiveDays = () => {
+    const current = !areInactiveDaysIncluded;
+    setAreInactiveDaysIncluded(current);
+    localStorage.setItem('areInactiveDaysIncluded', current);
+  }
+
   useEffect(() => {
-    const included = localStorage.getItem('areDevicesIncluded');
-    if (included !== null) {
-      setAreDevicesIncluded(included === 'true');
+    const deviceIncluded = localStorage.getItem('areDevicesIncluded');
+    const inactiveDaysIncluded = localStorage.getItem('areInactiveDaysIncluded');
+    if (deviceIncluded !== null) {
+      setAreDevicesIncluded(deviceIncluded === 'true');
+    }
+    if (inactiveDaysIncluded !== null) {
+      setAreInactiveDaysIncluded(inactiveDaysIncluded === 'true');
     }
   }, []);
 
@@ -58,7 +69,9 @@ export const SettingsProvider = ({ children }) => {
     theme,
     toggleTheme,
     areDevicesIncluded,
-    toggleIncludeDevice
+    toggleIncludeDevice,
+    areInactiveDaysIncluded,
+    toggleIncludeInactiveDays
   };
 
   return (
