@@ -42,6 +42,11 @@ p {
   overflow: hidden;
 }
 
+p.center {
+  text-align: center;
+  width: 100%;
+}
+
 a {
   font-size: 14px;
   color: var(--text-color);

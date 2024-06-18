@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../content-panel.css';
+import '../../content-panel.css';
 
 import { AreaChart,
   Area,
@@ -10,10 +10,10 @@ import { AreaChart,
   ResponsiveContainer
 } from 'recharts';
 
-import { useData } from '../../contexts/data/data';
-import { Loading } from '../loading/loading';
+import { useData } from '../../../contexts/data/data';
+import { Loading } from '../../loading/loading';
 import { CustomTooltip } from './custom-tooltip';
-import { useSettings } from '../../contexts/settings/settings';
+import { useSettings } from '../../../contexts/settings/settings';
 
 export const UsageChart = (props) => {
   const { toggles, messages, chartData } = useData();

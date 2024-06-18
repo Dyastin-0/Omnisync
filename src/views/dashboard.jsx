@@ -7,9 +7,9 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import { NavBar } from '../components/nav-bar/nav-bar';
 import { TogglePanel } from '../components/toggle-panel/toggle-panel';
 import { MessagePanel } from '../components/message-panel/message-panel';
-import { UsageChart } from '../components/charts/usage-chart';
+import { UsageChart } from '../components/insight/charts/usage-chart';
 import { Pad } from '../components/Pad/Pad';
-import { Insight } from '../components/insight/insight';
+import { Insight } from '../components/insight/trend';
 
 const Dashboard = () => {
   const [toastMessage, setToastMessage] = useState(null);
