@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import './message-panel.css';
+import './logs.css';
 
 import { formatTime } from '../../utils/time';
 
@@ -8,9 +8,9 @@ import { useData } from '../../contexts/data/data';
 import { Loading } from '../loading/loading';
 import { useAuth } from '../../contexts/auth/auth';
 
-import { MessagePanelItem } from './message-panel-item';
+import { Log } from './log';
 
-export const MessagePanel = (props) => {
+export const MessagePanel = () => {
   const { user } = useAuth();
   const { messages, isFetching } = useData();
   const messageContainerRef = useRef(null);
@@ -21,7 +21,7 @@ export const MessagePanel = (props) => {
       if (user) {
         const rendered = Object.entries
         (messages.length > 20 ? messages.slice(messages.length - 21, messages.length - 1) : messages).map(([key, value]) => (
-        <MessagePanelItem
+        <Log
           isMessageOwner={ user && user.displayName === value.sentBy} 
           key={key}
           message={value.message}
@@ -44,7 +44,7 @@ export const MessagePanel = (props) => {
 
   return (
     <div className='content-panel'>
-      <h3> {props.title} </h3>
+      <h3> Logs </h3>
       <div className='container' ref={messageContainerRef}>
         {!isFetching && renderedMessages.length > 0 ? (
           renderedMessages.map((message, index) => (

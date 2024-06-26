@@ -3,26 +3,26 @@ import './modal.css';
 import { Button } from '../button/button';
 import { useEffect, useState } from 'react';
 
-export const GenericModal = (props) => {
+export const GenericModal = ({active, className, closeModal, width, headerTitle, content}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    setIsOpen(props.active);
-  }, [props.active]);
+    setIsOpen(active);
+  }, [active]);
 
   return (
     <>
-      <div className={`modal-overlay ${isOpen && `open`} ${props.className}`} onClick={props.closeModal}></div>
-      <div className={`modal ${isOpen && `open`} ${props.className}`} style={{width:props.width}}>
+      <div className={`modal-overlay ${isOpen && `open`} ${className}`} onClick={closeModal}></div>
+      <div className={`modal ${isOpen && `open`} ${className}`} style={{width:width}}>
         <div className='modal-header'>
-          <h5> {props.headerTitle} </h5>
+          <h5> {headerTitle} </h5>
           <Button className="nav-button"
-            onclick={ props.closeModal }
+            onclick={ closeModal }
             icon={<i className='fa-solid fa-xmark'></i>}
           />
         </div>
         <div className='modal-content'>
-          {props.content}
+          {content}
         </div>
       </div>
     </>

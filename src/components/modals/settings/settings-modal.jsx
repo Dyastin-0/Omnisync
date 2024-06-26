@@ -5,7 +5,7 @@ import { useSettings } from '../../../contexts/settings/settings';
 import { GenericModal } from '../modal';
 import  Toggle  from '../../toggle/toggle'
 
-export const SettingsModal = (props) => {
+export const SettingsModal = ({active, closeModal}) => {
   const { theme, toggleTheme,
     toggleIncludeDevice, areDevicesIncluded,
     toggleIncludeInactiveDays, areInactiveDaysIncluded} = useSettings();
@@ -29,8 +29,8 @@ export const SettingsModal = (props) => {
     <GenericModal
       width={'224px'}
       headerTitle='Settings'
-      active={props.active}
-      closeModal={props.closeModal}
+      active={active}
+      closeModal={closeModal}
       content={
         <div className='modal-content-container'>
           <h5>General</h5>

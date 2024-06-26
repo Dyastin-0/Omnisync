@@ -5,8 +5,8 @@ import { useAuth } from '../contexts/auth/auth';
 import { useEffect, useLayoutEffect, useState } from 'react';
 
 import { NavBar } from '../components/nav-bar/nav-bar';
-import { TogglePanel } from '../components/toggle-panel/toggle-panel';
-import { MessagePanel } from '../components/message-panel/message-panel';
+import { DevicePanel } from '../components/device/device-panel';
+import { MessagePanel } from '../components/log/log-panel';
 import { UsageChart } from '../components/insight/charts/usage-chart';
 import { Pad } from '../components/Pad/Pad';
 import { Insight } from '../components/insight/trend';
@@ -35,10 +35,10 @@ const Dashboard = () => {
           {user && user.displayName && <h2>{`${user.displayName}${user.displayName && `${user.displayName.charAt(user.displayName.length - 1) === 's' ? `'` : `'s`}`} Dashboard`}</h2>}
         </>
       } />
-      <UsageChart title="Device Usage" />
-      <Insight title="Trends" />
-      <TogglePanel title="Devices" /> 
-      <MessagePanel title="Logs" />
+      <UsageChart />
+      <Insight />
+      <DevicePanel /> 
+      <MessagePanel />
       <Pad options={{panel: 'flex-max small'}} />
     </div>
   );

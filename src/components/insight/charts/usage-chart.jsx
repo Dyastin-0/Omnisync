@@ -15,7 +15,7 @@ import { Loading } from '../../loading/loading';
 import { CustomTooltip } from './custom-tooltip';
 import { useSettings } from '../../../contexts/settings/settings';
 
-export const UsageChart = (props) => {
+export const UsageChart = () => {
   const { toggles, messages, chartData } = useData();
   const { areDevicesIncluded } = useSettings();
   const [renderedAreas, setRenderedAreas] = useState([]);
@@ -41,7 +41,7 @@ export const UsageChart = (props) => {
 
   return (
     <div className='content-panel flex-max'>
-      <h3>{props.title}</h3>
+      <h3> Device Usage </h3>
       <div className='container'>
         {chartData.length > 0 ? (
           <ResponsiveContainer width='100%' height='98%'>

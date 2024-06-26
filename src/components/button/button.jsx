@@ -2,14 +2,14 @@ import React from 'react';
 
 import './button.css';
 
-export const Button = React.forwardRef((props, ref) => {
+export const Button = React.forwardRef(({onclick, id, className, text, icon}, ref) => {
   return (
     <button
-      onClick={props.onclick}
+      onClick={onclick}
       ref={ref}
-      id={props.id}
-      className={props.className}>
-        {props.text} {props.icon}
+      id={id}
+      className={className}>
+        {text} {icon}
       </button> 
   );
 });

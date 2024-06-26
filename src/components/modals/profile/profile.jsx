@@ -2,14 +2,14 @@ import { useAuth } from '../../../contexts/auth/auth';
 
 import { GenericModal } from '../modal';
 
-export const  UserProfile = (props) => {
+export const  UserProfile = ({closeModal, active}) => {
   const { user } = useAuth();
   
   return (
     <GenericModal
       headerTitle={user.displayName}
-      closeModal={props.closeModal}
-      active={props.active}
+      closeModal={closeModal}
+      active={active}
       content={
         <div className='modal-content-container'>
           <div className='group'>

@@ -9,7 +9,7 @@ import { Button } from "../../button/button";
 
 import { evaluatePasswordStrength } from "../../../utils/passwordMeter";
 
-export const AccountLinking = (props) => {
+export const AccountLinking = ({setToastMessage, closeModal, active}) => {
   const { user, setIsLinked } = useAuth();
   const [password, setPassword] = useState(null);
   const [confirmedPassword, setConfirmedPassword] = useState(null);
@@ -17,9 +17,9 @@ export const AccountLinking = (props) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [passwordStrength, setPasswordStrength] = useState({strength: 0, color: 'red', text: 'Very weak'});
 
-  const setToast = props.setToastMessage;
-  const closeModal = () => {
-    props.closeModal();
+  const setToast = setToastMessage;
+  const closeAddDeviceModal = () => {
+    closeModal();
     setToast("Account linking will pop out again after few hours.");
   }
   useEffect(() => {
@@ -76,8 +76,8 @@ export const AccountLinking = (props) => {
     <GenericModal
       width="364px"
       headerTitle="Account link"
-      active={props.active}
-      closeModal={closeModal}
+      active={active}
+      closeModal={closeAddDeviceModal}
       content={
         <div className="modal-content-container">
           <h3>Link your account with a password</h3>

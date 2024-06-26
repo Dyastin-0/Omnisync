@@ -10,7 +10,7 @@ import { useAuth } from '../../contexts/auth/auth';
 
 import { evaluatePasswordStrength } from '../../utils/passwordMeter';
 
-export const SignUpWindow = (props) => {
+export const SignUpWindow = ({setToastMessage}) => {
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
 
@@ -22,7 +22,7 @@ export const SignUpWindow = (props) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [passwordStrength, setPasswordStrength] = useState({strength: 0, color: 'red', text: 'Very weak'});
 
-  const setToast = props.setToastMessage;
+  const setToast = setToastMessage;
 
   useEffect(() => {
     isLoggedIn && navigate('/dashboard');
@@ -87,7 +87,7 @@ export const SignUpWindow = (props) => {
     if (!signingUp) {
       setSigningUp(true);
       await signInWithGoogle();
-      props.setToastMessage("Signing in...");
+      setToast("Signing in...");
     }
   };
 

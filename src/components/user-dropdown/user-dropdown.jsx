@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../button/button';
 import { useAuth } from '../../contexts/auth/auth';
 
-export const UserDropdown = (props) => {
+export const UserDropdown = ({openUserProfile, openSettings}) => {
   const { user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [path, setPath] = useState(null);
@@ -49,12 +49,12 @@ export const UserDropdown = (props) => {
         {user ?
          <>
           <Button className='nav-button'
-            onclick={props.openUserProfile}
+            onclick={openUserProfile}
             id="user-profile-button"
             text="Profile" icon={<i className="fa-solid fa-user"></i>}
           />
           <Button className="nav-button"
-            onclick={props.openSettings}
+            onclick={openSettings}
             ref={settingsRef}
             id="settings-button" text="Settings"
             icon={<i className={`fa-solid fa-gear ${settingsSpin}`}></i>}

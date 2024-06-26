@@ -1,13 +1,13 @@
 
 import { GenericModal } from "../modal";
 
-export const InfoModal = (props) => {
+export const InfoModal = ({active, closeModal}) => {
   return (
     <GenericModal
       width='400px'
       headerTitle='Info'
-      active={props.active}
-      closeModal={props.closeModal}
+      active={active}
+      closeModal={closeModal}
       content={
         <div className='modal-content-container'>
           <h3>What is omnisync?</h3>
@@ -25,8 +25,8 @@ export const InfoModal = (props) => {
           </div>
           <h3>Socials</h3>
           <div className="row left">
-              <a href='https://github.com/Dyastin-0' rel="nonreferrer" target='_blank'><i className="fa-brands fa-github fa-lg"></i></a>
-              <a href='https://www.facebook.com/dyastinparalejas' rel="nonreferrer" target='_blank'><i className="fa-brands fa-facebook fa-lg"></i></a>
+              <a href='https://github.com/Dyastin-0' rel="noreferrer" target='_blank'><i className="fa-brands fa-github fa-lg"></i></a>
+              <a href='https://www.facebook.com/dyastinparalejas' rel="noreferrer" target='_blank'><i className="fa-brands fa-facebook fa-lg"></i></a>
           </div>
             <h3>Project Stack</h3>
             <p>ReactJS, Firebase Authentication & Real-time Database</p>

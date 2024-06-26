@@ -4,25 +4,25 @@ import { useEffect, useState } from "react";
 import { Button } from "../../button/button";
 import { GenericModal } from "../../modals/modal";
 
-export const ConfirmDialogModal = (props) => {
+export const ConfirmDialogModal = ({event, message}) => {
   const [open, setOpen] = useState(false);
-  const [event, setEvent] = useState(null);
+  const [confirmEvent, setConfirmEvent] = useState(null);
 
   useEffect(() => {
-    if (props.event) {
-      setEvent(() => props.event);
+    if (event) {
+      setConfirmEvent(() => event);
       setOpen(true);
     }
-  }, [props.event]); 
+  }, [event]); 
 
   const handleOkay = () => {
-    event && event();
-    setEvent(null);
+    confirmEvent && confirmEvent();
+    setConfirmEvent(null);
     setOpen(false);
   };
 
   const handleCancel = () => {
-    setEvent(null);
+    setConfirmEvent(null);
     setOpen(false);
   };
 
@@ -35,7 +35,7 @@ export const ConfirmDialogModal = (props) => {
     closeModal={ handleCancel }
     content={
       <div className='confirm-container'>
-        <p className='p'> {props.message} </p>
+        <p className='p'> {message} </p>
         <div className='wrapper'>
           <Button className='nav-button'
             onclick={handleOkay}

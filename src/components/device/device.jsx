@@ -1,7 +1,7 @@
 import Toggle from '../toggle/toggle';
 import { useData } from '../../contexts/data/data';
 
-export const TogglePanelItem = (props) => {
+export const Device = ({toggleName, sentBy, className, index, checked}) => {
   const { setToggleState } = useData();
 
   const handleChange = (e) => {
@@ -9,21 +9,21 @@ export const TogglePanelItem = (props) => {
     const state = newState ? "on" : "off";
     const message = {
       action: state,
-      name: props.toggleName,
-      sentBy: props.sentBy,
-      message: `turned ${state} the ${props.toggleName}.`,
+      name: toggleName,
+      sentBy: sentBy,
+      message: `turned ${state} the ${toggleName}.`,
       timeSent: new Date().getTime()
     }
-    setToggleState(props.toggleName, newState, message);
+    setToggleState(toggleName, newState, message);
   };
 
   return (
-    <div className={props.className} >
+    <div className={className} >
       <div className='row'>
-        <h5>{`${props.index}.`}</h5>
-        <p> {props.toggleName} </p>
+        <h5>{`${index}.`}</h5>
+        <p> {toggleName} </p>
       </div>
-      <Toggle checked={props.checked} onchange={handleChange} />
+      <Toggle checked={checked} onchange={handleChange} />
     </div>
   );
 }

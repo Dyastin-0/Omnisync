@@ -1,8 +1,8 @@
-export const Pad = (props) => {
+export const Pad = ({options, content}) => {
   return (
-    <div className={`content-panel flex-max ${props.options ? `${props.options.panel}` : ''}`} >
-      <div className={`container ${props.options ? `${props.options.container}` : ''}`}> 
-        {props.content}
+    <div className={`content-panel flex-max ${options ? `${options.panel}` : ''}`} >
+      <div className={`container ${options ? `${options.container}` : ''}`}> 
+        {content}
       </div>
     </div>
   );

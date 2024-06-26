@@ -5,7 +5,7 @@ import { useData } from "../../contexts/data/data";
 import { deconstructData } from "../../utils/chart-helper";
 import { Loading } from '../loading/loading';
 
-export const Insight = (props) => {
+export const Insight = () => {
   const { chartData } = useData();
   const [insights, setInsights] = useState([]);
 
@@ -20,7 +20,7 @@ export const Insight = (props) => {
 
   return (
     <div className='content-panel'>
-      <h3>{props.title}</h3>
+      <h3> Trends </h3>
       <div className='container'>
         {insights && insights.length > 0 ?
           insights.toReversed().map((value, key) => {

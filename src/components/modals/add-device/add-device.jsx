@@ -6,24 +6,24 @@ import { useState } from 'react';
 import { GenericModal } from "../modal";
 import { useData } from '../../../contexts/data/data';
 
-export const AddDeviceModal = (props) => {
+export const AddDeviceModal = ({path, setToastMessage, setConfirmEvent, setConfirmMessage, closeModal, active}) => {
   const { addToggle } = useData();
   const [toggleName, setToggleName] = useState(null);
   const handleAddDevice = async (e) => {
     if (e.key === 'Enter') {
-      const includes = await arrayIncludes(`${props.path}/toggles`, toggleName);
+      const includes = await arrayIncludes(`${path}/toggles`, toggleName);
       if (includes) {
-        props.setToastMessage(`${toggleName} is already used.`);
+        setToastMessage(`${toggleName} is already used.`);
       } else {
         const event = () => {
           return async () => {
             await addToggle(toggleName);
-            props.setToastMessage(`Device ${toggleName.toLocaleLowerCase()} added.`);
+            setToastMessage(`Device ${toggleName.toLocaleLowerCase()} added.`);
             e.target.value = null;
           };  
         };
-        props.setConfirmEvent(event);
-        props.setConfirmMessage(`Add ${toggleName}?`);
+        setConfirmEvent(event);
+        setConfirmMessage(`Add ${toggleName}?`);
       }
     }
   }
@@ -31,8 +31,8 @@ export const AddDeviceModal = (props) => {
   return (
     <GenericModal
       headerTitle='Add device'
-      closeModal={props.closeModal}
-      active={props.active}
+      closeModal={closeModal}
+      active={active}
       content={<input placeholder='Device name' enterKeyHint='enter'
         onChange={(e) => {setToggleName(e.target.value)}}
         onKeyUp={(e) => handleAddDevice(e)}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './toast-message.css';
 
-export const ToastMessage = (props) => {
+export const ToastMessage = ({setToastMessage, message}) => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -9,15 +9,15 @@ export const ToastMessage = (props) => {
       setOpen(true);
       setTimeout(() => {
         setOpen(false);
-        props.setToastMessage(null);
+        setToastMessage(null);
       }, 3000);
     };
-    props.message !== null && openToastMessage();
-  }, [props]);
+    message !== null && openToastMessage();
+  }, [message, setToastMessage]);
 
   return (
     <div className={`toast-message ${open && `open`}`}>
-      <h5 className='message-t'> {open ? props.message : ''} </h5>
+      <h5 className='message-t'> {open ? message : ''} </h5>
       <button className='button'> {<i className='fa-solid fa-xmark'></i>} </button>
     </div>
   );

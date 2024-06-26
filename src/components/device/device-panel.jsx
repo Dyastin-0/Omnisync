@@ -7,9 +7,9 @@ import { useData } from '../../contexts/data/data';
 import { Loading } from '../loading/loading';
 import { useAuth } from '../../contexts/auth/auth';
 
-import { TogglePanelItem } from './toggle-panel-item';
+import { Device } from './device';
 
-export const TogglePanel = (props) => {
+export const DevicePanel = () => {
   const { toggles, isFetching } = useData();
   const { user, userDataPath } = useAuth();
   const [renderedToggles, setRenderedToggles ] = useState([]);
@@ -18,7 +18,7 @@ export const TogglePanel = (props) => {
     const renderToggles = () => {
       if (user) {
         const rendered = Object.entries(toggles).map(([key, value], index) => (
-          <TogglePanelItem
+          <Device
             className="sub-container"
             sentBy={`${user.displayName}`}
             key={key}
@@ -37,7 +37,7 @@ export const TogglePanel = (props) => {
 
   return (
     <div className='content-panel'>
-      <h3> {props.title} </h3>
+      <h3> Devices </h3>
       <div className='container'>
         {!isFetching && renderedToggles.length > 0 ? (
           renderedToggles.map((toggle, index) => (

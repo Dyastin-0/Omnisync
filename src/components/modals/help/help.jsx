@@ -1,12 +1,12 @@
 import { GenericModal } from "../modal";
 
-export const HelpModal = (props) => {
+export const HelpModal = ({closeModal, active}) => {
   return (
     <GenericModal
       width={'364px'}
       headerTitle={"Help"}
-      closeModal={props.closeModal}
-      active={props.active}
+      closeModal={closeModal}
+      active={active}
       content={
         <div className='modal-content-container'>
           <h3>API key</h3>
@@ -19,7 +19,7 @@ export const HelpModal = (props) => {
             by Mobizt.</p>
           <h3>Check out the sample Arduino code at</h3>
           <a href="https://github.com/Dyastin-0/home-aut/blob/master/public/sample/sample.ino"
-            target='blank'>ESP32 Firebase Client</a>  
+            rel="noreferrer" target='_blank'>ESP32 Firebase Client</a>  
         </div>
       }
     />
