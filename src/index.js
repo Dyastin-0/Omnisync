@@ -1,35 +1,11 @@
 import React from 'react';
-
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { AuthProvider } from './contexts/auth/auth';
 
-import SignIn from './views/sign-in';
-import SignUp from './views/sign-up';
-import Dashboard from './views/dashboard';
-
 import { SettingsProvider } from './contexts/settings/settings';
 import { DataProvider } from './contexts/data/data';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <SignIn />
-  },
-  {
-    path: '/sign-in',
-    element: <SignIn />
-  },
-  {
-    path: 'sign-up',
-    element: <SignUp />
-  },
-  {
-    path: '/dashboard',
-    element: <Dashboard />
-  }
-]);
+import App from './app';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -37,7 +13,7 @@ root.render(
     <SettingsProvider>
       <AuthProvider>
           <DataProvider>
-            <RouterProvider router={router} />
+            {<App />}
           </DataProvider> 
       </AuthProvider>
     </SettingsProvider>

@@ -1,11 +1,9 @@
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect } from 'react';
 import '../App.css';
 
 import { SignInWindow } from '../components/auth/sign-in';
-import { NavBar } from '../components/nav-bar/nav-bar';
 
-const SignIn = () => {
-  const [toastMessage, setToastMessage] = useState(null);
+const SignIn = ({setToastMessage}) => {
 
   useLayoutEffect(() => {
     document.title = 'Sign in';
@@ -13,10 +11,6 @@ const SignIn = () => {
 
   return (
     <div className="App">
-      <NavBar
-        toastMessage={toastMessage}
-        setToastMessage={setToastMessage}
-      />
       <SignInWindow setToastMessage={setToastMessage} />
     </div>
   );
