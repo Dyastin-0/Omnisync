@@ -10,9 +10,9 @@ const SignUp = ({setToastMessage}) => {
   });
 
   return (
-    <div className='App'>
+    <main>
       <SignUpWindow setToastMessage={setToastMessage}  />
-    </div>
+    </main>
   );
 };
 

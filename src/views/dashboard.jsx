@@ -22,7 +22,7 @@ const Dashboard = () => {
   });
 
   return (
-    <div className="App">
+    <main>
       <Pad options={{panel: 'flex-max small', container: 'center'}} content={
         <>
           {user && user.displayName && <h2>{`${user.displayName}${user.displayName && `${user.displayName.charAt(user.displayName.length - 1) === 's' ? `'` : `'s`}`} Dashboard`}</h2>}
@@ -33,7 +33,7 @@ const Dashboard = () => {
       <DevicePanel />
       <MessagePanel />
       <Pad options={{panel: 'flex-max small'}} />
-    </div>
+    </main>
   );
 }
 

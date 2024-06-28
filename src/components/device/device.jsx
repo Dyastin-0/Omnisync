@@ -1,7 +1,7 @@
 import Toggle from '../toggle/toggle';
 import { useData } from '../../contexts/data/data';
 
-export const Device = ({toggleName, sentBy, className, index, checked}) => {
+export const Device = ({toggleName, sentBy, className, icon, index, checked}) => {
   const { setToggleState } = useData();
 
   const handleChange = (e) => {
@@ -20,8 +20,9 @@ export const Device = ({toggleName, sentBy, className, index, checked}) => {
   return (
     <div className={className} >
       <div className='row'>
-        <h5>{`${index}.`}</h5>
-        <p> {toggleName} </p>
+        <p>{`${index}.`}</p>
+        <p className='description'> {toggleName} </p>
+        {icon}
       </div>
       <Toggle checked={checked} onchange={handleChange} />
     </div>

@@ -87,12 +87,16 @@ export const NavBar = ({toastMessage, setToastMessage}) => {
           <div className='row no-gap'>
             <Button className='nav-button round'
               onclick={openInfoModal}
-              icon={<i className={`fa-solid fa-circle-info fa-xl ${!isInfoClicked && `fa-bounce`}`}></i>}
+              icon={<i className={`fa-solid fa-circle-info fa-xl ${!isInfoClicked ? 'fa-bounce' : undefined}`}></i>}
             />
             <Button className='nav-button round'
               onclick={openHelpModal}
-              icon={<i className={`fa-solid fa-circle-question fa-xl ${!isHelpClicked && `fa-bounce`}`}></i>} 
+              icon={<i className={`fa-solid fa-circle-question fa-xl ${!isHelpClicked ? 'fa-bounce' : undefined}`}></i>} 
             />
+            {isLoggedIn && <Button className='nav-button round fixed'
+              icon={<i className='fa-solid fa-circle-plus fa-xl fa-bounce'></i>}
+              onclick={openAddDeviceModal}
+            />}
           </div>
           <UserDropdown 
             openSettings={openSettings}
@@ -138,10 +142,6 @@ export const NavBar = ({toastMessage, setToastMessage}) => {
           active={isAddDeviceOpen}
           closeModal={closeAddDeviceModal}
           path={userDataPath}
-        />}
-        {isLoggedIn && <Button className="nav-button jump fixed"
-          icon={<i className="fa-solid fa-plus"></i>}
-          onclick={openAddDeviceModal}
         />}
     </div>
   );

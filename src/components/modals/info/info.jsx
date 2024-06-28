@@ -10,7 +10,7 @@ export const InfoModal = ({active, closeModal}) => {
       closeModal={closeModal}
       content={
         <div className='modal-content-container'>
-          <h3>What is omnisync?</h3>
+          <h5>What is omnisync?</h5>
           <p>It is an automation tool that you can use on your personal projects;
             all you need is a microcontroller that supports Wi-Fi to start, you can check the
             sample Arduino code in the Help (?) modal.
@@ -19,17 +19,15 @@ export const InfoModal = ({active, closeModal}) => {
             Omnisync is open-source, you can clone the project 
             on my Github, simply change the Firebase config with your own for further customization.
           </p>
-          <div className='group'>
-            <h3>Developed by</h3>
-            <p>Justine Paralejas</p>
-          </div>
-          <h3>Socials</h3>
+          <h5>Project Stack</h5>
+          <p>ReactJS, Firebase Authentication & Real-time Database</p>
+          <h5>Developed by</h5>
+          <p>Justine Paralejas</p>
+          <h5>Socials</h5>
           <div className="row left">
               <a href='https://github.com/Dyastin-0' rel="noreferrer" target='_blank'><i className="fa-brands fa-github fa-lg"></i></a>
               <a href='https://www.facebook.com/dyastinparalejas' rel="noreferrer" target='_blank'><i className="fa-brands fa-facebook fa-lg"></i></a>
           </div>
-            <h3>Project Stack</h3>
-            <p>ReactJS, Firebase Authentication & Real-time Database</p>
         </div>
       }
     />

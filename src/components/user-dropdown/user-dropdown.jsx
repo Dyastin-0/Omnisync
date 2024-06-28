@@ -43,9 +43,9 @@ export const UserDropdown = ({openUserProfile, openSettings}) => {
       <Button className="nav-button"
         onclick={toggle}
         text={user && user.displayName}
-        icon={<i className={`fa fa-chevron-down chevron ${isOpen ? 'open' : ''}`} />}
+        icon={<i className={`fa fa-chevron-down chevron ${isOpen ? 'open' : undefined}`} />}
       />
-      <div className={`dropdown-menu ${isOpen ? 'open' : ''}`}>
+      <div className={`dropdown-menu ${isOpen ? 'open' : undefined}`}>
         {user ?
          <>
           <Button className='nav-button'

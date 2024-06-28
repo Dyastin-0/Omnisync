@@ -1,13 +1,23 @@
 :root {
-  --base-color: rgb(220, 220, 220);
-  --secondary-color: rbg(200, 200, 200);
+  --base-color: rgb(230, 230, 230);
   --complement: rgb(210, 210, 210);
-
-  --text-color: rgb(60, 60, 60);
+  --secondary-color: rgb(220, 220, 220);
+  --text-color: rgb(80, 80, 80);
 
   --shadow: rgba(0, 0, 0, 0.1);
+  --accent: rgba(31, 117, 254, 0.5);
+  --description: rgb(132, 136, 132);
+}
 
-  --accent: rgba(31, 117, 254, 0.6);
+:root.dark {
+  --base-color: rgb(35, 35, 35);
+  --secondary-color: rgb(45, 45, 45);
+  --text-color: rgb(240, 240, 240);
+  --complement: rgb(25, 25, 25);
+
+  --shadow: rgba(0, 0, 0, 0.1);
+  --accent: rgba(31, 117, 254, 0.5);
+  --description: rgb(132, 136, 132);
 }
 
 * {
@@ -15,6 +25,30 @@
   margin: 0px;
   font-family: 'poppins', 'sans serif';
   transition: top 0.3s ease, background-color 0.3s ease, color 0.3s ease, height 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+}
+
+html, body {
+  background-color: var(--complement);
+}
+
+.App {
+  width: calc(100% - 18px);
+  height: calc(100vh - 18px);
+  display: flex;
+  justify-content: center;
+  row-gap: 9px;
+  column-gap: 9px;
+  padding: 9px;
+  flex-wrap: wrap;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  row-gap: 9px;
+  column-gap: 9px;
+  flex-wrap: wrap;
 }
 
 p, h6, h5, h4, h2, h1 {
@@ -25,6 +59,10 @@ p, h6, h5, h4, h2, h1 {
 }
 
 h6.right {
+  text-align: right;
+}
+
+p.right {
   text-align: right;
 }
 
@@ -47,6 +85,14 @@ p.center {
   width: 100%;
 }
 
+p.small {
+  font-size: 11px;
+}
+
+.description {
+  color: var(--description);
+}
+
 a {
   font-size: 14px;
   color: var(--text-color);
@@ -57,28 +103,13 @@ i {
   color: var(--text-color);
 }
 
-html, body {
-  background-color: var(--complement);
-}
-
-.App {
-  width: calc(100% - 18px);
-  height: calc(100vh - 18px);
-  display: flex;
-  justify-content: center;
-  row-gap: 9px;
-  column-gap: 9px;
-  padding: 9px;
-  flex-wrap: wrap;
-}
-
 input {
   width: 100%;
   padding: 9px;
   border-radius: 5px;
   box-sizing: border-box;
-  border: none;
   outline: none;
+  border: none;
   color: var(--text-color);
   background-color: var(--secondary-color);
 }

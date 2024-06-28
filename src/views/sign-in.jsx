@@ -10,9 +10,9 @@ const SignIn = ({setToastMessage}) => {
   });
 
   return (
-    <div className="App">
+    <main>
       <SignInWindow setToastMessage={setToastMessage} />
-    </div>
+    </main>
   );
 }
 

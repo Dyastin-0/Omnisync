@@ -51,18 +51,14 @@ export const SettingsProvider = ({ children }) => {
   }, [theme]);
 
   const lightTheme = () => {
-    document.documentElement.style.setProperty('--base-color', 'rgb(220, 220, 220)');
-    document.documentElement.style.setProperty('--secondary-color', 'rgb(200, 200, 200)');
-    document.documentElement.style.setProperty('--text-color', 'rgb(60, 60, 60)');
-    document.documentElement.style.setProperty('--complement', 'rgb(210, 210, 210)');
+    const root = document.documentElement;
+    root.classList.remove('dark');
   };
 
 
   const darkTheme = () => {
-    document.documentElement.style.setProperty('--base-color', 'rgb(35, 35, 35)');
-    document.documentElement.style.setProperty('--secondary-color', 'rgb(45, 45, 45)');
-    document.documentElement.style.setProperty('--text-color', 'rgb(255, 255, 255)');
-    document.documentElement.style.setProperty('--complement', 'rgb(25, 25, 25)');
+    const root = document.documentElement;
+    root.classList.add('dark');
   };
 
   const value = {

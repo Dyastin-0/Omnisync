@@ -9,7 +9,6 @@
   border-radius: 9px;
   color: var(--text-color);
   background-color: transparent;
-  transition: background-color 0.3s ease;
 }
 
 .nav-button.fit {
@@ -25,29 +24,6 @@
 .nav-button.link:hover {
   color: var(--accent);
   background-color: transparent;
-}
-
-.nav-button.jump {
-  background-color: var(--accent);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  animation: jump 1s infinite;
-}
-
-@keyframes jump {
-  0%, 100% {
-      transform: translateY(0);
-  }
-  50% {
-      transform: translateY(-20px);
-  }
 }
 
 .nav-button.center {
@@ -72,5 +48,5 @@
 .nav-button.round {
   padding-top: 18px;
   padding-bottom: 18px;
-  border-radius: 999px;
+  border-radius: 50%;
 }

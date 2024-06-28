@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import SignIn from './views/sign-in';
 import SignUp from './views/sign-up';

@@ -33,23 +33,23 @@ export const SettingsModal = ({active, closeModal}) => {
       closeModal={closeModal}
       content={
         <div className='modal-content-container'>
-          <h5>General</h5>
+          <p className='description'>General</p>
           <div className='row left'>
             <Toggle 
               size='small'
               ref={themeToggleRef} 
               onchange={toggleTheme} 
             />
-            <h5>Dark mode</h5>
+            <p>Dark mode</p>
           </div>
-          <h5>Chart</h5>
+          <p className='description'>Chart</p>
           <div className='row left'>
             <Toggle
               size='small'
               ref={includeDevicesRef}
               onchange={toggleIncludeDevice}
               />
-            <h5>Include devices</h5>
+            <p>Include devices</p>
           </div>
           <div className='row left'>
             <Toggle
@@ -57,7 +57,7 @@ export const SettingsModal = ({active, closeModal}) => {
               ref={includeInactiveDaysRef}
               onchange={toggleIncludeInactiveDays}
               />
-            <h5>Include inactive days</h5>
+            <p>Include inactive days</p>
           </div>
         </div>
       }

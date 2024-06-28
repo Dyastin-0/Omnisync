@@ -94,7 +94,7 @@ export const SignUpWindow = ({setToastMessage}) => {
   return (
     <div className='auth'>
       <h2>Omnisync</h2>
-      <h4>Create an account and start <br /> setting up your own <br /> dashboard</h4>
+      <p className='center'>Create an account and start <br /> setting up your own <br /> dashboard</p>
       <p>Make sure to use an active email</p>
       <input placeholder="Email" enterKeyHint='Enter' required
         onChange={(e) => {setEmail(e.target.value)}}
@@ -117,7 +117,7 @@ export const SignUpWindow = ({setToastMessage}) => {
         onKeyUp={(e) => e.key === 'Enter' && create()}
       ></input>
       <Button onclick={create} text="Sign up" icon={<i className="fa-solid fa-user-plus"></i>} className="nav-button center" />
-      { <h6>or continue with</h6> }
+      { <p>or continue with</p> }
       { <Button onclick={logInWithGoogle}  text="Google" icon={<i className="fa-brands fa-google"></i>} className="nav-button center" /> }
       <div className="row">
         <p>Already have an account?</p>

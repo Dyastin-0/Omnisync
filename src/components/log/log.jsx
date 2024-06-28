@@ -1,12 +1,12 @@
 export const Log = ({isMessageOwner, sentBy, timeSent, message}) => {
   return (
     <div className='message-container'>
-      <p className={`sent-by ${isMessageOwner && 'right'}`}> 
+      <p className={`small description ${isMessageOwner ? 'right' : undefined}`}> 
         {isMessageOwner ?
         `On ${timeSent} you` :
          `${sentBy} on ${timeSent}`}
       </p>
-      <p className={`message ${isMessageOwner && 'right'}`}> {message} </p>
+      <p className={`message ${isMessageOwner ? 'right' : undefined}`}> {message} </p>
     </div>
   );
 }

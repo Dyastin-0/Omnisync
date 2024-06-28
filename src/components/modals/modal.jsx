@@ -12,8 +12,8 @@ export const GenericModal = ({active, className, closeModal, width, headerTitle,
 
   return (
     <>
-      <div className={`modal-overlay ${isOpen && `open`} ${className}`} onClick={closeModal}></div>
-      <div className={`modal ${isOpen && `open`} ${className}`} style={{width:width}}>
+      <div className={`modal-overlay ${isOpen ? 'open' : undefined} ${className}`} onClick={closeModal}></div>
+      <div className={`modal ${isOpen ? 'open' : undefined} ${className}`} style={{width:width}}>
         <div className='modal-header'>
           <h5> {headerTitle} </h5>
           <Button className="nav-button"

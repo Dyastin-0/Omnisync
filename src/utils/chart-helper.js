@@ -1,4 +1,5 @@
 export const constructData = (messages, includeInactiveDays) => {
+  console.log(messages);
   const latestOn = {};
   const dayTotal = {};
   const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
@@ -84,7 +85,6 @@ export const constructData = (messages, includeInactiveDays) => {
   });
 
   const finalDayTotal = includeInactiveDays ? sortedDayTotal : sortedDayTotal.filter(entry => entry.total > 0);
-
   return finalDayTotal;
 };
 

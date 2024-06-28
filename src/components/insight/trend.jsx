@@ -30,8 +30,8 @@ export const Insight = () => {
             return (
             <React.Fragment key={key} >
               <div className='box'>
-              <h5>{ value.date }</h5>
-                <p className={!value.highestDevice && 'center'}>{ value.highestDevice !== null ? `Your ${value.highestDevice} were on for ${highestHours} h ${highestMinutes} m ${highestSeconds} s
+              <p className='description center small'>{ value.date }</p>
+                <p className={!value.highestDevice ? 'center' : undefined}>{ value.highestDevice !== null ? `Your ${value.highestDevice} were on for ${highestHours} h ${highestMinutes} m ${highestSeconds} s
                   that is about ${((value.highestUsage / value.total) * 100).toFixed(0)}% of the total usage.
                 ` : `No activity`}</p>
               </div>

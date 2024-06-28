@@ -16,7 +16,7 @@ export const ToastMessage = ({setToastMessage, message}) => {
   }, [message, setToastMessage]);
 
   return (
-    <div className={`toast-message ${open && `open`}`}>
+    <div className={`toast-message ${open ? 'open' : undefined}`}>
       <h5 className='message-t'> {open ? message : ''} </h5>
       <button className='button'> {<i className='fa-solid fa-xmark'></i>} </button>
     </div>
