@@ -19,14 +19,18 @@ const Dashboard = ({setToastMessage}) => {
   }, [isLoggedIn, navigate]);
 
   useLayoutEffect(() => {
-    document.title = `Omnisync/${ user && user.displayName}`;
+    document.title = `Omnisync/${ isLoggedIn && user.displayName}`;
   });
+
+  useEffect(() => {
+    setToastMessage('Welcome.');
+  }, []);
 
   return (
     <main>
       <Pad options={{panel: 'flex-max small', container: 'center'}} content={
         <>
-          {user && user.displayName && <h2>{`${user.displayName}${user.displayName && `${user.displayName.charAt(user.displayName.length - 1) === 's' ? `'` : `'s`}`} Dashboard`}</h2>}
+          { user && user.displayName && <h2>{`${user.displayName}${user.displayName && `${user.displayName.charAt(user.displayName.length - 1) === 's' ? `'` : `'s`}`} Dashboard`}</h2> }
         </>
       } />
       <UsageChart />
