@@ -1,4 +1,4 @@
-import './user-dropdown.css';
+import { Dropdown } from '../dropdown/dropdown';
 
 import { logOut } from '../../config/auth';
 import { useEffect, useState, useRef } from 'react';
@@ -9,7 +9,6 @@ import { useAuth } from '../../contexts/auth/auth';
 
 export const UserDropdown = ({openUserProfile, openSettings}) => {
   const { user } = useAuth();
-  const [isOpen, setIsOpen] = useState(false);
   const [path, setPath] = useState(null);
   const [settingsSpin, setSettingsSpin] = useState('');
   const navigate = useNavigate();
@@ -26,10 +25,6 @@ export const UserDropdown = ({openUserProfile, openSettings}) => {
     }
   }, []);
 
-  const toggle = () => {
-    setIsOpen(!isOpen);
-  }
-
   useEffect(() => {
     path && navigate(path);
   }, [path, navigate]);
@@ -37,48 +32,42 @@ export const UserDropdown = ({openUserProfile, openSettings}) => {
   const redirect = (path) => {
     setPath(path);
   };
-
+  
   return (
-    <div className='dropdown'>
-      <Button className="nav-button"
-        onclick={toggle}
-        text={user && user.displayName}
-        icon={<i className={`fa fa-chevron-down chevron ${isOpen ? 'open' : undefined}`} />}
-      />
-      <div className={`dropdown-menu ${isOpen ? 'open' : undefined}`}>
-        {user ?
-         <>
-          <Button className='nav-button'
-            onclick={openUserProfile}
-            id="user-profile-button"
-            text="Profile" icon={<i className="fa-solid fa-user"></i>}
-          />
-          <Button className="nav-button"
-            onclick={openSettings}
-            ref={settingsRef}
-            id="settings-button" text="Settings"
-            icon={<i className={`fa-solid fa-gear ${settingsSpin}`}></i>}
-          />
-          <Button className="nav-button"
-            onclick={logOut}
-            id="signout-button" text="Sign out"
-            icon={<i className='fa-solid fa-right-from-bracket'></i>}
-          />
-        </> :
+    <Dropdown 
+      name={user && user.displayName}
+      content={user ?
         <>
-          <Button className="nav-button"
-            id="sign-in-button"
-            text="Sign in" icon={<i className="fa-solid fa-right-to-bracket"></i>}
-            onclick={() => redirect('/sign-in')}
-          />
-          <Button className="nav-button"
-            id="sign-in-button"
-            text="Sign up" icon={<i className="fa-solid fa-user-plus"></i>}
-            onclick={() => redirect('/sign-up')}
-          />
-        </>
-        }
-      </div>
-    </div>
+         <Button className='nav-button'
+           onclick={openUserProfile}
+           id="user-profile-button"
+           text="Profile" icon={<i className="fa-solid fa-user"></i>}
+         />
+         <Button className="nav-button"
+           onclick={openSettings}
+           ref={settingsRef}
+           id="settings-button" text="Settings"
+           icon={<i className={`fa-solid fa-gear ${settingsSpin}`}></i>}
+         />
+         <Button className="nav-button"
+           onclick={logOut}
+           id="signout-button" text="Sign out"
+           icon={<i className='fa-solid fa-right-from-bracket'></i>}
+         />
+       </> :
+       <>
+         <Button className="nav-button"
+           id="sign-in-button"
+           text="Sign in" icon={<i className="fa-solid fa-right-to-bracket"></i>}
+           onclick={() => redirect('/sign-in')}
+         />
+         <Button className="nav-button"
+           id="sign-in-button"
+           text="Sign up" icon={<i className="fa-solid fa-user-plus"></i>}
+           onclick={() => redirect('/sign-up')}
+         />
+       </>
+       }
+    />
   );
 };

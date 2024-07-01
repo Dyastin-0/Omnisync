@@ -8,7 +8,7 @@ import { DevicePanel } from '../components/device/device-panel';
 import { MessagePanel } from '../components/log/log-panel';
 import { UsageChart } from '../components/insight/charts/usage-chart';
 import { Pad } from '../components/Pad/Pad';
-import { Insight } from '../components/insight/trend';
+import { Insight } from '../components/insight/trends';
 
 const Dashboard = () => {
   const navigate = useNavigate();

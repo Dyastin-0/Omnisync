@@ -33,7 +33,7 @@
   display: flex;
   margin-left: 18px;
   margin-right: 18px;
-  gap: 18px;
+  gap: 9px;
   padding-right: 9px;
   overflow-y: auto;
   overflow-x: auto;
@@ -65,12 +65,17 @@
 }
 
 .content-panel .container .sub-container {
-  width: 100%;
+  width: calc(100% - 18px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  row-gap: 9px;
-  column-gap: 9px;
+  padding: 9px;
+  border-radius: 9px;
+}
+
+.content-panel .container .sub-container:hover {
+  background-color: var(--accent);
+  cursor: pointer;
 }
 
 .content-panel .container .sub-container::-webkit-scrollbar {
@@ -86,7 +91,7 @@
   border-radius: 9px;
 }
 
-@media (max-width:675px) {
+@media (max-width:800px) {
   .content-panel {
     flex-basis: 100%;
   }

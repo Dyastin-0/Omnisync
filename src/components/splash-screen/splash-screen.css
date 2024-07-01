@@ -11,7 +11,7 @@
   bottom: 0;
   right: 0;
   z-index: 10002;
-  background-color: var(--complement);
+  background-color: var(--base-color);
   color: var(--text-color);
 }
 

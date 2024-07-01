@@ -28,12 +28,13 @@
 }
 
 html, body {
+  align-items: center;
   background-color: var(--complement);
 }
 
 .App {
   width: calc(100% - 18px);
-  height: calc(100vh - 18px);
+  max-width: 2048px;
   display: flex;
   justify-content: center;
   row-gap: 9px;
@@ -118,6 +119,11 @@ input.width-half-parent {
   width: 50%;
 }
 
+input.small {
+  font-size: 11px;
+  padding: 5px;
+}
+
 .row {
   display: flex;
   flex-direction: row;
@@ -132,4 +138,12 @@ input.width-half-parent {
 
 .row.no-gap {
   gap: 0;
+}
+
+.row.space-between {
+  justify-content: space-between;
+}
+
+.gap {
+  gap: 9px;
 }

@@ -18,12 +18,11 @@ export const DevicePanel = () => {
     const renderToggles = () => {
       if (user) {
         const rendered = Object.entries(toggles).map(([key, value], index) => (
-          <Device
-            className="sub-container"
+          <Device className='sub-container'
             sentBy={`${user.displayName}`}
             key={key}
             index={key}
-            toggleName={value.name}
+            deviceName={value.name}
             icon={<i className={`fa-solid fa-${value.name.toLowerCase()}`}></i>}
             checked={value.state}
             path={`/${userDataPath}/toggles/${index}/state`}

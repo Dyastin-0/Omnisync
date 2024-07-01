@@ -29,11 +29,11 @@ export const Insight = () => {
             const highestSeconds = Math.floor(((value.highestUsage - highestHours) * 60 - highestMinutes) * 60);
             return (
             <React.Fragment key={key} >
-              <div className='box'>
-              <p className='description center small'>{ value.date }</p>
-                <p className={!value.highestDevice ? 'center' : undefined}>{ value.highestDevice !== null ? `Your ${value.highestDevice} were on for ${highestHours} h ${highestMinutes} m ${highestSeconds} s
-                  that is about ${((value.highestUsage / value.total) * 100).toFixed(0)}% of the total usage.
-                ` : `No activity`}</p>
+              <div className='message-container'>
+                <p className='description center small'>{ value.date }</p>
+                <p className='message'>{ value.highestDevice !== null ? `Your ${value.highestDevice} were on for ${highestHours} h ${highestMinutes} m ${highestSeconds} s
+                  that is about ${((value.highestUsage / value.total) * 100).toFixed(0)}% of the total usage.` : `No activity`}
+                </p>
               </div>
             </React.Fragment>
           )}) :

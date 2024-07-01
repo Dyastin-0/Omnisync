@@ -59,6 +59,7 @@ export const SettingsModal = ({active, closeModal}) => {
               />
             <p>Include inactive days</p>
           </div>
+          <p className='description'>Microcontroller</p>
         </div>
       }
     />

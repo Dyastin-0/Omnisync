@@ -5,7 +5,9 @@
 }
 .dropdown-menu {
   width: 120px;
+  max-height: 200px;
   opacity: 0;
+  overflow: auto;
   transform: translateY(-50%) scaleY(0);
   display: flex;
   flex-direction: column;
@@ -19,6 +21,23 @@
   padding: 9px;
   box-shadow: 0 3px 3px var(--shadow);
   border-radius: 13px;
+}
+
+.dropdown-menu.fit {
+  width: fit-content;
+}
+
+.dropdown-menu::-webkit-scrollbar {
+  width: 9px;
+}
+
+.dropdown-menu::-webkit-scrollbar-track {
+  border-radius: 9px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-color);
+  border-radius: 9px;
 }
 
 .dropdown-menu.open {
