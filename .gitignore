@@ -11,6 +11,7 @@
 # production
 /build
 /android
+/.firebase
 
 # misc
 .DS_Store
