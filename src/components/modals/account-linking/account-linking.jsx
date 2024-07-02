@@ -7,7 +7,7 @@ import { linkAccount } from "../../../config/auth";
 import { useAuth } from "../../../contexts/auth/auth";
 import { Button } from "../../button/button";
 
-import { evaluatePasswordStrength } from "../../../utils/passwordMeter";
+import { evaluatePasswordStrength } from "../../../utils/password-meter";
 
 export const AccountLinking = ({setToastMessage, closeModal, active}) => {
   const { user, setIsLinked } = useAuth();

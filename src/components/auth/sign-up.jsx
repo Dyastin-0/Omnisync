@@ -8,7 +8,7 @@ import { signUp, updateUser, signInWithGoogle } from '../../config/auth';
 import { Button } from '../button/button';
 import { useAuth } from '../../contexts/auth/auth';
 
-import { evaluatePasswordStrength } from '../../utils/passwordMeter';
+import { evaluatePasswordStrength } from '../../utils/password-meter';
 
 export const SignUpWindow = ({setToastMessage}) => {
   const navigate = useNavigate();

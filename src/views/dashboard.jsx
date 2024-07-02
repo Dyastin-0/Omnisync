@@ -10,7 +10,7 @@ import { UsageChart } from '../components/insight/charts/usage-chart';
 import { Pad } from '../components/Pad/Pad';
 import { Insight } from '../components/insight/trends';
 
-const Dashboard = () => {
+const Dashboard = ({setToastMessage}) => {
   const navigate = useNavigate();
   const { isLoggedIn, user } = useAuth();
   useEffect(() => {
@@ -30,7 +30,7 @@ const Dashboard = () => {
       } />
       <UsageChart />
       <Insight />
-      <DevicePanel />
+      <DevicePanel setToastMessage={setToastMessage} />
       <MessagePanel />
       <Pad options={{panel: 'flex-max small'}} />
     </main>

@@ -4,26 +4,34 @@ import { arrayIncludes } from '../../../config/database';
 import { useState } from 'react';
 
 import { GenericModal } from "../modal";
-import { useData } from '../../../contexts/data/data';
+import { addDevice } from '../../../utils/data-helper';
+import { useAuth } from '../../../contexts/auth/auth';
 
 export const AddDeviceModal = ({path, setToastMessage, setConfirmEvent, setConfirmMessage, closeModal, active}) => {
-  const { addToggle } = useData();
-  const [toggleName, setToggleName] = useState(null);
+  const { user, userDataPath } = useAuth();
+
+  const [deviceName, setDeviceName] = useState(null);
+  const [devicePin, setDevicePin] = useState(null);
+
   const handleAddDevice = async (e) => {
     if (e.key === 'Enter') {
-      const includes = await arrayIncludes(`${path}/toggles`, toggleName);
+      if (!deviceName || !devicePin) {
+        setToastMessage(`There's an empty field.`);
+        return;
+      }
+      const includes = await arrayIncludes(`${path}/toggles`, deviceName);
       if (includes) {
-        setToastMessage(`${toggleName} is already used.`);
+        setToastMessage(`${deviceName} is already used.`);
       } else {
         const event = () => {
           return async () => {
-            await addToggle(toggleName);
-            setToastMessage(`Device ${toggleName.toLocaleLowerCase()} added.`);
+            await addDevice({user, userDataPath, deviceName, devicePin});
+            setToastMessage(`Device ${deviceName.toLocaleLowerCase()} added.`);
             e.target.value = null;
           };  
         };
         setConfirmEvent(event);
-        setConfirmMessage(`Add ${toggleName}?`);
+        setConfirmMessage(`Add ${deviceName}?`);
       }
     }
   }
@@ -33,10 +41,22 @@ export const AddDeviceModal = ({path, setToastMessage, setConfirmEvent, setConfi
       headerTitle='Add device'
       closeModal={closeModal}
       active={active}
-      content={<input placeholder='Device name' enterKeyHint='enter'
-        onChange={(e) => {setToggleName(e.target.value)}}
-        onKeyUp={(e) => handleAddDevice(e)}
-      ></input>}
+      content={
+        <div className='column'>
+          <input 
+            placeholder='Device name'
+            enterKeyHint='enter'
+            onChange={(e) => {setDeviceName(e.target.value)}}
+            onKeyUp={(e) => handleAddDevice(e)}
+          ></input>
+          <input
+          placeholder='Pin number'
+          enterKeyHint='enter'
+          onChange={(e) => {setDevicePin(e.target.value)}}
+          onKeyUp={(e) => handleAddDevice(e)}
+          ></input>
+        </div>
+      }
     />
   );
 };

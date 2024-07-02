@@ -75,7 +75,6 @@
 
 .content-panel .container .sub-container:hover {
   background-color: var(--accent);
-  cursor: pointer;
 }
 
 .content-panel .container .sub-container::-webkit-scrollbar {

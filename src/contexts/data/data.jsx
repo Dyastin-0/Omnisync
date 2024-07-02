@@ -4,7 +4,6 @@ import { onValue, ref, query, orderByChild, startAt } from 'firebase/database';
 
 
 import { db } from '../../config/firebase';
-import { pushInArray, setQuery } from '../../config/database';
 import { useAuth } from '../auth/auth';
 import { constructData } from '../../utils/chart-helper';
 import { useSettings } from '../settings/settings';
@@ -21,23 +20,6 @@ export const DataProvider = ( {children} ) => {
   const [toggles, setToggles] = useState(null);
   const [messages, setMessages] = useState(null);
   const [chartData, setChartData] = useState([]);
-
-  const setToggleState = (name, state, message) => {
-    setQuery(`/${userDataPath}/toggles`, 'name', name, state);
-    pushInArray(`/${userDataPath}/messages`, message);
-  }
-
-  const addToggle = async (toggleName) => {
-    await pushInArray(`/${userDataPath}/toggles`, {
-      name: toggleName,
-      state: 0
-    });
-    await pushInArray(`/${userDataPath}/messages`, {
-      sentBy: user.displayName,
-      message: `Added a toggle named ${toggleName.toLowerCase()}.`,
-      timeSent: new Date().getTime()
-    });
-  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,8 +59,6 @@ export const DataProvider = ( {children} ) => {
   const value = {
     toggles,
     messages,
-    setToggleState,
-    addToggle,
     isFetching,
     chartData
   }

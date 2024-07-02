@@ -27,7 +27,7 @@ const App = () => {
 				},
 				{
 					path: '/dashboard',
-					element: <Dashboard />
+					element: <Dashboard setToastMessage={setToastMessage} />
 				}
 			]
 		}

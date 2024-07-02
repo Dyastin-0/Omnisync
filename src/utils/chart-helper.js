@@ -1,5 +1,4 @@
 export const constructData = (messages, includeInactiveDays) => {
-  console.log(messages);
   const latestOn = {};
   const dayTotal = {};
   const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric' });

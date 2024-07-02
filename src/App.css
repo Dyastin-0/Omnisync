@@ -144,6 +144,12 @@ input.small {
   justify-content: space-between;
 }
 
-.gap {
+.column {
+  display: flex;
+  flex-direction: column;
   gap: 9px;
+}
+
+.column.flex {
+  flex-basis: 33.33333%;
 }

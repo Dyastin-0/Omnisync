@@ -9,7 +9,7 @@ import { useAuth } from '../../contexts/auth/auth';
 
 import { Device } from './device';
 
-export const DevicePanel = () => {
+export const DevicePanel = ({setToastMessage}) => {
   const { toggles, isFetching } = useData();
   const { user, userDataPath } = useAuth();
   const [renderedToggles, setRenderedToggles ] = useState([]);
@@ -18,7 +18,10 @@ export const DevicePanel = () => {
     const renderToggles = () => {
       if (user) {
         const rendered = Object.entries(toggles).map(([key, value], index) => (
-          <Device className='sub-container'
+          <Device
+            setToastMessage={setToastMessage}
+            enabled={value.enabled}
+            devicePin={value.pin}
             sentBy={`${user.displayName}`}
             key={key}
             index={key}
