@@ -45,18 +45,13 @@ export const SignInWindow = ({setToastMessage}) => {
       .catch(() => setErrorMessage("Incorrect email or password."))
       .finally(() => {
         setSigningIn(false);
-        setTimeout(() => {
-          setErrorMessage(null);
-        }, 3000);
       });
     }
   };
 
   const logInWithGoogle = async () => {
     if (!signingIn) {
-      setSigningIn(true);
       await signInWithGoogle();
-      setToast("Signing in...");
     }
   }
 

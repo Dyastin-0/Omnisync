@@ -1,12 +1,21 @@
 import React from "react";
-import './toggle.css';
+import { motion } from "framer-motion";
+import "./toggle.css";
 
-const Toggle = React.forwardRef(({size, checked, onchange}, ref) => {
+const spring = {
+  type: "spring",
+  stiffness: 500,
+  damping: 100
+};
+
+export default function Toggle({ size, checked, onChange }) {
+  const handleClick = () => {
+    onChange(!checked);
+  };
+
   return (
-  <label className={`toggle ${size}`}>
-    <input type="checkbox" ref={ref} checked={checked} onChange={onchange} />
-    <span className="slider round"></span>
-  </label>
+    <div className={`toggle ${size}`} data-is-on={checked} onClick={handleClick}>
+      <motion.div className="handle" layout transition={spring} />
+    </div>
   );
-});
-export default Toggle;
+}

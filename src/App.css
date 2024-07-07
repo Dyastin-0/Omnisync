@@ -7,6 +7,7 @@
   --shadow: rgba(0, 0, 0, 0.1);
   --accent: rgba(31, 117, 254, 0.5);
   --description: rgb(132, 136, 132);
+  --red: rgb(136, 0, 0);
 }
 
 :root.dark {
@@ -152,4 +153,8 @@ input.small {
 
 .column.flex {
   flex-basis: 33.33333%;
+}
+
+.red {
+  color: var(--red);
 }

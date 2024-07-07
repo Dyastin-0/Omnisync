@@ -10,33 +10,31 @@ import { useAuth } from '../../contexts/auth/auth';
 import { Device } from './device';
 
 export const DevicePanel = ({setToastMessage}) => {
-  const { toggles, isFetching } = useData();
+  const { devices, isFetching } = useData();
   const { user, userDataPath } = useAuth();
   const [renderedToggles, setRenderedToggles ] = useState([]);
 
   useEffect(() => {
     const renderToggles = () => {
-      if (user) {
-        const rendered = Object.entries(toggles).map(([key, value], index) => (
-          <Device
-            setToastMessage={setToastMessage}
-            enabled={value.enabled}
-            devicePin={value.pin}
-            sentBy={`${user.displayName}`}
-            key={key}
-            index={key}
-            deviceName={value.name}
-            icon={<i className={`fa-solid fa-${value.name.toLowerCase()}`}></i>}
-            checked={value.state}
-            path={`/${userDataPath}/toggles/${index}/state`}
-          />
-        ));
-        setRenderedToggles(rendered);
-      }
+      const rendered = Object.entries(devices).map(([key, value], index) => (
+        <Device
+          setToastMessage={setToastMessage}
+          enabled={value.enabled}
+          devicePin={value.pin}
+          sentBy={`${user.displayName}`}
+          key={key}
+          index={key}
+          deviceName={value.name}
+          icon={<i className={`fa-solid fa-${value.name.toLowerCase()} ${!value.enabled ? 'red' : undefined}`}></i>}
+          checked={value.state}
+          path={`/${userDataPath}/toggles/${index}/state`}
+        />
+      ));
+      setRenderedToggles(rendered);
     };
 
-    toggles && renderToggles();
-  }, [toggles, user, userDataPath]);
+    devices && renderToggles();
+  }, [devices, user, userDataPath]);
 
   return (
     <div className='content-panel'>

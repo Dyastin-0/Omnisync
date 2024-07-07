@@ -28,7 +28,7 @@ export const ConfirmDialogModal = ({event, message}) => {
 
   return (
     <GenericModal
-    width="364px"
+    width="250px"
     className=" above"
     active={open}
     headerTitle = 'Confirm'

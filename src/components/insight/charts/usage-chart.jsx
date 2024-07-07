@@ -16,13 +16,13 @@ import { CustomTooltip } from './custom-tooltip';
 import { useSettings } from '../../../contexts/settings/settings';
 
 export const UsageChart = () => {
-  const { toggles, messages, chartData } = useData();
+  const { devices, messages, chartData } = useData();
   const { areDevicesIncluded } = useSettings();
   const [renderedAreas, setRenderedAreas] = useState([]);
 
   useEffect(() => {
     const renderAreas = () => {    
-      const rendered = Object.entries(toggles).map(([key, value], index) => {
+      const rendered = Object.entries(devices).map(([key, value], index) => {
         return (
         <Area 
           key={index}
@@ -36,8 +36,8 @@ export const UsageChart = () => {
       setRenderedAreas(rendered);
     }
 
-    messages && renderAreas();
-  }, [messages, toggles]);
+    messages && devices && renderAreas();
+  }, [messages, devices]);
 
   return (
     <div className='content-panel flex-max'>

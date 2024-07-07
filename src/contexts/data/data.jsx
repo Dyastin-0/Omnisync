@@ -2,7 +2,6 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import { onValue, ref, query, orderByChild, startAt } from 'firebase/database';
 
-
 import { db } from '../../config/firebase';
 import { useAuth } from '../auth/auth';
 import { constructData } from '../../utils/chart-helper';
@@ -17,19 +16,20 @@ export const DataProvider = ( {children} ) => {
 
   const { user, userDataPath } = useAuth();
   const [isFetching, setIsFetching] = useState(true);
-  const [toggles, setToggles] = useState(null);
+  const [devices, setDevices] = useState(null);
   const [messages, setMessages] = useState(null);
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const togglesRef = ref(db, `/${userDataPath}/toggles`);
-      onValue(togglesRef, (snapshot) => {
-        setToggles(snapshot.val() || []);
+      const devicesRef = ref(db, `/${userDataPath}/devices`);
+
+      onValue(devicesRef, (snapshot) => {
+        setDevices(snapshot.val() || []);
       });
   
       const currentTimestamp = Date.now();
-      const sevenDaysAgoTimestamp = currentTimestamp - (8 * 24 * 60 * 60 * 1000);
+      const sevenDaysAgoTimestamp = currentTimestamp - (8 * 24 * 60 * 60 * 1000) + 1000;
       const messagesRef = ref(db, `/${userDataPath}/messages`);
       const queryRef = query(
         messagesRef,
@@ -46,8 +46,8 @@ export const DataProvider = ( {children} ) => {
   }, [user, userDataPath]);
 
   useEffect(() => {
-    if ((toggles !== null) && (messages !== null)) setIsFetching(false);
-  }, [toggles, messages]);
+    setIsFetching(!(devices !== null) && (messages !== null));
+  }, [devices, messages]);
 
   useEffect(() => {
     if (messages) {
@@ -57,7 +57,7 @@ export const DataProvider = ( {children} ) => {
   }, [messages, areInactiveDaysIncluded]);
 
   const value = {
-    toggles,
+    devices,
     messages,
     isFetching,
     chartData

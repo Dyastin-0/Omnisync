@@ -5,6 +5,7 @@ import SignUp from './views/sign-up';
 import Dashboard from './views/dashboard';
 
 import { Layout } from './layout';
+import Home from './views/home';
 
 const App = () => {
 	const [toastMessage, setToastMessage] = useState(null);
@@ -16,6 +17,10 @@ const App = () => {
 				{
 					path: '/',
 					element: <SignIn setToastMessage={setToastMessage} />
+				},
+				{
+					path: '/home',
+					element: <Home />
 				},
 				{
 					path: '/sign-in',

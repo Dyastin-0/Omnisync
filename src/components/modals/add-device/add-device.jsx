@@ -19,7 +19,7 @@ export const AddDeviceModal = ({path, setToastMessage, setConfirmEvent, setConfi
         setToastMessage(`There's an empty field.`);
         return;
       }
-      const includes = await arrayIncludes(`${path}/toggles`, deviceName);
+      const includes = await arrayIncludes(`${path}/devices`, deviceName);
       if (includes) {
         setToastMessage(`${deviceName} is already used.`);
       } else {

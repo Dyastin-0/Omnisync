@@ -10,34 +10,31 @@ export const DeviceSettings = ({deviceName, enabled, handleDeviceState, devicePi
 			headerTitle = {`${deviceName}`}
 			content={
 				<div className='modal-content-container'>
-					<div className='row space-between'>
-						<div className='column flex'>
+					<div className='column flex'>
+						<div >
 							<p className='description'>Pin</p>
 							<p>{devicePin}</p>
 						</div>
-						<div className='column flex'>
+						<div >
 							<p className='description'>Name</p>
 							<p>{deviceName}</p>
 						</div>
-						<div className='column flex'>
+						<div>
 							<p className='description'>Index</p>
 							<p>{index}</p>
 						</div>
 					</div>
-					<div className='row space-between'>
-						<div className='column flex'>
-							<p className='description'>Icon</p>
-							<i className={`fa-solid fa-${deviceName.toLowerCase()}`}></i>
-						</div>
-						<div className='column flex'>
-							<p className='description'>Enable</p>
-							<Toggle
-								checked={enabled}
-								onchange={handleDeviceState}
-								size='small'
-							/>
-						</div>
-						<div className='column flex'></div>
+					<div >
+						<p className='description'>Icon</p>
+						<i className={`fa-solid fa-${deviceName.toLowerCase()}`}></i>
+					</div>
+					<div >
+						<p className='description'>Enable</p>
+						<Toggle
+							checked={enabled}
+							onChange={handleDeviceState}
+							size='small'
+						/>
 					</div>
 				</div>
 			}

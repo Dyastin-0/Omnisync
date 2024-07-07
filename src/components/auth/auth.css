@@ -51,7 +51,7 @@
 }
 
 .password-strength.red::-webkit-progress-value {
-  background-color: red;
+  background-color: var(--red);
 }
 
 .password-strength.orange::-webkit-progress-value {

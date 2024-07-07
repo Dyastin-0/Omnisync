@@ -13,6 +13,7 @@ import { Insight } from '../components/insight/trends';
 const Dashboard = ({setToastMessage}) => {
   const navigate = useNavigate();
   const { isLoggedIn, user } = useAuth();
+
   useEffect(() => {
     !isLoggedIn && navigate('/sign-in');
   }, [isLoggedIn, navigate]);

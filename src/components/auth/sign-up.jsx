@@ -85,9 +85,7 @@ export const SignUpWindow = ({setToastMessage}) => {
 
   const logInWithGoogle = async () => {
     if (!signingUp) {
-      setSigningUp(true);
       await signInWithGoogle();
-      setToast("Signing in...");
     }
   };
 
