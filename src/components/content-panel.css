@@ -13,6 +13,10 @@
   background-color: var(--base-color);
 }
 
+.content-panel.half {
+  width: 50%;
+}
+
 .container.width {
   width: 400px;
   flex-basis: none;
@@ -39,7 +43,7 @@
   overflow-x: auto;
   flex-direction: column;
   scroll-behavior: smooth;
-} 
+}
 
 .content-panel .container.center {
   justify-content: center;
@@ -90,7 +94,7 @@
   border-radius: 9px;
 }
 
-@media (max-width:800px) {
+@media (max-width: 800px) {
   .content-panel {
     flex-basis: 100%;
   }

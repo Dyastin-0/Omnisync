@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
-import './logs.css';
+import "./logs.css";
 
-import { formatTime } from '../../utils/time';
+import { formatTime } from "../../utils/time";
 
-import { useData } from '../../contexts/data/data';
-import { Loading } from '../loading/loading';
-import { useAuth } from '../../contexts/auth/auth';
+import { useData } from "../../contexts/data/data";
+import { Loading } from "../loading/loading";
+import { useAuth } from "../../contexts/auth/auth";
 
-import { Log } from './log';
+import { Log } from "./log";
 
 export const MessagePanel = () => {
   const { user } = useAuth();
@@ -19,41 +19,43 @@ export const MessagePanel = () => {
   useEffect(() => {
     const renderMessages = () => {
       if (user) {
-        const rendered = Object.entries
-        (messages.length > 20 ? messages.slice(messages.length - 21, messages.length - 1) : messages).map(([key, value]) => (
-        <Log
-          isMessageOwner={ user && user.displayName === value.sentBy} 
-          key={key}
-          message={value.message}
-          timeSent={formatTime(value.timeSent)}
-          sentBy={value.sentBy}
-        /> 
-      ));
-      setRenderedMessages(rendered);
+        const rendered = Object.entries(
+          messages.length > 20
+            ? messages.slice(messages.length - 21, messages.length)
+            : messages
+        ).map(([key, value]) => (
+          <Log
+            isMessageOwner={user && user.displayName === value.sentBy}
+            key={key}
+            message={value.message}
+            timeSent={formatTime(value.timeSent)}
+            sentBy={value.sentBy}
+          />
+        ));
+        setRenderedMessages(rendered);
       }
-    }
+    };
 
     messages && renderMessages();
   }, [messages, user]);
 
   useEffect(() => {
     if (messageContainerRef.current) {
-      messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+      messageContainerRef.current.scrollTop =
+        messageContainerRef.current.scrollHeight;
     }
   }, [renderedMessages]);
 
   return (
-    <div className='content-panel'>
+    <div className="content-panel">
       <h3> Logs </h3>
-      <div className='container' ref={messageContainerRef}>
+      <div className="container" ref={messageContainerRef}>
         {!isFetching && renderedMessages.length > 0 ? (
           renderedMessages.map((message, index) => (
-            <div key={index}>
-              {message}
-            </div>
+            <div key={index}>{message}</div>
           ))
         ) : (
-          <Loading text='No logs to display.' />
+          <Loading text="No logs to display." />
         )}
       </div>
     </div>

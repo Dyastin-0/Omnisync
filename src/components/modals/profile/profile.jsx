@@ -14,7 +14,7 @@ export const  UserProfile = ({closeModal, active}) => {
         <div className='modal-content-container'>
           <div className='column'>
             <p className='description'>Display name</p>
-            <p>{user.displayName}</p>
+            <p>{user?.displayName}</p>
           </div>
           <div className="column">
             <p className='description'>Email</p>

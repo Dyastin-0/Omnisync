@@ -1,61 +1,65 @@
-
-import { arrayIncludes } from '../../../config/database';
-
-import { useState } from 'react';
-
+import { arrayIncludes } from "../../../config/database";
+import { useState } from "react";
 import { GenericModal } from "../modal";
-import { addDevice } from '../../../utils/data-helper';
-import { useAuth } from '../../../contexts/auth/auth';
+import { addDevice } from "../../../utils/data-helper";
+import { useAuth } from "../../../contexts/auth/auth";
 
-export const AddDeviceModal = ({path, setToastMessage, setConfirmEvent, setConfirmMessage, closeModal, active}) => {
+export const AddDeviceModal = ({
+  path,
+  setToastMessage,
+  setConfirmEvent,
+  setConfirmMessage,
+  closeModal,
+  active,
+}) => {
   const { user, userDataPath } = useAuth();
 
   const [deviceName, setDeviceName] = useState(null);
   const [devicePin, setDevicePin] = useState(null);
+  const [powerRating, setPowerRating] = useState(null);
 
   const handleAddDevice = async (e) => {
-    if (e.key === 'Enter') {
-      if (!deviceName || !devicePin) {
-        setToastMessage(`There's an empty field.`);
-        return;
-      }
-      const includes = await arrayIncludes(`${path}/devices`, deviceName);
-      if (includes) {
-        setToastMessage(`${deviceName} is already used.`);
-      } else {
-        const event = () => {
-          return async () => {
-            await addDevice({user, userDataPath, deviceName, devicePin});
-            setToastMessage(`Device ${deviceName.toLocaleLowerCase()} added.`);
-            e.target.value = null;
-          };  
-        };
-        setConfirmEvent(event);
-        setConfirmMessage(`Add ${deviceName}?`);
-      }
+    e.preventDefault();
+    if (!deviceName || !devicePin || !powerRating) {
+      setToastMessage(`There's an empty field.`);
+      return;
     }
-  }
+    const includes = await arrayIncludes(`${path}/devices`, deviceName);
+    if (includes) {
+      setToastMessage(`${deviceName} is already used.`);
+    } else {
+      const event = () => {
+        return async () => {
+          await addDevice(userDataPath, deviceName, devicePin, powerRating);
+          setToastMessage(`Device ${deviceName.toLocaleLowerCase()} added.`);
+        };
+      };
+      setConfirmEvent(event);
+      setConfirmMessage(`Add ${deviceName}?`);
+    }
+  };
 
   return (
     <GenericModal
-      headerTitle='Add device'
+      headerTitle="Add device"
       closeModal={closeModal}
       active={active}
       content={
-        <div className='column'>
-          <input 
-            placeholder='Device name'
-            enterKeyHint='enter'
-            onChange={(e) => {setDeviceName(e.target.value)}}
-            onKeyUp={(e) => handleAddDevice(e)}
-          ></input>
+        <form className="column" onSubmit={handleAddDevice}>
           <input
-          placeholder='Pin number'
-          enterKeyHint='enter'
-          onChange={(e) => {setDevicePin(e.target.value)}}
-          onKeyUp={(e) => handleAddDevice(e)}
-          ></input>
-        </div>
+            placeholder="Device name"
+            onChange={(e) => setDeviceName(e.target.value)}
+          />
+          <input
+            placeholder="Power Rating (Wattage)"
+            onChange={(e) => setDevicePin(e.target.value)}
+          />
+          <input
+            placeholder="Pin number"
+            onChange={(e) => setPowerRating(e.target.value)}
+          />
+          <button type="submit">Add Device</button>
+        </form>
       }
     />
   );
