@@ -43,7 +43,6 @@ export const DataProvider = ({ children }) => {
       );
 
       onValue(queryRef, (snapshot) => {
-        console.log(snapshot.val());
         setMessages(snapshot.val() || []);
       });
     };
