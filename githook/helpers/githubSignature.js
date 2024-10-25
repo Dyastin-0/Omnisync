@@ -4,6 +4,7 @@ const dotenv = require("dotenv").config();
 const GITHUB_SECRET = process.env.GITHUB_SECRET;
 
 const createHmacSignature = (req) => {
+  console.log(req.body)
   return crypto
     .createHmac("sha256", GITHUB_SECRET)
     .update(req.body)
