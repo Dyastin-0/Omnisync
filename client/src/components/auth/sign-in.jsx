@@ -57,7 +57,7 @@ export const SignInWindow = ({setToastMessage}) => {
 
   return (
     <div className='auth'>
-      <h2>Omnisync</h2>
+      <h2>Omnisense</h2>
       <p> Sign in to access your dashboard </p>
       <input placeholder="Email" enterKeyHint='Enter' required
         onChange={(e) => {setEmail(e.target.value)}}

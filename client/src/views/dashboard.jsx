@@ -20,7 +20,7 @@ const Dashboard = ({ setToastMessage }) => {
   }, [isLoggedIn, navigate]);
 
   useLayoutEffect(() => {
-    document.title = `Omnisync/${isLoggedIn && user.displayName}`;
+    document.title = `Omnisense/${isLoggedIn && user.displayName}`;
   });
 
   useEffect(() => {

@@ -91,7 +91,7 @@ export const SignUpWindow = ({setToastMessage}) => {
 
   return (
     <div className='auth'>
-      <h2>Omnisync</h2>
+      <h2>Omnisense</h2>
       <p className='center'>Create an account and start <br /> setting up your own <br /> dashboard</p>
       <p>Make sure to use an active email</p>
       <input placeholder="Email" enterKeyHint='Enter' required
