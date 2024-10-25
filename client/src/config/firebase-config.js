@@ -1,10 +1,10 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyBuP81YRh3hUpo1Hv4fWYwnXlODsSOIr98",
-  authDomain: "omnisync.web.app",
-  databaseURL: "https://omnisynchronize-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "omnisynchronize",
-  storageBucket: "omnisynchronize.appspot.com",
-  messagingSenderId: "737432602848",
-  appId: "1:737432602848:web:a9431dd1ec9709d373e885",
-  measurementId: "G-PGTSLH9M0S"
+  apiKey: "AIzaSyDI30Fd3AtxjZfCPC0QnaaQ68lUWe1_eK0",
+  authDomain: "omnisense-17447.firebaseapp.com",
+  databaseURL: "https://omnisense-17447-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "omnisense-17447",
+  storageBucket: "omnisense-17447.appspot.com",
+  messagingSenderId: "71389175232",
+  appId: "1:71389175232:web:6a61b83950cadb47357c25",
+  measurementId: "G-1HYWMHC2GZ"
 };

@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.Omnisync",
-  "appName": "Omnisync",
+  "appId": "io.ionic.omnisense",
+  "appName": "omnisense",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",

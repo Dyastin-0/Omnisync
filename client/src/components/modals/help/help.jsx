@@ -10,9 +10,9 @@ export const HelpModal = ({closeModal, active}) => {
       content={
         <div className='modal-content-container'>
           <h5>API key</h5>
-          <p>AIzaSyBuP81YRh3hUpo1Hv4fWYwnXlODsSOIr98</p>
+          <p>AIzaSyDI30Fd3AtxjZfCPC0QnaaQ68lUWe1_eK0</p>
           <h5>Database URL</h5>
-          <p>https://omnisynchronize-default-rtdb.asia-southeast1.firebasedatabase.app</p>
+          <p>https://omnisense-17447-default-rtdb.asia-southeast1.firebasedatabase.app</p>
           <h5>How to use</h5>
           <p>You'll need a microcontroller that supports Wi-Fi such as ESP32 & ESP8266.</p>
           <p>Connect your McU by using stable Firebase library such as FirebaseClient
